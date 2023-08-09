@@ -1,0 +1,256 @@
+%------------------------------------------------------------------------------
+%
+%	implemnt.tex Document implemenation part
+%
+%	INCLUDE FILE FOR LaTeX2e DOCUMENT
+%
+%	AUTHOR: Ari Potkonen /JARVENPAA/ Mon Jun 28 2022
+%------------------------------------------------------------------------------
+%         1         2         3         4         5         6         7
+%123456789012345678901234567890123456789012345678901234567890123456789012345678
+%-BEGIN OF INCLUDE FILE--------------------------------------------------------
+\chapter{Implementation}
+\label{implementation}
+\index{implementation}
+
+Implementation depends on from solution purpose.
+For demonstration simple solution without any availability
+and security requirements is enough as long basic operations can be done.
+National solution level there are a lot of development needs from model itself
+and from possible other integrations not seen here.
+Implementation is most likely embedded into existing systems besides operation ones.
+So it would be possible to run new process besides old with correct current data.
+Hopefully this more automatic,
+less bureaucratic system implementation started this time \cite{BasicIncomeInit}.
+Global solution needs serious planning from process and possible other tax areas
+and toll processes maybe wanted to bring together into new
+"global rolling tax day" -perspective created solution family,
+capable to handle value added tax, even scaled to astronomical level \cite{LTEonMoon}.
+Maybe too premature idea here,
+but still good keep in mind while planning different stages implementation
+so that don't set up any showstoppers for further development on celestial scale,
+including at least near orbit's, Moon and Mars.
+
+\section{Initial situation}
+\label{db_initial_situation}
+\index{database, initial situation}
+This is simplified model from existing income tax,
+where there are three register keepers,
+municipalities and state government having taxing rights.
+Province and union taxes are embedded into state tax.
+Taxation happens semi-automatically at once of year.
+System is rigid, inflexible and usually cause uncertainty to peoples economic situation,
+specially at autumn near year-end.
+Every corrective adjustment needs extra activity,
+which is exhaustive if you are already in tight unexpected financial position due reason or other.
+Figure \ref{fig:DbInitial} on page \pageref{fig:DbInitial}.
+
+%keepaspectratio=true ?
+\begin{figure}
+ \begin{center}
+  \includegraphics[height=\textwidth,width=\textheight,angle=90]{figures/dtpginit.eps}
+  \caption{Initial situation with yearly tax}
+  \label{fig:DbInitial} \index{database, initial situation}
+ \end{center}
+\end{figure}
+
+\section{Theory part speculations}
+\label{db_theory_speculations}
+\index{database, theory testing}
+There are old income tax tables fed into system, province tax is separated from state tax,
+and created possibility to separate union taxes. Community tax, besides municipal taxes,
+as they are under FinLex. This configuration makes possible to play,
+compare old and new solutions.
+Still lacking statistics or proper distribution formi,
+which can be used to determine balance point for given social support.
+Anyhow, usable to play with when initialized, fed with the law given values.
+Figure \ref{fig:DbSpeculation} on page \pageref{fig:DbSpeculation}. 
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[width=\textwidth,height=\textheight]{figures/dtpgdoc.eps}
+  \caption{Theory part speculations between old and new}
+  \label{fig:DbSpeculation} \index{database, mixed mode}
+ \end{center}
+\end{figure}
+
+\section{Demonstration}
+\label{implementation_demo}
+\index{implementation demo}
+Target state is presented on figure \ref{fig:DbDemoTarget} at page \pageref{fig:DbDemoTarget}.
+It will be able to handle income tax and other taxes too.
+Resolution time is below two days globally.
+Mostly clearing can be done during 24 hours at latest during next 48 hours for global transactions.
+
+TBD (To Be Done) maybe. If someone pays.
+
+\begin{figure}
+ \begin{center}
+  \includegraphics[height=\textwidth,width=\textheight,angle=90]{figures/dtpgtarg.eps}
+  \caption{Demo DB Target situation for tax calculations}
+  \label{fig:DbDemoTarget} \index{database, demo target}
+ \end{center}
+\end{figure}
+
+\section{National version}
+\label{implementation_national}
+\index{implementation national}
+Someone has to do this!
+
+\section{Global version}
+\label{implementation_global}
+\index{implementation global}
+Maybe some day if financed?
+
+\section{Beyond taxation}
+\label{beyond_taxation}
+\index{beyond taxation}
+This document has been concentrated to taxation and basic social support
+which can be integrated, automated with taxation.
+Besides this proposed highly automated basic social support with daily tax,
+there are still lot need for discretionary support mostly due to ilness,
+disability etc. special reasons. In order to understand the problem field,
+we have to look a little at the model of the current setup
+and fastly changing situation we live in.
+
+\subsection{Existing architecture}
+\label{existing_architecture}
+\index{existing architecture}
+
+In Finland the Digital and Population Data Services Agency (DVV)
+is kind of responsible from population data details
+and digitalization services generally, and they domain is "dvv.fi".
+Properties are registered under National Land Survey (NLS) services.
+Income register and taxation details are on tax domain "vero.fi".
+Social welfare and healthcare sector domain is "kanta.fi"
+holding patient data repository, diagnosis, prescriptions etc.
+Then there is the Social Insurance Institution of Finland (KELA),
+"kela.fi" domain paying in this document with the taxation automation proposed support
+and many other discretionary supports. When looking KELA from architecture documents \cite{SYPLJULK},
+you clearly see that it's describing current situation.
+From Figure 3.1 Social and health information managment central players \cite{SYPLJULK_Kuva_3.1}
+you can notice that KELA's explicit role as social and health insurance company from customer financing perspective is left out, forgotten.
+Kela's roles are only mentioned on describing text.
+
+\begin{figure}
+ \begin{center}
+  \epsfig{figure=figures/players.eps,width=\textwidth}
+  \caption{Playrs}
+  \label{fig:players} \index{players}
+ \end{center}
+\end{figure}
+
+This significantly affects to digitalized customer process planning,
+because so central player is only iplicitly visible,
+when thinking KELA's role as sosial and health financial services provider.
+Every person doing digitalized process planning has to notice this
+when dealing with KELA's roles and one is left out,
+during new digitalized service processes creation.
+
+\subsection{Initial situation}
+\label{initial_situation}
+\index{initial situation}
+
+Initial situation,
+today's baseline is where processes are mostly just digitized version from old pen,
+paper and physicall access versions from history behind thirty years.
+There are lot of processes which are not digitalized at all,
+meaning in practice overall techososioeconomical optimization,
+fully rewised, rewritten, simplified processes.
+
+\subsection{Practical examples}
+\label{practical_examples}
+\index{practical examples}
+
+\subsubsection{Elderly peoples example}
+When elderly people is under counties wellbeing services
+and assessment of the need is done by for this purpose named nurce or doctor.
+If home service need is detected,
+this detection has to be saved to medical records base "KANTA"
+and to be marked as possible cost/support affecting decision.
+Decision which could directly be used to same organization "Kela",
+the Social Insurance Institution of Finland managed costs reimburcements reasoning,
+at least with patien customer, this elder people,
+promise to allow sensitive information cross organization use
+like financing part from wellbeing services,
+pointed service provider services used.
+Reality is from last millenium for pen, paper and physical access citizens.
+They ask relatives, perhaps from different side of country to help with these things.
+Relatives first need computer, network connection, working printer to print papers,
+and then someone possible travels severel hundred kilometers carry laptop with,
+purchase printer from market and print those papers, fill those with elder people and post to Kela,
+which basically could then look decision details from Kanta, but no,
+they reply with mail that elder people has to deliver doctors statement during next three weeks or request is cancelled.
+This paper then comes to elder people home,
+and when relatives come again in place during one month this three weeks is just passed and request is cancelled.
+In practice elder people has no access to medical records
+and not own papery copy either because demand to arrange service is not given as paper for elder people even requested to arrange support.
+So in practice relatives has to request tinme for doctor again and arrange again new trip over several hundred kilomenters to carry elder people to doctor to dig out decision from Kanta or do new one now with certificate on paper for Kela.
+See figure \ref{fig:burdofpr} on page \pageref{fig:burdofpr}.
+Yep, Kela does very effectively these decicions to neglect reasoned support,
+but is anyone checked process from elderly persons user experience perspective --
+so from Pen, Paper, Physical-access Peoples Perspective?
+This is severe wasting of overall resources available\cite{ElakelaisetRynJanKoskimiesJaElakeliitonIreneVuorisalo}.
+Kela has to have capability to check medical records from Kanta with the permisson of elder people given at initial request without asking older people and in practive hes relatives to arrange second evaluation for need what conties wellbeing services are already done!
+This is digized manual process,
+causing more load and delay than original process before computers utilized at all.
+Because all is done twice, first digitally and then manually, even decisions do twice,
+first time to initiate service, and then again to get reasoned reimburcement.
+This has to be digitalized so that done decisions are on Kanta and Kela is able to look decisions reasoning directly from there,
+at least with information owner given permission!
+
+\begin{figure}
+ \begin{center}
+  %\includegraphics[width=\linewidth]{figures/burdofpr.fig}
+  \epsfig{figure=figures/burdofpr.eps,width=\textwidth}
+  \caption{Burden of proof}
+  \label{fig:burdofpr} \index{process digitized burden of proof}
+ \end{center}
+\end{figure}
+
+See "Digitalized"-process figure \ref{fig:digitalized} on page
+\pageref{fig:digitalized}, how much less it uses resources when comparing
+to original "Burden of Proof"-process figure \ref{fig:burdofpr} on page
+\pageref{fig:burdofpr}, even lot of needed elderly people relatives
+helping effort is not drawn visible to process figure.
+Result is that peoples give up and do not get available financial
+support\cite{ElakelaisetRynJanKoskimiesJaElakeliitonIreneVuorisalo},
+system just increase bureaugratic overhead.
+System hast to fixed or removed!
+
+\begin{figure}
+ \begin{center}
+  \epsfig{figure=figures/digitali.eps,width=\textwidth}
+  \caption{Digitalized process example}
+  \label{fig:digitalized} \index{process digitalized}
+ \end{center}
+\end{figure}
+
+\subsubsection{Passed people genealogy example}
+To sort out passed people things you has to have DVV report from family relationships,
+and you have to request DVV's fully digitally generated report from DVV by yourself during mourning,
+and lot of other changes due perhaps the $30\EUR$ price.
+Even governemnt will tax passed people assets transfer further anyway,
+and they mostly know due police and/or doctors created passing out infos
+and automatic generation should start immediately on DVV.
+Possible other registers, from curch books, could be initiated as well in most cases.
+Costs should be taken from inheritance tax and do this step automatically,
+transfer money later though budget what inheritance tax feeds.
+
+\subsubsection{Examples summary}
+I am quite sure that if we check more these "services" we find more and more
+direct digitization of old process without real digitalization.
+Every service I lately have personally touced has had these problems with the procesesses.
+This is national shame, at least should be!
+And it has to be fixed, either by digitalizing processes from customer perspective
+or by merging and removing unnecessary rules, payments.
+
+\subsection{Target situation}
+\label{target_situation}
+\index{target situation}
+
+All processes are gone through overall technososioeconomical optimization,
+fully rewised, rewritten, simplified processes,
+looked from both producer and customer perspectives when cheking overall technosocioeconomical optimization.
+
+%-END OF INCLUDE FILE----------------------------------------------------------

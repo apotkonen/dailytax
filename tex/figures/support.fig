@@ -1,0 +1,47 @@
+#FIG 3.2  Produced by xfig version 3.2.8
+# File(8.3): support.fig
+# Social support xfig FIGure created by Potkonen Ari
+# Tue Aug 23 11:11:11 EEST 2022 with the xfig 3.2.8:
+# http://packages.debian.org/xfig
+# http://packages.ubuntu.com/xfig
+# 
+# Original models belongs to respective owners, my creativite addons is
+# licensed under CC-BY-SA licensing scheme. BR Ari Potkonen :-) .
+#
+# Any of the trademarks, service marks, collective marks, design rights, or
+# similar rights that are mentioned, used, or cited are the property of their
+# respective owners. Their use here does not imply that you may use them for
+# any purpose other than for the same or a similar informational use as
+# contemplated by the original author of document licensed under the CC-BY-SA
+# licensing scheme. Author cannot grant any rights to use any otherwise
+# protected materials. Your use of any such or similar incorporeal property is
+# at your own risk.
+Landscape
+Center
+Metric
+A6
+100.00
+Single
+-2
+1200 2
+2 1 0 1 0 7 0 -1 -1 0 0 0 -1 0 0 2
+	315 2205 6165 2205
+2 1 0 1 0 7 0 -1 -1 0 0 0 -1 0 0 2
+	540 2205 540 630
+2 1 0 1 0 7 0 -1 -1 0 0 0 -1 0 0 7
+	540 1080 765 1080 1215 1980 2115 1980 4590 1755 4590 1080
+	6165 1080
+4 0 0 0 -1 0 12 0 4 135 105 1215 2430 3\001
+4 0 0 0 -1 0 12 0 4 135 105 2115 2430 7\001
+4 0 0 0 -1 0 12 0 4 135 105 315 2430 y\001
+4 0 0 0 -1 0 12 0 4 135 105 540 2430 0\001
+4 0 0 0 -1 0 12 0 4 135 105 765 2430 1\001
+4 0 0 0 -1 0 12 0 4 135 210 4590 2430 18\001
+4 0 0 0 -1 0 12 0 4 135 750 2790 2430 age years\001
+4 0 0 0 -1 0 12 0 4 165 585 1305 1935 4, 100, 20%\001
+4 0 0 0 -1 0 12 0 4 165 630 4455 1665 8, 200, 40%\001
+4 0 0 0 -1 0 12 0 4 165 690 4950 1035 20, 500, 100%\001
+4 0 0 0 -1 0 12 0 4 165 690 675 1035 20, 500, 100%\001
+4 0 0 0 -1 0 12 0 4 180 4995 900 675 Taxed social support Eur/day, Eur/month without tax and Percent %\001
+4 0 0 0 -1 0 12 0 4 180 585 5715 2430 ->120y\001
+4 0 0 0 -1 0 12 1.5708 4 135 390 405 1575 EUR\001

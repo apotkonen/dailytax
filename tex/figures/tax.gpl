@@ -1,0 +1,417 @@
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+#000000001111111111222222222233333333334444444444555555555566666666667777777777
+# FILE tax.gpl
+#
+# See GnuPlot help with "gnuplot -h" and manuals with 'help' at gnuplot cli
+# or look "man gnuplot", "info gnuplot", and files from /usr/share/doc/gnuplot
+#
+# Run gnuplot to produce taxing related encapsulated postscript -chart files:
+#
+# 	gnuplot -c tax.gpl
+#
+#
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+a=20        # Age is 20 years
+sup=20      # Daily taxed social support or negative tax we use for testing
+days=365    # Days per year tax period
+curc=30000  # Period yearly income which gives m*b tax coefficent from function
+maximum=0.6 # Marginal tax upper limit.
+mmun=0.1086 # Max municipality tax 10.86% (Halsua) without community tax.
+mgov=maximum-mmun # Max tax 60% minus municipality max without community tax.
+minimum=0.0 # Minimum tax without social support.
+margin=0.03 # Marginal for clear charts printing.
+income=100000 # Yearly income limit we want to use for charts
+inkeur=income/1000 # Yearly income limit we want to use for charts
+inpday=income/days # Daily income limit we want to use for charts
+curc=curc/days # Period daily income which gives m*b tax coefficent from func
+m=maximum   # Shortcut from margin
+c=curc      # Shortcut for coefficient
+s=sup       # Shortcut for support
+r=1         # Shortcut for consumer price index ratio
+# Tax fit function
+tf(a,b,i,m,c,r)=m*b**(-c*r/i)
+# Net fit function
+nf(a,b,i,m,c,r)=1-m*b**(-c*r/i)
+# Tax marginal function
+tm(a,b,i,m,c,r)=m*b**(-c*r/i)*((c*r/i)*log(b)+1)
+# S max when new base b2=1 from b1,c,m,r when cr=i 
+sm(b)=c*r*m*(b-1)/(1-m)/b
+# New base b2 from b1,c,m,r for s along cr=i 
+b2crid(s)=(b1*(s+c*r)*m/(b1*s+c*r*m))**((c*r+s)/c*r)
+# New base b2 from b1,c,m,r for s along cr=i+s 
+b2cridis(s)=c*r*m/(s+(c*r-s)*m*b1**(c*r/(s-c*r)))
+# Sample support function
+sf(a)=a<0?0:a<=1?20:a<3?(4*(7-2*a)):a<=7?4:a<18?(4*(4+a)/11):a<=120?20:0
+# Sample support function too
+sf2(a)=a<0?0:a<=1?20:a<=120?20:0
+# Sd() Support daily value after tax
+Sd(a,i,b1,b2)=sf(a)+tf(a=a,b=b1,i,m=maximum,c=curc,r=1)*i-tf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*(sf(a)+i)
+# Ts() Negative tax from income including support, taxed with municipality and government taxes 
+Ts(a,i,b)=(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1))*(sf(a)+i)-sf(a)
+Ts2(a,i,b)=(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1))*(sf2(a)+i)-sf2(a)
+# Is() Net Income including support and taxed with municipality and government taxes 
+Is(a,i,b)=(1-(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1)))*(i+sf(a))
+Is2(a,i,b)=(1-(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1)))*(i+sf2(a))
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set terminal postscript
+set output 'tax.eps'
+set title "Tax function adabtation to margins"
+set y2label "Marginal tax as function of income (i) [1]"
+set y2range [minimum-margin:maximum+margin]
+set y2tics
+set x2label "Income (i) from tax period year [kEUR]"
+set x2range [0:inkeur]
+set x2tics
+set ylabel "Tax coefficient for whole period income (i) [1]"
+set yrange [minimum-margin:maximum+margin]
+set xlabel "Income (i) from tax period day [EUR]"
+set xrange [0:inpday]
+set xtics
+set key on
+set key right Left center nobox
+plot [i=0:inpday] maximum,\
+tm(a=20,b=exp(1),i,m=maximum,c=curc,r=1) title "marginal tax(i)",\
+tf(a=20,b=exp(1),i,m=maximum,c=curc,r=1) title "tax function(i)",\
+minimum
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'taxbase.eps'
+set title "Tax function adabtation, adjusting fit function base coefficient"
+set y2label "Period marginal tax [1]"
+set y2range [minimum-margin:maximum+margin]
+set y2tics
+unset x2label
+unset x2range
+unset x2tics
+set ylabel "Period income tax coefficient [1]"
+set yrange [minimum-margin:maximum+margin]
+set xlabel "Income (i) from tax period day [EUR]"
+set xrange [0:inpday]
+set key right Right center nobox
+plot [i=0:inpday] maximum,\
+tm(a=20,b=2,i,m=maximum,c=curc,r=1) title "marginal tax(b=2,i)",\
+tf(a=20,b=2,i,m=maximum,c=curc,r=1) title "tax function(b=2,i)",\
+tm(a=20,b=20,i,m=maximum,c=curc,r=1) title "marginal tax(b=20,i)",\
+tf(a=20,b=20,i,m=maximum,c=curc,r=1) title "tax function(b=20,i)",\
+minimum
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'basecomp.eps'
+set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily cash \"c\""
+set y2label "Period marginal tax [1]"
+set y2range [minimum-margin:maximum+margin]
+set y2tics
+unset x2label
+unset x2range
+unset x2tics
+set ylabel "Period income tax coefficient [1]"
+set yrange [minimum-margin:maximum+margin]
+set xlabel "Income (i) from tax period day [EUR]"
+set xrange [0:inpday]
+set key right Right center nobox
+b1=1.9
+b2=b2cridis(s)
+bt(s,b) = sprintf("b(s=%2d)=%1.2f",s,b)
+plot [i=0:inpday] maximum,\
+tm(a=20,b=b2,i,m=maximum,c=curc,r=1) title "marginal tax(".bt(s,b2).",i)",\
+tm(a=20,b=b1,i,m=maximum,c=curc,r=1) title "marginal tax(".bt(0,b1).",i)",\
+tf(a=20,b=b2,i,m=maximum,c=curc,r=1) title "tax function(".bt(s,b2).",i)",\
+tf(a=20,b=b1,i,m=maximum,c=curc,r=r) title "tax function(".bt(0,b1).",i)",\
+minimum
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'b2b1cris.eps'
+set title "Cost neutrality at demo fit point \"cr\" where exponent is one"
+set y2label "New base number b for fit when balance at point cr=id [1]"
+set y2range [1:b1+margin]
+set y2tics
+set x2label "Income daily support part per period, day [EUR]"
+set x2range [0:sm(b1)]
+set x2tics
+set ylabel "New base number b for fit when balance at point cr=id+is [1]"
+set yrange [1:b1+margin]
+set xlabel "Income daily support part per period, day [EUR]"
+set xrange [0:sm(b1)]
+set key right Right center nobox
+plot [s=0:sm(b1)] \
+b2cridis(s) title "cr=id+is -curve to find new base b(is), same-m,c",\
+b2crid(s) title "cr=id -curve to find new base b(is), same-m,c",\
+b1 title "original t(m,c,b)-fitting base b"
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'muntax.eps'
+set title "Municipality tax fit function"
+set y2label "Tax percentage as function of income (i) [1] %"
+set y2range [minimum:ceil(mmun*100+1)]
+set y2tics
+set ylabel "Period income tax coefficient [1]"
+set yrange [minimum:ceil(mmun*100+1)/100.0]
+set xlabel "Income (i) from tax period day [EUR]"
+set key right Left center nobox
+plot [i=0:inpday] mmun title "margin",\
+tm(a=20,b=b1,i,m=mmun,c=curc,r=1) title "marginal tax",\
+tf(a=20,b=b1,i,m=mmun,c=curc,r=1) title "tax function"
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'govtax.eps'
+set title "Government tax fit function"
+set y2label "Tax percentage as function of income (i) [1] %"
+set y2range [minimum:maximum*100]
+set y2tics
+set ylabel "Period income tax coefficient [1]"
+set yrange [minimum:maximum]
+set xlabel "Income (i) from tax period day [EUR]"
+set key left Right top nobox
+plot [i=0:inpday] tm(a=20,b=b1,i,m=mgov,c=curc,r=1) title "marginal tax",\
+[inpday/2:*] mgov title "margin",\
+[235:*] 0.44 title "44%",\
+[134:235] 0.34 title "34%",\
+[81:134] 0.30 title "30%",\
+[55:81] 0.19 title "19%",\
+[0:55] 0.13 title "13%",\
+tf(a=20,b=1.9,i,m=mgov,c=curc,r=1) title "tax function",\
+'-' using 1:2 title "midpoints"
+#450 0.44
+185 0.34
+108 0.30
+68 0.19
+27 0.13
+EOF
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'sumtax.eps'
+set title "Municipality and government tax sum"
+set y2label "Tax percentage as function of income (i) [1] %"
+set y2range [(minimum-0.03)*100:(maximum+0.03)*100]
+set y2tics
+set ylabel "Period income tax coefficient [1]"
+set yrange [minimum-0.03:maximum+0.03]
+set xlabel "Income (i) from tax period day [EUR]"
+set xrange [0:inpday]
+set key right Left center nobox
+plot [i=0:inpday]\
+mgov+mmun title "tax margin",\
+tm(a=20,b=b1,i,m=mgov,c=curc,r=1)+\
+tm(a=20,b=b1,i,m=mmun,c=curc,r=1) title "marginal tax",\
+tf(a=20,b=b1,i,m=mgov,c=curc,r=1)+\
+tf(a=20,b=b1,i,m=mmun,c=curc,r=1) title "taxes together",\
+tf(a=20,b=b1,i,m=mgov,c=curc,r=1) title "government tax",\
+tf(a=20,b=b1,i,m=mmun,c=curc,r=1) title "municipality tax"
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'soctax.eps'
+set title "Social support change to daily taxed support and tax change to compensate that"
+set y2label "Period tax, taxed support [EUR]"
+set y2range [-sup:+150]
+set y2tics
+set ylabel "Period income, support [EUR]"
+set yrange [-sup:+150]
+set xlabel "Unsupported gross income (i) from tax period day [EUR]"
+set xrange [0:inpday]
+set key left Left top nobox
+isn=sprintf("%1.0f",Is(a,0,b=b2))
+plot [i=0:inpday]\
+sf(a)+i title "supported income gross value",\
+nf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*sf(a) title "official net support on new situation",\
+Sd(a,i,b1,b2) title "net effect comparing to old",\
+'+' using (0):(Is(a,0,b=b2)) title "zero wage net support +".isn,\
+Is(a,i,b=b2) title "supported net income",\
+sf(a) title "support nominal gross value",\
+i title "wage gross value",\
+ 0 title "zero support, tax",\
+'+' using (0):(-Is(a,0,b=b2)) title "zero wage tax -".isn,\
+Ts(a,i,b=b2) title "taxed value"
+#'+' using (0):(-Is(a,0,b=b2)) title "point (0.0,-".isn.")"
+#'+' using (0):(Is(a,0,b=b2)) title "point (0.0,+".isn.")",\
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'socialsu.eps'
+set title "Daily social security support if no other income is adding tax"
+set y2label "Euros per day net support [EUR]"
+set y2range [0:21]
+set y2tics
+set x2label "sample chart combining several supports as one taxable support"
+set ylabel "Euros per day nominal gross support [EUR]"
+set yrange [0:21]
+set xlabel "Age \"a\" years [y]"
+set xrange [0:25]
+set key off
+set key center Left center nobox
+#plot [0:1] 20, [1:7] 4, [7:18] 4*(4+x)/11, [18:120] 20
+#plot [0:25] 0, [0:1] 20, [1:7] 4, [7:18] 4*(4+x)/11, [18:120] 20
+set samples 10000
+plot sf(x) title "support gross (a)",\
+Is(a=x,0,b=b2) title "support net (a)",\
+Is(a=x,0,b=b2)*2/3 title "under distraint (a)"
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'socialsu2.eps'
+set title "Daily social security support if no other income is adding tax"
+set y2label "Euros per day net support [EUR]"
+set y2range [0:21]
+set y2tics
+set x2label "sample chart combining several supports as one taxable support"
+set ylabel "Euros per day nominal gross support [EUR]"
+set yrange [0:21]
+set xlabel "Age \"a\" years [y]"
+set xrange [0:120]
+set key off
+set key bottom Left right nobox
+#plot [0:120] 20
+#plot [0:25] 0, [0:120] 20
+plot sf2(x) title "support gross (a)",\
+Is2(a=x,0,b=b2) title "support net (a)",\
+Is2(a=x,0,b=b2)*2/3 title "under distraint (a)"
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+# https://www.scb.se/en/api
+# http://scb.se/en/services/open-data-api/api-for-the-statistical-database
+# Supported formats are: px csv json xlsx json-stat json-stat2 sdm
+# API-NAME/API-VERSION/LANGUAGE/DATABASE-ID/<LEVELS>/TABLE-ID
+# See and store fields:
+# curl https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
+# wget https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
+# Configure wanted query and store it. Remove unneeded extra layer from stored stat.fi
+# json-file, content should look same as proposed cut paste code before save on web tool.
+# See and fetch the data:
+# curl -d @income.json https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
+# wget --post-file=income.json -O income.csv https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
+# curl -d @intrest.json https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
+# wget --post-file=intrest.json -O interest.csv https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
+# piecewice.dem sampling.dem prob.dem pareto prob2.dem binomial poisson PDF normal approx
+set output 'unitdist.eps'
+set title "Consumption unit distribution"
+set y2label "From 0 to income (i) cumulated consumption units group g(i) [1M]"
+set x2label "Income (i) from tax period year(365d) [kEUR]"
+set x2range [0:250*365/1000]
+set x2tics
+set y2range [0:7]
+set y2tics
+set ylabel "Consumption units group density g'(i) at income point [1k/EUR]"
+set yrange [0:70]
+set xlabel "Income (i) from tax period day [EUR] (average for all 365 days/year)"
+set xrange [0:250]
+set xtics add (18.5 2)
+set key center Right top nobox
+#{'fisk': (4.700298735631105, -37.671680183085634, 98.64542740340752)}
+#{'fisk': (0.2833049412519959, -1.8862759967692898e-23, 2.172997272429371)}
+#fisk(c=2.34012, loc=22.580040, scale=53.526429)
+#fisk(c=1.61796, loc=22.6727, scale=49.3388)
+#[fisk] [0.14 sec] [RSS: 3.74927e-06] [loc=22.580040 scale=53.526429]
+#[fisk] [0.16 sec] [RSS: 1.65361e-05] [loc=27.672654 scale=49.308820]
+b=2.9
+a=22.580040 
+c=53.526429 
+d=1900
+m=0.4
+F(i,a,b)=c*((i-a)*m)**b/(a**b+((i-a)*m)**b)
+f(i,a,b)=d*((b/a)*((i-a)*m/a)**(b-1))/(1+((i-a)*m/a)**b)**2
+plot f(x,a,b) title "Propability Density Function (Fisk) fitting f(i)",\
+     F(x,a,b) title "Cumulative Distribution Function fitting F(i)",\
+     '-' using 1:2 with lines title "2021 grouped units sum from i=0 to g(i)",\
+     '-' using 1:2 with points title "2021 unit density g'(i) at income point i"
+0 0.0
+29 1.36
+35 2.71
+39 4.07
+41 5.43
+44 6.79
+46 8.14
+48 9.50
+50 10.86
+52 12.21
+54 13.57
+56 14.93
+58 16.29
+60 17.64
+62 19.00
+64 20.36
+66 21.71
+68 23.07
+70 24.43
+72 25.79
+74 27.14
+76 28.50
+78 29.86
+80 31.21
+83 32.57
+85 33.93
+87 35.29
+90 36.64
+93 38.00
+96 39.36
+99 40.71
+102 42.07
+106 43.43
+111 44.79
+116 46.14
+122 47.50
+130 48.86
+142 50.21
+155 51.30
+160 51.57
+199 52.93
+280 53.74
+381 54.01
+913 54.15
+74466 54.29
+EOD
+29	4.7
+35	20.8
+39	37.6
+41	50.9
+44	56.7
+46	62.0
+48	63.8
+50	64.7
+52	65.4
+54	66.3
+56	67.2
+58	67.2
+60	68.1
+62	68.5
+64	69.0
+66	69.0
+68	69.6
+70	69.0
+72	68.8
+74	68.4
+76	66.9
+78	65.2
+80	63.1
+83	61.5
+85	58.1
+87	56.0
+90	52.8
+93	49.8
+96	46.3
+99	42.5
+102	38.9
+106	34.8
+111	30.5
+116	26.1
+122	21.5
+130	16.6
+142	12.0
+151	9.8
+160	7.5
+199	3.4
+280	2.0
+381	0.3
+74466	0.0
+EOF
+unset output
+reset
+quit
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+#000000001111111111222222222233333333334444444444555555555566666666667777777777

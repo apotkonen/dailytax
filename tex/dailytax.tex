@@ -1,0 +1,242 @@
+%------------------------------------------------------------------------------
+%
+%	dailytax.tex
+%
+%	This document is written around daily taxation idea which allows to
+%	simplify significantly sosial security law sections. Daily tax also
+%	makes possible to have negative daily tax values supporting peoples
+%	doing unsecure work with so called zero agreement, which means that
+%	they have work from 0 to 40 hours in week. While digitalization
+%	proceeds further and purchasing comes much more faster and effective
+%	some peoples have problems to manage they consumption so that unsecure
+%	monthly money may easily run out causing problems. Daily taxation can
+%	help by quaranteeing that every day peoples account have some even
+%	small amount of money available. It makes peopes life much secure and
+%	eases stress from life security even if monay amounts are not any
+%	bigger than today.
+%
+%	AUTHOR: Ari Potkonen /JARVENPAA/ Mon Jun 28 2022
+%
+%	LICENSE:	All referred trademarks, logos and brand names are the
+%			property of their respective owners. This document is
+%			licensed under CC-BY-SA licensing scheme.
+%
+%			Any of the trademarks, service marks, collective marks,
+%			design rights, or similar rights that are mentioned,
+%			used, or cited are the property of their respective
+%			owners. Their use here does not imply that you may use
+%			them for any purpose other than for the same or a
+%			similar informational use as contemplated by the
+%			original author of document licensed under the CC-BY-SA
+%			licensing scheme. Author cannot grant any rights to use
+%			any otherwise protected materials. Your use of any such
+%			or similar incorporeal property is at your own risk.
+%
+%	LANGUAGE:	LaTeX2e to be used with latexmk
+%
+%
+%	REFERENCE ( http://latex-project.org/help/books , http://tug.org/books ):
+%
+%	- http://ctan.org/starter
+%	  http://ctan.org/pkg/amsmath
+%	  http://ctan.org/pkg/biblatex
+%
+%	- http://wikibooks.org/wiki/LaTeX
+%	- http://wikipedia.org/wiki/BibTeX
+%	- http://bibtex.com/format/fields
+%	- http://loc.gov/marc
+%	- http://issn.org
+%
+%	- Michel Coossens, Frank Mittelbach, Alexander Samarin:
+%	  The LaTeX Companion, Addison-Wesley Company, Inc.
+%	  United States of America 1994.
+%
+%	- Norman Walsh:
+%	  Making TeX Work, O'Reilly & Associates, Inc.
+%	  United States of America 1994.
+%
+%	- https://archive.org/details/B-001-002-139
+%	  https://archive.org/items/B-001-002-139/Donald_Knuth_-_The_Tex_Book.pdf
+%	  https://ctan.org/tex-archive/systems/knuth/dist/tex/texbook.tex
+%	  https://visualmatheditor.equatheque.net/doc/texbook.pdf
+%
+%	- https://www.texlive.info/CTAN/info/impatient/book.pdf
+%
+%
+%	Edition defines major releases of document.	
+%
+%	EDITION:	0
+%
+%	Version defines minor changes which can be brought available online.
+%
+%	VERSION:	
+%
+%	CHANGED:
+%	DOCUMENT HISTORY:
+%
+%	FUTURE:
+%
+%	COMPILE:	make
+%			make clean
+%
+%------------------------------------------------------------------------------
+%         1         2         3         4         5         6         7
+%123456789012345678901234567890123456789012345678901234567890123456789012345678
+%-DOCUMENT PREAMBLE------------------------------------------------------------
+% http://wikipedia.org/wiki/Ebook
+% http://www.ctan.org/pkg/ebook
+% http://www.linux.fi/wiki/LaTeX
+% http://wikipedia.org/wiki/LaTeX
+% http://users.jyu.fi/~lehtonen/texopas/
+% http://tug.org/pracjourn/2012-1/luca/luca.pdf
+% http://wikibooks.org/wiki/LaTeX/Document_Structure
+% http://kdp.amazon.com/en_US/help/topic/G201834180#trim
+% http://github.com/psampaz/latex-nonfiction-ebook-template-1
+% http://mirrors.ctan.org/macros/latex/contrib/a4wide/a4wide.pdf
+% http://github.com/jfogarty/latex-nonfiction-ebook-template/blob/master/eBook.tex
+% http://raippa.fi/matem/JohdatusLaTeXiin/Tyokalut/086%20Suomen%20kielen%20tuki
+% /usr/share/doc/texlive-doc/latex/comprehensive/symbols-a4.pdf
+% /usr/share/doc/texlive-doc/plain/impatient/book.pdf
+% http://ctan.org/topic/class article proc minimal report book slides memoir letter
+% [ebook,oneside,openany] 
+%\documentclass[12pt,a4paper,finnish,oneside]{article}
+%\documentclass[11pt,twoside,openright]{book}
+%\documentclass[a4paper,finnish]{report}
+%\documentclass[a5paper,draft]{memoir}
+\documentclass[a5paper,final]{memoir}
+%\documentclass[10pt,a5paper]{book}
+%\documentclass[a4paper]{report}
+%\documentclass[a4paper]{book}
+%\documentclass[a5paper]{book}
+%\usepackage{geometry} % /usr/share/doc/texlive-doc/latex/geometry/geometry.pdf
+%\usepackege[size=pocket. bleed=false, color=false]{createspace}
+%\usepackage{ebook}
+%\usepackage{times}
+%\usepackage[cp850]{inputenc} % DOS
+%\usepackage[ansinew]{inputenc} % Windows
+%\usepackage[utf8]{inputenc} % Linux, UTF-8
+%\usepackage[utf8x]{inputenc} % Linux, UTF-8
+%\usepackage[latin1]{inputenc} % Linux
+%\usepackage[latin1]{inputenc}
+%\usepackage[english,finnish]{babel}
+%\usepackage[finnish]{babel}
+\usepackage[english]{babel}
+%\usepackage{siunitx}
+%\usepackage{eurosym}
+\usepackage[gen]{eurosym}
+%\usepackage[official]{eurosym}
+%\usepackage{icomma} % desimalcomma
+%\usepackage{marvosym}
+%\usepackage{amstex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+%\usepackage{xfrac}
+%\usepackage{unicode-math}
+%\usepackage{fp} % /usr/share/doc/texlive-doc/latex/fp/documentation.pdf
+%\usepackage{xfp} % /usr/share/doc/texlive-doc/latex/l3packages/xfp/xfp.pdf
+%\usepackage{tikz}
+%\usetikzlibrary{calc}
+%\usepackage{calc} % /usr/share/doc/texlive-doc/latex/tools/calc.pdf
+%\usepackage{calculation} % /texlive-doc/latex/calculation/calculation.pdf
+%\usepackage{calculator} % doc/texlive-doc/latex/calculator/calculator.pdf
+%\usepackage{sagetex} % Needs sagemath
+%\usepackage{fig}
+%\usepackage{righttag}
+%\usepackage{epic}
+%\usepackage{eepic}
+%\usepackage{dyntree}
+%\usepackage{pst-tree}
+%\usepackage{pst-jtree}
+%\usepackage{pst-qtree}
+%\usepackage{synttree}
+%\usepackage{ecltree}
+%\usepackage{xytree}
+%\usepackage{float} % /usr/share/doc/texlive-doc/latex/float/float.pdf
+\usepackage{graphicx} % share/doc/texlive-doc/latex/graphics/graphicx.pdf
+%\usepackage{svg} % /usr/share/doc/texlive-doc/latex/svg/svg.pdf
+%\usepackage{svg-extract} 
+\usepackage{epsfig} % /usr/share/doc/texlive-doc/latex/graphics/epsfig.pdf
+\usepackage{rotating} % share/doc/texlive-doc/latex/graphics/rotating.pdf
+%\usepackage{figlatex} % doc/texlive-doc/support/latex-make/figlatex.pdf
+%\usepackage{pictex}
+%\usepackage{picture}
+%\usepackage{showidx}
+%\usepackage{trees}
+%\usepackage{siunitx}
+%\usepackage{gensymb}
+%\usepackage{textcomp}
+\usepackage{supertabular}
+%\usepackage{verbatim}
+%\usepackage{lscape}
+%\usepackage{pdflscape}
+%\usepackage{csquotes}
+%\usepackage{bibtopic}
+%\usepackage{babelbib}
+%\usepackage[backend = biber,babel=other]{biblatex} % /usr/share/texmf/doc/bibtex/biber/biber.pdf
+%\usepackage[backend = biber,autolang=other]{biblatex} % doc/texlive-doc/bibtex/biber-ms/biber-ms.pdf
+%\usepackage[hyphens]{url}
+\usepackage{biblatex} % /usr/share/doc/texlive-doc/latex/biblatex/biblatex.pdf
+%\usepackage{url} % /usr/share/doc/texlive-doc/latex/url/url.pdf
+\usepackage{xurl} % /usr/share/doc/texlive-doc/latex/xurl/xurl.pdf
+\usepackage[hidelinks]{hyperref} % /usr/share/doc/texlive-doc/latex/hyperref/hyperref-doc.pdf
+%\addbibresource{biblatex.bib}
+\bibliography{biblatex}
+%\usepackage[nottoc,numbib]{tocbibind}
+%\usepackage{makeidx}
+\makeindex
+%-DOCUMENT PREAMBLE END--------------------------------------------------------
+\begin{document}
+%\pagestyle{plain}
+%-DOCUMENT FRAME --------------------------------------------------------------
+%-TITLE PAGE-------------------------------------------------------------------
+%\clearpage
+%\begin{titlepage}
+\pagenumbering{gobble}
+%\pagestyle{empty}
+\title{\Huge\textbf{Daily Tax} \linebreak DRAFT}
+%\title{\Huge\textbf{Daily Tax}}
+\author{\Large Potkonen Ari} 
+\maketitle
+%\end{titlepage}
+\pagebreak
+%-PREFACE----------------------------------------------------------------------
+%\pagebreak%\clearpage
+\pagestyle{plain}
+\parindent 0pt
+%\frontmatter
+\setcounter{page}{1}
+\pagenumbering{roman}
+\include{preface}
+\include{rights}
+\tableofcontents
+\listoffigures
+%\listoftables
+\include{marks}
+\pagebreak
+\pagestyle{headings}
+%\mainmatter
+\setcounter{page}{1}
+\pagenumbering{arabic}
+\parindent 0pt
+\include{theory}
+\include{process}
+\include{implemnt}
+\include{afterwrd}
+%-BIBLIOGRAPHY-----------------------------------------------------------------
+%\addcontentsline{toc}{chapter}{Bibliography}
+%\bibliographystyle{plain}
+%\bibliography{biblio}
+\printbibliography
+%\include{biblio}
+%-APPENDIX---------------------------------------------------------------------
+\appendix
+\include{appendix}
+%\pagebreak %\clearpage
+%-INDEX------------------------------------------------------------------------
+%\printindex
+%\backmatter
+\pagestyle{plain}
+\include{abstract}
+\end{document}
+\endinput

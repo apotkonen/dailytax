@@ -1,0 +1,115 @@
+%------------------------------------------------------------------------------
+%
+%	appendix.tex Available income statistics usage
+%
+%	INCLUDE FILE FOR LaTeX2e DOCUMENT
+%
+%	AUTHOR: Ari Potkonen /JARVENPAA/ Mon Jun 28 2022
+%------------------------------------------------------------------------------
+%         1         2         3         4         5         6         7
+%123456789012345678901234567890123456789012345678901234567890123456789012345678
+%-BEGIN OF INCLUDE FILE--------------------------------------------------------
+%\appendix
+\chapter{Income statistics}
+%\addcontentsline{toc}{chapter}{Income statistics}
+\index{statistics}
+\label{statistics}
+In Finland some statistics are available at \url{http://stat.fi}.
+You can find income statistics from \url{http://stat.fi/tilasto/tjt}.
+There is a table "11wh" -- "Income shares (\%),
+means, medians and maximum values of decile and percentile groups, 1995-2021".
+After editing your query, you can save it and actual query result.
+It's also possible to edit and repeat query from commandline in simplistic form
+using "curl -d @query.json" or "wget --post-file=query.json" from commandline.
+
+From those available statistics we can get consumption units
+$u$ grouped to fractile groups $g$,
+and when we sum up these fractiles we get number of consumption units in population,
+which should be about the number of citizens in country.  
+
+\begin{equation} \label{eq:fractile_units_sum}
+	\sum_{0\%}^{100\%} u =
+	\sum_{0\%}^{5\%} u +
+	\sum_{5\%}^{10\%} u +
+	...+
+	\sum_{95\%}^{100\%} u = citizens
+\end{equation}
+
+Besides the percentage limits of fractile group $g$
+these limits are also available on income $i_{u\%}$ -values from edge of each fractile,
+so we can define people group $g(i)$ size on each group edge where
+$i=i_{u\%}$ and median values also available from stats,
+and last top notch which is removed from statistics is available from gossib tabloids
+$i=i_{top}$.
+
+\begin{equation} \label{eq:fractile_units_group}
+	g(i_{u0\%},i_{u\%})=
+        \sum_{i=i_{u0\%}}^{i_{u\%}} u =
+	\sum_{i_{u0\%}}^{i_{u5\%}} u+
+	...+
+	\sum_{i_{u\%-5\%}}^{i_{u\%}} u
+\end{equation}
+
+\begin{equation} \label{eq:units_group}
+	g(a,b)=\sum_{i=a}^{b} u
+\end{equation}
+
+\begin{equation} \label{eq:group}
+	g(i)=g(0,i)
+\end{equation}
+
+\begin{equation} \label{eq:units_group_propability}
+	P(a,b)=\frac{g(a,b)}{g(0,i_{top})}
+\end{equation}
+
+\begin{equation} \label{eq:group_propability}
+	P(i)=P(0,i)
+\end{equation}
+
+\begin{equation} \label{eq:overall_propability}
+	P(i_{top})=1
+\end{equation}
+
+\begin{equation} \label{eq:delta_g_delta_i}
+	\frac {g(i_{u+2.5\%})-g(i_{u\%})}{i_{u+2.5\%}-i_{u\%}}
+	=\frac{\Delta g}{\Delta i}
+\end{equation}
+
+\begin{equation} \label{eq:group_density}
+	\frac{\Delta g}{\Delta i}~
+	=_{\Delta i \rightarrow 0}
+	~ g'(i)
+\end{equation}
+
+\begin{equation} \label{eq:propability_density}
+	p(\frac{i}{i_{top}})=\frac{g'(i)}{g(0,i_{top})}
+\end{equation}
+
+\begin{equation} \label{eq:propability_distribution}
+	P(i_{top})=\sum_{i=0}^{i_{top}} p(i)=1
+\end{equation}
+
+\begin{equation} \label{eq:propability}
+	P(i)=\int_{i=0}^i p(i)
+\end{equation}
+
+\begin{equation} \label{eq:propability_overall}
+	P(\infty)= P(i_{top})= 1
+\end{equation}
+
+\begin{equation} \label{eq:propability_overall_infty}
+	P(0,\infty)=\int_{i=0}^{\infty} p(i)=1
+\end{equation}
+
+From statistics is possible to get some information to try find suitable
+PDF (Propability Distribution Function) $f(i)$ to be fitted into collected $g'(i)$
+points and respective CDF (Cumulative Density Function) F(i) to fit into $g(i)$ points.
+Suitable function candidates can be found based to experience or by using Python-Fitter
+and/or -Distfit-software to do Sum of Squared Errors (SSE) or Residual Sum of Squares (RSS).
+Log-logistic distribution (Peter R. Fisk) would be good starting point to look suitable distribution function.
+
+%\begin{equation} \label{eq:GrossIncome}
+%	G=\int_{i=0}^{i_{top}} i g'(i) =
+%	g(0,i_{top}) \int_{i=0}^{i_{top}} i p(i)
+%\end{equation}
+%-END OF INCLUDE FILE----------------------------------------------------------

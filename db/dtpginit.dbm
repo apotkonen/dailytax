@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+CAUTION: Do not modify this file unless you know what you are doing.
+ Unexpected results may occur if the code is changed deliberately.
+-->
+<dbmodel pgmodeler-ver="1.0.2" use-changelog="false" author="Ari Potkonen" last-position="0,260" last-zoom="1" max-obj-count="16"
+	 default-schema="public" default-owner="postgres"
+	 layers="Default layer"
+	 active-layers="0"
+	 layer-name-colors="#000000"
+	 layer-rect-colors="#b4b4b4"
+	 show-layer-names="false" show-layer-rects="false">
+<database name="dtpginit" is-template="false" allow-conns="true">
+</database>
+
+<schema name="public" layers="0" fill-color="#e1e1e1" sql-disabled="true">
+</schema>
+
+<schema name="Population" layers="0" rect-visible="true" fill-color="#1a5fb4">
+	<role name="postgres"/>
+</schema>
+
+<schema name="Lex" layers="0" rect-visible="true" fill-color="#3584e4">
+	<role name="postgres"/>
+</schema>
+
+<schema name="Tax" layers="0" rect-visible="true" fill-color="#26a269">
+	<role name="postgres"/>
+</schema>
+
+<table name="firstname" layers="0" collapse-mode="0" max-obj-count="2" z-value="0">
+	<schema name="&quot;Population&quot;"/>
+	<role name="postgres"/>
+	<position x="60" y="60"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="fname">
+		<type name="varchar" length="16"/>
+	</column>
+	<constraint name="firstname_pk" type="pk-constr" table="&quot;Population&quot;.firstname">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="lastname" layers="0" collapse-mode="0" max-obj-count="2" z-value="0">
+	<schema name="&quot;Population&quot;"/>
+	<role name="postgres"/>
+	<position x="60" y="120"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="lname">
+		<type name="varchar" length="26"/>
+	</column>
+	<constraint name="lastname_pk" type="pk-constr" table="&quot;Population&quot;.lastname">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="register" layers="0" collapse-mode="0" max-obj-count="2" z-value="0">
+	<schema name="&quot;Population&quot;"/>
+	<role name="postgres"/>
+	<position x="60" y="180"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="4"/>
+	</column>
+	<constraint name="register_pk" type="pk-constr" table="&quot;Population&quot;.register">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="municipality" layers="0" collapse-mode="0" max-obj-count="3" z-value="0">
+	<schema name="&quot;Lex&quot;"/>
+	<role name="postgres"/>
+	<position x="60" y="400"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="19"/>
+	</column>
+	<constraint name="municipality_pk" type="pk-constr" table="&quot;Lex&quot;.municipality">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_province" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="municipality_uq" index="2"/>
+		<object name="province_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="province" layers="0" collapse-mode="0" max-obj-count="3" z-value="0">
+	<schema name="&quot;Lex&quot;"/>
+	<role name="postgres"/>
+	<position x="80" y="520"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="18"/>
+	</column>
+	<constraint name="province_pk" type="pk-constr" table="&quot;Lex&quot;.province">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_state" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="province_uq" index="2"/>
+		<object name="state_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="state" layers="0" collapse-mode="0" max-obj-count="2" z-value="0">
+	<schema name="&quot;Lex&quot;"/>
+	<role name="postgres"/>
+	<position x="80" y="640"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="54"/>
+	</column>
+	<constraint name="state_pk" type="pk-constr" table="&quot;Lex&quot;.state">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="unions" layers="0" collapse-mode="0" max-obj-count="3" z-value="0">
+	<schema name="&quot;Lex&quot;"/>
+	<role name="postgres"/>
+	<position x="80" y="760"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="158"/>
+	</column>
+	<constraint name="union_pk" type="pk-constr" table="&quot;Lex&quot;.unions">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_state" index="2"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="state_fk" index="1"/>
+	</customidxs>
+</table>
+
+<table name="resident" layers="0" collapse-mode="1" max-obj-count="15" z-value="0">
+	<schema name="&quot;Population&quot;"/>
+	<role name="postgres"/>
+	<position x="440" y="60"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="eid">
+		<type name="varchar" length="12"/>
+	</column>
+	<column name="birth">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="dependants">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="childs">
+		<type name="smallint" length="0"/>
+	</column>
+	<constraint name="resident_pk" type="pk-constr" table="&quot;Population&quot;.resident">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_civilstatus" index="6"/>
+		<object name="id_firstname" index="3"/>
+		<object name="id_lastname" index="4"/>
+		<object name="id_municipality" index="7"/>
+		<object name="id_register" index="5"/>
+		<object name="id_yearly_tax" index="8"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="civilstatus_fk" index="7"/>
+		<object name="firstname_fk" index="1"/>
+		<object name="lastname_fk" index="3"/>
+		<object name="municipality_fk" index="9"/>
+		<object name="register_fk" index="5"/>
+		<object name="resident_uq" index="2"/>
+		<object name="resident_uq1" index="4"/>
+		<object name="resident_uq2" index="6"/>
+		<object name="resident_uq3" index="8"/>
+		<object name="resident_uq4" index="10"/>
+		<object name="resident_uq5" index="12"/>
+		<object name="yearly_tax_fk" index="11"/>
+	</customidxs>
+</table>
+
+<relationship name="resident_has_one_firstname" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#862ce1"
+	 src-table="&quot;Population&quot;.firstname"
+	 dst-table="&quot;Population&quot;.resident"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-22.3736" y="-75.4545"/>
+	</label>
+</relationship>
+
+<relationship name="resident_has_one_lastname" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#58c172"
+	 src-table="&quot;Population&quot;.lastname"
+	 dst-table="&quot;Population&quot;.resident"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-41.7486" y="-51.7327"/>
+	</label>
+</relationship>
+
+<relationship name="resident_has_one_register" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#e849d7"
+	 src-table="&quot;Population&quot;.register"
+	 dst-table="&quot;Population&quot;.resident"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-40.8346" y="-48.2487"/>
+	</label>
+</relationship>
+
+<table name="civilstatus" layers="0" collapse-mode="0" max-obj-count="2" z-value="0">
+	<schema name="&quot;Population&quot;"/>
+	<role name="postgres"/>
+	<position x="60" y="240"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="smallint" length="0"/>
+	</column>
+	<column name="status">
+		<type name="varchar" length="12"/>
+	</column>
+	<constraint name="civilstatus_pk" type="pk-constr" table="&quot;Population&quot;.civilstatus">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<relationship name="resident_has_one_civilstatus" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#7ef9d4"
+	 src-table="&quot;Population&quot;.civilstatus"
+	 dst-table="&quot;Population&quot;.resident"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-43.8033" y="-24.1924"/>
+	</label>
+</relationship>
+
+<relationship name="resident_has_one_municipality" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#4dd71d"
+	 src-table="&quot;Lex&quot;.municipality"
+	 dst-table="&quot;Population&quot;.resident"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="66.008" y="-4.40376"/>
+	</label>
+</relationship>
+
+<relationship name="municipality_has_one_province" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#20ceab"
+	 src-table="&quot;Lex&quot;.province"
+	 dst-table="&quot;Lex&quot;.municipality"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="124.392" y="0.14701"/>
+	</label>
+</relationship>
+
+<relationship name="province_has_one_state" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#68e003"
+	 src-table="&quot;Lex&quot;.state"
+	 dst-table="&quot;Lex&quot;.province"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="100.246" y="-19.853"/>
+	</label>
+</relationship>
+
+<table name="yearly_tax" layers="0" collapse-mode="1" max-obj-count="10" z-value="0">
+	<schema name="&quot;Tax&quot;"/>
+	<role name="postgres"/>
+	<position x="860" y="320"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="bigint" length="0"/>
+	</column>
+	<column name="eid">
+		<type name="varchar" length="12"/>
+	</column>
+	<column name="birth">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="reduction">
+		<type name="real" length="0"/>
+	</column>
+	<column name="gross">
+		<type name="real" length="0"/>
+	</column>
+	<column name="tax">
+		<type name="real" length="0"/>
+	</column>
+	<column name="net">
+		<type name="real" length="0"/>
+	</column>
+	<constraint name="daytax_pk" type="pk-constr" table="&quot;Tax&quot;.yearly_tax">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+</table>
+
+<table name="muntax" layers="0" collapse-mode="1" max-obj-count="8" z-value="0">
+	<schema name="&quot;Lex&quot;"/>
+	<role name="postgres"/>
+	<position x="380" y="380"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="name">
+		<type name="varchar" length="19"/>
+	</column>
+	<column name="tax">
+		<type name="real" length="0"/>
+	</column>
+	<column name="ort">
+		<type name="real" length="0"/>
+	</column>
+	<column name="lut">
+		<type name="real" length="0"/>
+	</column>
+	<constraint name="muntax_pk" type="pk-constr" table="&quot;Lex&quot;.muntax">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_municipality" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="municipality_fk" index="0"/>
+	</customidxs>
+</table>
+
+<relationship name="municipality_has_many_muntax" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#77d0ca"
+	 src-table="&quot;Lex&quot;.municipality"
+	 dst-table="&quot;Lex&quot;.muntax"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-30.3892" y="-0.195816"/>
+	</label>
+</relationship>
+
+<table name="govtax" layers="0" collapse-mode="1" max-obj-count="7" z-value="0">
+	<schema name="&quot;Lex&quot;"/>
+	<role name="postgres"/>
+	<position x="360" y="600"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="low">
+		<type name="real" length="0"/>
+	</column>
+	<column name="high">
+		<type name="real" length="0"/>
+	</column>
+	<column name="tax">
+		<type name="real" length="0"/>
+	</column>
+	<constraint name="govtax_pk" type="pk-constr" table="&quot;Lex&quot;.govtax">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_state" index="1"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="state_fk" index="1"/>
+	</customidxs>
+</table>
+
+<relationship name="state_has_many_govtax" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#cd0cab"
+	 src-table="&quot;Lex&quot;.state"
+	 dst-table="&quot;Lex&quot;.govtax"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-17.6815" y="-8.19183"/>
+	</label>
+</relationship>
+
+<relationship name="state_has_many_union" type="rel1n" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#85923e"
+	 src-table="&quot;Lex&quot;.state"
+	 dst-table="&quot;Lex&quot;.unions"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="97.8185" y="-19.853"/>
+	</label>
+</relationship>
+
+<table name="taxfunc" layers="0" collapse-mode="1" max-obj-count="6" z-value="0">
+	<schema name="&quot;Tax&quot;"/>
+	<role name="postgres"/>
+	<position x="860" y="640"/>
+	<column name="id" not-null="true"
+	 identity-type="ALWAYS">
+		<type name="integer" length="0"/>
+	</column>
+	<column name="date">
+		<type name="timestamp" length="0"/>
+	</column>
+	<column name="func">
+		<type name="text" length="0"/>
+	</column>
+	<constraint name="taxfunc_pk" type="pk-constr" table="&quot;Tax&quot;.taxfunc">
+		<columns names="id" ref-type="src-columns"/>
+	</constraint>
+
+	<customidxs object-type="column">
+		<object name="id_govtax" index="4"/>
+		<object name="id_muntax" index="3"/>
+	</customidxs>
+
+	<customidxs object-type="constraint">
+		<object name="govtax_fk" index="4"/>
+		<object name="muntax_fk" index="1"/>
+		<object name="taxfunc_uq" index="2"/>
+		<object name="taxfunc_uq1" index="3"/>
+	</customidxs>
+</table>
+
+<relationship name="taxfunc_has_one_muntax" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#953120"
+	 src-table="&quot;Lex&quot;.muntax"
+	 dst-table="&quot;Tax&quot;.taxfunc"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="-0.36737" y="-115.714"/>
+	</label>
+</relationship>
+
+<relationship name="taxfunc_has_one_govtax" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#f5ba36"
+	 src-table="&quot;Lex&quot;.govtax"
+	 dst-table="&quot;Tax&quot;.taxfunc"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="44.6092" y="-55.2056"/>
+	</label>
+</relationship>
+
+<relationship name="resident_has_one_yearly_tax" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#0f80f1"
+	 src-table="&quot;Tax&quot;.yearly_tax"
+	 dst-table="&quot;Population&quot;.resident"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="58.742" y="-106.763"/>
+	</label>
+</relationship>
+
+<relationship name="yearly_tax_has_one_taxfunc" type="rel11" layers="0"
+	 src-col-pattern="{sc}_{st}"
+	 pk-pattern="{dt}_pk" uq-pattern="{dt}_uq"
+	 src-fk-pattern="{st}_fk"
+	 custom-color="#8820ec"
+	 src-table="&quot;Tax&quot;.taxfunc"
+	 dst-table="&quot;Tax&quot;.yearly_tax"
+	 src-required="false" dst-required="false">
+	<label ref-type="name-label">
+		<position x="7.32413" y="-30.053"/>
+	</label>
+</relationship>
+
+</dbmodel>

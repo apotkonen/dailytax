@@ -1,0 +1,533 @@
+%------------------------------------------------------------------------------:
+%
+%	theory.tex Document theory part
+%
+%	INCLUDE FILE FOR LaTeX2e DOCUMENT
+%
+%	AUTHOR: Ari Potkonen /JARVENPAA/ Mon Jun 28 2022
+%------------------------------------------------------------------------------
+%         1         2         3         4         5         6         7
+%123456789012345678901234567890123456789012345678901234567890123456789012345678
+%-BEGIN OF INCLUDE FILE--------------------------------------------------------
+\begin{comment}\end{comment}
+\chapter{Theory}
+\label{theory}
+\index{theory}
+Existing yearly tax is function of person age $a$ on taxation date and income $i$.
+To be encouraging and fair marginal tax should be continuous,
+smooth because it tell how much tax is taken if you earn anything more what you have already earned
+and any jumps on marginal tax cause motivation traps.
+It's good to notify that smoothness requirement is for predictable changes like income and age change.
+Sudden change, like taxation function change during season doesn't have similar smoothness requirement,
+because it's sudden and peoples can't do protective tax planning against it.
+Therefore this kind of sudden change do not set any motivation barriers at least at first time.
+Of course some municipality may have habit to play with possibility to change taxation,
+and does it frequently, it may cause some activities on peoples.
+Maximum tax percentage should also be limited due same reason.
+Besides tax you may have acceptable reductions to income,
+and those are taken away from income before taxation.
+Social supporting income when person own income is too low for living is added to
+automated taxation process to avoid bureaucracy.
+\section{Tax function requirements}
+\label{tax_function_requirements}
+\index{tax function requirements}
+Here we have mathematical from definitions and requirements for tax function $t()$.
+Tax function parameters income $i$ and age $a$.
+Tax function limits maximum tax $m$ and low income tax limit $l$.
+Requirements from continuity and smooth behavior for fax function,
+it's derivative and for marginal tax. Equations 
+\ref{eq:const_a} - \ref{eq:tax_d_y}.
+\begin{equation} \label{eq:const_a}
+ a \in [0,44000]\in \mathbb{N}
+\end{equation}
+\begin{equation} \label{eq:const_i}
+ i \in [0,\infty)\in \mathbb{R}^+
+\end{equation}
+\begin{equation} \label{eq:const_m}
+ m \in [0.0,1.0] \in \mathbb{R}^+ ~;~ m \simeq 0.6
+\end{equation}
+\begin{equation} \label{eq:const_l}
+ l \in [0.0,m] \in \mathbb{R}^+ ~;~ l \sim 0.0,0.1
+\end{equation}
+\begin{equation} \label{eq:def_t}
+ t:\mathbb{N}\times\mathbb{R} \rightarrow [0,m]\in\mathbb{R}^+
+\end{equation}
+\begin{equation} \label{eq:tax_t}
+ t(a,i)\leq m ~;~ a,i \in \mathbb{R}^+
+\end{equation}
+\begin{equation} \label{eq:ltax_min}
+ \lim_{i \to 0} t(a,i)\leq l
+\end{equation}
+\begin{equation} \label{eq:ltax_max}
+ \lim_{i \to \infty} t(a,i) = m
+\end{equation}
+\begin{equation} \label{eq:dtax_min}
+ \lim_{i \to \infty} t'(a,i)=0
+\end{equation}
+\begin{equation} \label{eq:tax_mrg}
+ m(a,i) = \frac {\Delta t} {\Delta i} = t(a,i)+t'(a,i) i
+\end{equation}
+\begin{equation} \label{eq:tax_mmax}
+ \lim_{i \to \infty} m(a,i)\leq m
+\end{equation}
+\begin{equation} \label{eq:tax_smooth}
+ |i-i_0|<\delta \implies |t(a,i)-t(a,i_0)|<\epsilon
+\end{equation}
+\begin{equation} \label{eq:dtax_smooth}
+ |i-i_0|<\delta \implies |t'(a,i)-t'(a,i_0)|<\epsilon
+\end{equation}
+\begin{equation} \label{eq:mtax_smooth}
+|i-i_0|<\delta \implies |m(a,i)-m(a,i_0)|<\epsilon
+\end{equation}
+\begin{equation} \label{eq:tax_d_y}
+ t(a,i_d)=t_d(a,i_y/365)=t_y(a,i_y)
+\end{equation}
+\section{Social perspective}
+\label{social_perspective}
+\index{social perspective}
+Currently taxation is done yearly, and having filling and closing dates. Existing social support,
+monthly pays on everything and yearly taxation is requiring some prediction and planning capabilities from taxable person.
+Current digital economy part-time, zero agreement, jobs and other insecurities
+is too much for many peoples and they lose control from they life.
+There comes unsecured times without income and this stress peoples very much.
+Big part if person capacity goes to unproductive activities to save euro cents and beg money from society.
+Which activity alone increase cost and load even more for already troubled people.
+Therefore, taxation period should be shortened from year to one day.
+Social security support hast to be integrated into taxation system
+so that peoples can feel some security, stay concentrated, productive,
+develop itself and make better life.
+It doesn't mean that support should be big.
+It means that support has to be daily and guaranteed so that you have possibility to maintain yourselves.
+Someone may ask that is there any limit for this daily allowance "$d$" money distribution?
+Answer is that yes there is limit which limits possibility to have more support and still have smooth taxing system.
+Upper limit for taxable support is nominal gross domestic product per capita "$n$" times marginal tax "$m$",
+and then tax is flat constant marginal tax for all, which is kind of mathematical limit,
+politically, psychologically for human acceptable limit is much less.
+These limits are highly country dependent, and therefore only some wide ranges given.
+Mathematically those are more like hints to check your calculations if going much under or over.
+\index{support fit requirements}
+\begin{equation} \label{eq:const_n}
+n \in (0,1000) \in \mathbb{R}^+
+~;~ n \simeq 130
+\end{equation}
+\begin{equation} \label{eq:const_d}
+d \in [0,600] \in \mathbb{R}^+
+~;~ d \simeq 5, 10, 20 \leq n
+\end{equation}
+\begin{equation} \label{eq:const_s}
+s: [0,44000]\in\mathbb{N} \rightarrow [0,600] \in \mathbb{R}^+
+\end{equation}
+\begin{equation} \label{eq:sup_s}
+s(a)\leq d \leq mn
+\end{equation}
+When we look existing law sections, those on off rules (LEX \cite{LEX_2012_916}),
+and combine social support $s(d)$ so that some small daily income can be guaranteed without any bureaucracy.
+For that we draw figure \ref{fig:Support} on page \pageref{fig:Support} from existing lowest acceptable social support level
+(Social Security Committee \cite{VN_2023_26} p.23 figure 3 and p.38 figure 5)
+and do several adjustments to get support work smoothly automated way without bureaucracy.
+Because child parents get basic allowance automatically we change child home care allowance to be child's own benefit
+combining child benefit and half of old home care benefit to be new child own home care benefit and set it on level of adult's basic allowance.
+If counting together child's home care allowance and parents basic income support it's about on old parents home care support level, but automatically.
+Doing siblings in row will grow child home care allowance to level of old child home care allowance.
+Child home care allowance is full for one year and then come to pure child benefit level at age three years.
+Child start to miss other children company between one and two and half years age, depending from siblings,
+and should be on day care at latest from three years old to grow social and get professional preschool training.
+From school age seven years child care is increased gradually to support child's enthusiasm recreation interests positive way by offering money for developing and caring hobby,
+same time keeping children away from headless streetdander which easily lead aimless child under
+outsiders' manipulation, abuse and exploitation - dreadful plunge spiral - which costs for child
+and nation are massive and should be avoided.
+This growing child care benefit is also replacing old multi child family increased child benefit automatically (ITLA \cite{ITLA_2023_LL}).
+When study obligation ends to maturity age than we should support growth and child moving to education site dormitory.
+Therefore study grant plus student housing benefit should be on level of basic income support,
+basic sick leave allowance, rehabilitation allowance and unemployed basic allowance
+which all are then combined together to form basic allowance for rest of your life.
+It's paid for all, day by day pieces and taxed away when your incomes grow on professional life.
+But it's there if you get sack or get old enough.
+Separate pay level insurances and pensions you have bought are then paid over that by insurance companies
+and those payments are taxable income as normal income.
+
+Now when we have combined different old benefits from birth to death to one figure \ref{fig:Support} on page \pageref{fig:Support} we also add about old level allowance for daily payment $d$ and do fitting function equation \ref{eq:sup_gross} $s_d(a,d,r)$ so that consumer price index change ratio $r$ can be taken into account automatically. This is important because support level is low for peoples in need and rapid changes in prices has to be taken in account automatically. National economy balance is then managed by managing tax fitting on fly. Equation \ref{eq:sup_gross6} match to figure \ref{fig:Support} on page \pageref{fig:Support} situation.
+\begin{figure} %[H] %\usepackage{float}
+ \begin{center}
+  %\includegraphics[width=\linewidth]{figures/support.fig}
+  \epsfig{figure=figures/support.eps,width=\textwidth}
+  \caption{Social security support}
+  \label{fig:Support} \index{social support}
+ \end{center}
+\end{figure}
+\begin{comment}
+% \begin{equation} \label{eq:sup_gross2} \index{social support}
+% s_d(a,d,r) = \left\lbrace
+% \begin{array}{rlrcr}
+%			1.00dr	&;& 0y &\leq a \leq&  1y\\
+%  \frac {7y-2a} y	0.25dr	&;& 1y &  <  a   < &  3y\\
+%			0.25dr	&;& 3y &\leq a \leq&  7y\\
+%  \frac {4y+a} {11y}	0.25dr	&;& 7y &  <  a   < & 18y\\
+%			0.50dr	&;&18y &\leq a \leq&death
+%  \end{array}
+%  \right.
+% \end{equation}
+% \begin{equation} \label{eq:sup_gross3} \index{social support}
+% s_d(a,20,1) = \left\lbrace
+%  \begin{array}{rlrcr}
+%			20\EUR	&;& 0y &\leq a \leq&  1y\\
+%  \frac {7y-2a} y	 5\EUR	&;& 1y &  <  a   < &  3y\\
+%			 5\EUR	&;& 3y &\leq a \leq&  7y\\
+%  \frac {4y+a} {11y}	 5\EUR	&;& 7y &  <  a   < & 18y\\
+%			10\EUR	&;&18y &\leq a \leq&death
+%  \end{array}
+%  \right.
+% \end{equation}
+\end{comment}
+\begin{equation} \label{eq:sup_gross} \index{social support}
+s_d(a,d,r) = \left\lbrace
+ \begin{array}{rlrcr}
+			1.0dr	&;& 0y &\leq a \leq&  1y\\
+ \frac {7y-2a} y	0.2dr	&;& 1y &  <  a   < &  3y\\
+			0.2dr	&;& 3y &\leq a \leq&  7y\\
+ \frac {4y+a} {11y}	0.2dr	&;& 7y &  <  a   < & 18y\\
+			1.0dr	&;&18y &\leq a \leq&death
+ \end{array}
+ \right.
+\end{equation}
+\begin{equation} \label{eq:sup_gross6} \index{social support}
+s_d(a,20,1) = \left\lbrace
+ \begin{array}{rlrcr}
+			20\EUR	&;& 0y &\leq a \leq&  1y\\
+ \frac {7y-2a} y	 4\EUR	&;& 1y &  <  a   < &  3y\\
+			 4\EUR	&;& 3y &\leq a \leq&  7y\\
+ \frac {4y+a} {11y}	 4\EUR	&;& 7y &  <  a   < & 18y\\
+			20\EUR	&;&18y &\leq a \leq&death
+ \end{array}
+ \right.
+\end{equation}
+\section{Tax function fitting}
+\label{tax_function_fitting}
+\index{tax funtion fitting}
+To get well adjustable taxation system we could and should use mathematical methods like series
+which are usually working well from zero to one range for fitted functions.
+Therefore, it would be good to use general tax fitting function $f$
+which is then scaled to range from zero to tax margin
+and income parameter is also scaled to match current currency value.
+This scaling makes easier adjust taxation to inflation changes using consumer price index
+and calculation period change from year to date.
+It would be good to add automatic consumer price index check into calculation system.
+So for fit function we have requirements on equations from \ref{eq:def_f} to \ref{eq:df_smooth}.
+\index{fit function requirements}
+\begin{equation} \label{eq:def_f}
+ f:\mathbb{N}\times\mathbb{R} \rightarrow [0,1]\in\mathbb{R}^+
+\end{equation}
+%\begin{equation} \label{eq:tax}
+%f(a,i)\leq 1 ~;~ a \in \mathbb{N}, i \in \mathbb{R}^+
+%\end{equation}
+%\begin{equation} \label{eq:tax_min}
+% \lim_{i \to 0} f(a,i)\simeq 0 \leq0.1
+%\end{equation}
+\begin{equation} \label{eq:f_min}
+ \lim_{i \to 0} f(a,i) = 0
+\end{equation}
+\begin{equation} \label{eq:f_max}
+ \lim_{i \to \infty} f(a,i) = 1
+\end{equation}
+\begin{equation} \label{eq:df_min}
+ \lim_{i \to \infty} f'(a,i)=0
+\end{equation}
+\begin{equation} \label{eq:f_smooth}
+ |i-i_0|<\delta \implies |f(a,i)-f(a,i_0)|<\epsilon
+\end{equation}
+\begin{equation} \label{eq:df_smooth}
+ |i-i_0|<\delta \implies |f'(a,i)-f'(a,i_0)|<\epsilon
+\end{equation}
+Because national tax office is anyway doing detailed tuning, like age dependency,
+we could just take something very simple function equation \ref{eq:fit_simp} to play with
+it as demonstration from fit function use equation \ref{eq:fit_func} for tax.
+Fit function derivative equation \ref{eq:dfit_func} is needed for
+fit function marginal tax equation \ref{eq:tax_mrg}, \ref{eq:mfit_func}.
+\index{fit function}
+\begin{equation} \label{eq:fit_simp}
+ f(i) = b^{-\frac{cr}i} ~;~ b,c,i,r \in \mathbb{R}^+
+\end{equation}
+\begin{equation} \label{eq:fit_deri}
+ f'(i) = \frac{df}{di}~b^{-\frac{cr}i} = b^{-\frac{cr}i} \frac{cr}{i^2}\ln(b) 
+\end{equation}
+\begin{equation} \label{eq:fit_func}
+ f(a,i,m,c,r) = m b^{-\frac{cr}i} ~;~ b > 1.0
+\end{equation}
+\begin{equation} \label{eq:dfit_func}
+ f'(a,i,m,c,r) = m b^{-\frac{cr}i}\frac{cr}{i^2}\ln(b)
+\end{equation}
+\begin{equation} \label{eq:mfit_func}
+ m(a,i,m,c,r) = m b^{-\frac{cr}i}(\frac{cr}i\ln(b)+1)
+\end{equation}
+Next we select coefficients; marginal tax $m$, income cash $c$ on period you have $m/b$ \% tax,
+consumer price index ratio $r$ for period, equations \ref{eq:fyearly_tax}-\ref{eq:fdaily_tax}
+and for fitted function marginal tax equation \ref{eq:mfit_func}.
+Then figure \ref{fig:DailyTax} on page \pageref{fig:DailyTax} is drawn to show results.
+As you can see marginal tax is quite smooth function
+and there are no motivation traps where additional earned money is practically taxed away.
+If we now add daily social support to this and tax it,
+then it basically adds net amount after marginal tax for everyone.
+To keep budged in balance on national level
+tax curve has to be buckled little up or marginal tax lifted a bit.
+Because marginal tax is about 60\% already
+most obvious solution is to touch base number here in our demonstration fitting
+and figure \ref{fig:BaseTax} on page \pageref{fig:BaseTax}
+show how fitting behaves when changing base coefficient.
+\begin{equation} \label{eq:tax_max}
+t_m \in [0.0,1.0] \in \mathbb{R}^+ ~;~ t_m = m \simeq 0.6
+\end{equation}
+\begin{equation} \label{eq:fyearly_tax}
+t_y(a,i_y)=f(a,b=e,i=i_y,m=0.6,c=30000,r=1)
+\end{equation}
+\begin{equation} \label{eq:fdaily_tax}
+t_d(a,i_d)=f(a,b=e,i=i_d,m=0.6,c=\frac{30000}{365},r=1)
+\end{equation}
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/tax.eps,width=\textwidth}
+  \caption{Tax function fit for daily tax}
+  \label{fig:DailyTax}
+ \end{center}
+\end{figure}
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/taxbase.eps,width=\textwidth}
+  \caption{Tax fitting behavior when changing base coefficient}
+  \label{fig:BaseTax}
+ \end{center}
+\end{figure}
+
+Next we use support daily gross value $s_d$ and define equations \ref{eq:support_net_cash}-\ref{eq:supported_tax_cash};
+support daily net value after tax $S_d$, tax including support as negative tax value $T_s$, net income,
+including social support $I_s$, and tax counting daily support as taxable $T_d$.
+If using original tax in current, cash $T$ equation \ref{eq:tax_cash_daily}
+without taking in account support effect to reduce gathered tax amount and compensate it in tax equation
+then accumulated tax sum is smaller and cause problems.
+Therefore, tax fitting has to be adjusted to take support in account when daily support is applied.
+\begin{equation} \label{eq:support_net_cash} \index{support daily}
+S_d(a,i_d) = s_d(a) + t_d(a,i_d)i_d - t_d(a,s_d(a)+i_d)(s_d(a)+i_d)
+\end{equation}
+\begin{equation} \label{eq:supported_tax_cash} \index{tax negative}
+T_s(a,i_d)=t_d(a,s_d(a)+i_d)(s_d(a)+i_d)-s_d(a)
+\end{equation}
+\begin{equation} \label{eq:supported_cash_net} \index{income supported}
+I_s(a,i_d)=(1-t_d(a,s_d(a)+i_d))(s_d(a)+i_d)
+\end{equation}
+\begin{equation} \label{eq:supported_tax_cash_daily} \index{tax daily}
+T_d(a,i_d)=t_d(a,s_d(a)+i_d)(s_d(a)+i_d)
+\end{equation}
+\begin{equation} \label{eq:tax_cash_daily}
+T(a,i_d)=t_d(a,i_d)i_d
+\end{equation}
+
+\section{Available statistics}
+\label{income tax statistics}
+\index{income tax statistics}
+In Finland most income and tax related things are public, at least in theory,
+if information acquirement cost in time, money and other resources
+is limitless you can get yearly income numbers form past years.
+In practice you have some statistics available for free,
+and about top 1000 individuals are listed on yellow press tabloids, web pages.
+Electrically income data, even in obfuscated form,
+nor income distribution function details,
+are not available, at least I didn't found those.
+Available statistics are from "consumption units",
+including some interpretation from childs,
+young peoples as consumption units, not individuals.
+Statistic already include income transfers,
+meaning that needed data from individuals is not availalable.
+Income statistics appendix on page \pageref{statistics} tell more from data acquisition.
+
+Without correct data from individuals we only illustriate from "consumption units"
+aquired data, figure \ref{fig:ConsumptionUnit} on page \pageref{fig:ConsumptionUnit}
+as kind of data needed from individuals to estimate,
+define possible cost neutral changes for taxation to create income
+transfers automation -- and reduce costly unnecessary bureaucracy.
+Either original obfuscated data or accurate propability density function fitting for data is needed.
+
+\begin{figure} %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/unitdist.eps,width=\textwidth}
+  \caption{Consumption unit distribution}
+  \label{fig:ConsumptionUnit} \index{consumption unit distribution}
+ \end{center}
+\end{figure}
+
+Even this 2021 unit density data after all corrections during years looks good now on 2023
+and seems that nearly all has got more than daily basic social assistance
+$18.5\EUR$$\slash d$\cite{KELA_BASIC_ASSISTANCE}
+except students $9.3\EUR$$\slash d$\cite{KELA_StudyGrant};
+I again recall full working automation for basic income \cite{BasicIncomeInit}
+because uncertainty is the worst thing for people having scare resources.
+% If someone has arrogance, attitude problems in this; I suggest that spouse could arrange special "Empathy-Exercise-Test" and silently drop all e-invoice agreements before holiday, then looking partner's behaviour when first for thirdparty sold invoice claims arrive with elevated price, missing, poor or obfuscated references to original bills, and that all having only purpose to get most out from the case. Even having enough money to easily close all cases without checking that all claims are correct wihout dublicates or unnecessary payments included, it is still shitload of extra work, you do not needed nor wanted. Then is good time to ask the test question; How do you think somenone will survice if they only have money for original bills? If answer is pure nonwritable from own-personal-situation, then there isn't enough empathy, but at least "Test"-person may be able to gatch some feelings what peoles really feel when needing basic support and have this kind of situation's after each hickup in system. Currently there are peoples involved, which means that it kind of works, but not on time as it should, which seriously increase cost and causes. Therefore FULL AUTOMATION for peoples BASIC ASSISTANCE daily delivery! No matter do you call it: Citizen Wage, Negative Tax, or what ever, it has to work on time as a klock!! If doesn't then overall costs rise.
+
+\section{Cost neutral fitting}
+\label{cost_neutral_fitting}
+\index{tax function cost neutral}
+When doing changes to taxation, like taking daily support allowance in use,
+has taxation also adjusted to cope with new operating situation equation \ref{eq:cost_comp}.
+That should be done using up-to-date history information from statistics
+and predictions from future including expected dynamic change.
+Here we do not know enough well even our domestic income distribution to calculate accurate fitting and compensation.
+For demo purposes new base number value is estimated doing simple demo fitting taking into account social support so that net effect is zero.
+One usable possibility is to use known median income from last year as limit where given benefit and increased taxation is in balance.
+Other simpler possibility is set the balance to point where exponent is one at equation
+\ref{eq:cost_comp_base} and then needed math simplifies a bit.
+\begin{equation} \label{eq:cost_comp} \index{compensation}
+t_d(a,b_2,(i_d+i_s))(i_d+i_s) \geq s_d(a)+t_d(a,b_1,i_d)(i_d)
+\end{equation}
+\begin{equation} \label{eq:cost_comp_1}
+(i_d+i_s)m b_2^{-\frac{cr}{i_d+i_s}}\geq i_s+(i_d) m b_1^{-\frac{cr}{i_d}}
+~~;~ b_{1,2} > 1.0
+\end{equation}
+\begin{equation} \label{eq:cost_comp_2}
+b_2^{-\frac{cr}{i_d+i_s}}\geq\frac{i_s+(i_d)m b_1^{-\frac{cr}{i_d}}}{(i_d+i_s)m}
+\end{equation}
+\begin{equation} \label{eq:cost_comp_base}
+b_2\leq\left(\frac{i_s+(i_d)m b_1^{-\frac{cr}{i_d}}}{(i_d+i_s)m}\right)^{-\frac{i_d+i_s}{cr}}
+\end{equation}
+\begin{equation} \label{eq:cost_comp_base_cridis}
+b_2\leq\frac{crm}{i_s+(cr-i_s)m b_1^{-\frac{cr}{cr-i_s}}}~~;~i_d+i_s=cr
+\end{equation}
+\begin{equation} \label{eq:cost_comp_base_crid}
+b_2\leq\left(\frac{b_1(i_s+cr)m}{b_1i_s+crm}\right)^\frac{cr+i_s}{cr}~~;~i_d=cr
+\end{equation}
+\begin{equation} \label{eq:cost_comp_is_b2_1}
+i_s\leq\frac{(b_1-1)crm}{(1-m)b_1}~~;~i_d=cr,\,b_2=1
+\end{equation}
+
+Figure \ref{fig:B2b1cris} on page \pageref{fig:B2b1cris}
+shows how from existing used taxation situation is changed to other compensated operation point
+when taking taxed daily social support in use.
+New base number $b$ is selected based to new daily support amount
+and decision where the balance point is set.
+To set balance over whole national income distribution requires some accurate knowledge
+from income distribution statistics,
+that is why some balance point is here selected for demonstration purposes.
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/b2b1cris.eps,width=\textwidth}
+  \caption{Base number chart from compensation}
+  \label{fig:B2b1cris} \index{compensation}
+ \end{center}
+\end{figure}
+
+Figure \ref{fig:BaseComp} on page \pageref{fig:BaseComp} presents original tax
+and for new taxed social support balancing purposes elevated tax curve
+and marginal taxes for both situations.
+This balancing is done at point $c$ which should be defined based to whole population
+so that there are no overcompensation leading to unnecessary tax increase.
+Existing tax system leads to jumpy marginal tax, which should be avoided if possible,
+see Viitam\"aki\cite{VM_46_2019} p.47 Figure 15, from similar fitting.
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/basecomp.eps,width=\textwidth}
+  \caption{Original and compensated tax fitting}
+  \label{fig:BaseComp}
+ \end{center}
+\end{figure}
+
+Figure \ref{fig:SocTax} on page \pageref{fig:SocTax} show how nominal $20\EUR$ daily
+social support with zero income leaves about $15\EUR$ net support income to account.
+It represents negative $-15\EUR$ tax at that same operation point.
+When you follow net support effect comparing to old curve
+then you notice that soon when income grows support turns to negative
+even in new situation official net support is still positive.
+Take time to look this picture which brings together several terms in one picture.
+Terms like support, negative tax, positive tax, where those are on figure.
+You could compare to ministry of finance publication
+(Viitam\"aki\cite{VM_46_2019} p.17 equation 1, 2 p.18 Figure 1).
+In today's computerized society it's just view and representation change
+when talking from support, citizen salary or negative tax.
+Anyhow, math methods and balance has to be there.
+With highly automated model implementation we get better life control for citizens
+and release few officials to do more productive work with humans,
+because computers can do this work much better
+and we have enough financial challenges already.
+You do not need any paid official there
+to do decisions do you need money for daily groats to eat or not
+in case of sudden personal bankruptcy.
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/soctax.eps,width=\textwidth}
+  \caption{Social support and tax}
+  \label{fig:SocTax} \index{support} \index{tax}
+ \end{center}
+\end{figure}
+
+Figure \ref{fig:SocialSu} on page \pageref{fig:SocialSu} show example nominal,
+taxed net and distraint income values from combined basic allowance combining together;
+child benefit,
+child home care benefit,
+study grant,
+basic income support,
+basic sick leave allowance,
+rehabilitation allowance,
+unemployed basic allowance.
+Besides these basic allowance's citizen may have voluntary insurances
+paid separately over these basic social support allowances
+which will guarantee some support, no matter which is financial situation.
+For example if under $\nicefrac{1}{3}$ income distraint persons wage is already used,
+still every day paid support guarantees few euros on account every day.
+
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/socialsu.eps,width=\textwidth}
+  \caption{Social support gross and net value at zero income}
+  \label{fig:SocialSu} \index{support existing}
+ \end{center}
+\end{figure}
+
+To avoid from double effective marginal tax rate
+from housing benefit and from children daycare payment
+(Viitam\"aki\cite{VM_46_2019} p.25 equation 2, p.54 Figure 22)
+we have to include housing benefit, child's part of it,
+into support of child's childhood years.
+Housing benefit, what families get from child,
+can be included into model by lifting child benefit years support levels up.
+Then bigger families bigger space need support come with the kids.
+Apparently merging housing benefit to child benefit here increase automation and reduce young families stress.
+Anyhow, birth rate in industrialized countries like European Union is low and soon firstborn parents are reaching infertility age,
+at 2019 EU average 29.4 years for first child and rising, there might not be any siblings coming therefore,
+and any failures on child early life affect to child and economy during whole lifetime,
+and therefore it's reasonable to support young families to avoid possible problems at first phase.
+And that's reason why supported child daycare basic payment has to be added to child's own support.
+It also makes parents free to grow they own incomes by doing work,
+because parents income increase do not drop child's income
+(A-Talk\cite{ATalk230413213839}, NCP questions\cite{NCPquestions}).
+This flat support is shown on figure \ref{fig:SocialSu2} on page \pageref{fig:SocialSu2}.
+\begin{figure} %[p] %[H] %\usepackage{float}
+ \begin{center}
+  \epsfig{figure=figures/socialsu2.eps,width=\textwidth}
+  \caption{Support including childhood housing and daycare}
+  \label{fig:SocialSu2} \index{support daycare} \index{support housing}
+ \end{center}
+\end{figure}
+
+It's good to note that all these charts should be done
+as relative to whole nation statistics
+(Social Security Committee \cite{VN_2023_26} p.39 figure 6)
+so that dependency from currency can be removed.
+Then relative numbers better describe economy flows in time independent manner
+than some currency money values which are kind local snapshots from day situation,
+and soon outdated due inflation, price changes.
+All money values here are more or less guesses.
+This insufficiency is due limited visibility to current situation
+without existing compensation infomation embedded into statistics.
+Some idea you might get from these reference values;
+study grant $9.3\EUR$$\slash d$ \cite{KELA_StudyGrant},
+social assitance basic amount $18.5\EUR$$\slash d$ \cite{KELA_BASIC_ASSISTANCE},
+adult education allowance $22\EUR$$\slash d$ \cite{AdultEducationAllowance},
+national pension $24\EUR$$\slash d$ \cite{KELA_NATIONAL_PENSION},
+guarantee pension $31\EUR$$\slash d$ \cite{GUARANTEE_PENSION},
+minimum wage $42\EUR$$\slash d$ \cite{KELA_WORK_REQ},
+a decent life in province $38\EUR$$\slash d$,
+in a university town $42\EUR$$\slash d$,
+in the capitol $50\EUR$$\slash d$,
+in the capital region $52\EUR$$\slash d$ \cite{THL_2023_1}.
+The Central Organisation of Finnish Trade Unions (SAK) President Jarkko Eloranta
+propose minimum wage $13\EUR$$\slash h$ at HS interview\cite{HS_202307290200_RS}.
+That is about $63\EUR$$\slash d$ when divided to all 365 days in year.
+
+\begin{comment}\end{comment}
+%-END OF INCLUDE FILE----------------------------------------------------------
