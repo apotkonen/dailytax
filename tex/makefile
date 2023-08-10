@@ -29,10 +29,12 @@
 # lbx	Language definition file BibteX
 # idx	InDeX entrys
 # ilg	makeIndex LoG
+# ind	Index file
 # lof	List Of Figures
 # log	latex LOG file
+# out	Bookmark file
 # pdf	Postscript Document File
-# run.xml
+# run.xml logreq request file /usr/share/doc/texlive-doc/latex/logreq/README
 # tex	TeX, LaTeX TEXt file
 # toc	babel Table Of Content
 
@@ -45,7 +47,7 @@ SUBM = figures
 LATEX = lualatex # latex
 #BIBTEX = bibtex # nbibtex, bibtexu aux->bbl
 BIBER = biber # bcf->bbl
-CLEAN =	lintex && rm -f clean all *.xml
+CLEAN =	lintex -o -k && rm -f clean all *.xml
 MAKEINDEX = makeindex
 #LATEXMK = latexmk
 
@@ -78,7 +80,7 @@ $(DOC).pdf : $(DOC).bbl $(DOC).ind $(DOC).tex ; $(LATEX) $(DOC).tex
 # Clean : Remove temporary files.
 .PHONY : clean 
 clean :
-	mv -f $(DOC).pdf ..
 	$(CLEAN)
 	make -C $(SUBM) clean
+	mv -f $(DOC).pdf ..
 

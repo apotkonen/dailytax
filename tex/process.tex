@@ -179,7 +179,7 @@ times capasity is needed.
 If we take tax administration year 1990\cite{VeroItDeployment} as reference,
 when taxes computer calculation get done about at one year with calculation
 capasity existed. Then estimating computing power change with inverse of
-Koomey's law\cite{KoomeysLaw}\cite{DennartScaling}\cite{PerformanceDevelTop500}
+Koomey's law\cite{KoomeysLaw}\cite{DennardScaling}\cite{PerformanceDevelTop500}
 equation \ref{eq:Koomey} on page \pageref{eq:Koomey} to estimate when tax
 administration has possibility to $32\times 365 = 11680$ times higher
 computing rate comparing to 1990, to manage payday computing need for daily
@@ -217,7 +217,7 @@ come lump sum divided to next three years and taxation correction for past tax
 during same day. Estimating, correction may affect max three years back and
 lump sum three years forward resulting to max 6x365=2190 times existing
 calculation load at one day for this persons data. It in worst case every
-person have same problem then 2190x365 more computing power in needed
+person have same problem then 2190x365 more computing power is needed
 comparing to year 1990 to do fixes during an day-24h. When checking time with
 Inverse Koomeys law \ref{eq:InverseKoomey} on page \pageref{eq:InverseKoomey},
 we notice that we have about now capasity to change daily taxation and tolerate
@@ -236,5 +236,21 @@ Storage need could be estimated to be about 10 doubles -- 80 bytes per day for
 storing sums. It is 175kB per user and one terabyte 1TB for 5.5M users, not
 including userdata holding addresses etc. which add some gigabytes GB over
 that.
+
+\section{Legal complexity}
+\label{legal_complexity}
+\index{legal complexity}
+
+As we have seen this daily tax is doable from information technology
+performance perspective. Totally other thing is to get this done from national
+legal legacy perspective. Of course existing yearly tax fixed reporting
+dates can be done by adjusting sliding window (fig:\ref{fig:taxing} 
+p.\pageref{fig:taxing}) size and doing summary tasks for certain dates.
+
+Still, most biggest blocker for the sliding window daily tax usage is our
+legal legacy habbits which are like patchwork quilt and natural process to
+move patches from end to another and perhaps replace some worn patches with
+few new even smaller ones. Result is still same length patchwork, but now with
+even more mixed and distressing experience than before.
 
 %-END OF INCLUDE FILE----------------------------------------------------------
