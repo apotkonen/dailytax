@@ -36,8 +36,12 @@ Y = df["1k/Eur"].values
 #http://wikipedia.org/wiki/List_of_probability_distributions#Supported_on_semi-infinite_intervals,_usually_[0,%E2%88%9E)
 #http://wikipedia.org/wiki/Gini_coefficient#Continuous_probability_distribution
 #http://stats.stackexchange.com/questions/595964/fisk-distribution-in-scipy
-#'fisk'     http://wikipedia.org/wiki/Log-logistic_distribution
+#http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.johnsonsu.html
+#http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.burr12.html
+#http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.burr.html
+#http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisk.html
 #'johnsonsu'http://wikipedia.org/wiki/Johnson%27s_SU-distribution
+#'fisk'     http://wikipedia.org/wiki/Log-logistic_distribution
 #'burr'     http://wikipedia.org/wiki/Burr_distribution
 # Limit tested distributions to few well behaving candidates:
 #dists=['burr','fisk','johnsonsu']
