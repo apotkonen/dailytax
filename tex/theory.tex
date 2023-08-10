@@ -17,7 +17,7 @@ Existing yearly tax is function of person age $a$ on taxation date and income $i
 To be encouraging and fair marginal tax should be continuous,
 smooth because it tell how much tax is taken if you earn anything more what you have already earned
 and any jumps on marginal tax cause motivation traps.
-It's good to notify that smoothness requirement is for predictable changes like income and age change.
+It's good to notify that smoothness requirement is for predictable changes like income and age chan\-ge.
 Sudden change, like taxation function change during season doesn't have similar smoothness requirement,
 because it's sudden and peoples can't do protective tax planning against it.
 Therefore this kind of sudden change do not set any motivation barriers at least at first time.
@@ -120,8 +120,8 @@ s: [0,44000]\in\mathbb{N} \rightarrow [0,600] \in \mathbb{R}^+
 \begin{equation} \label{eq:sup_s}
 s(a)\leq d \leq mn
 \end{equation}
-When we look existing law sections, those on off rules (LEX \cite{LEX_2012_916}),
-and combine social support $s(d)$ so that some small daily income can be guaranteed without any bureaucracy.
+When we look existing law sections, those on off rules (LEX \cite{LEX_2012_916en}),
+and combine social support $s(a)$ so that some small daily income can be guaranteed without any bureaucracy.
 For that we draw figure \ref{fig:Support} on page \pageref{fig:Support} from existing lowest acceptable social support level
 (Social Security Committee \cite{VN_2023_26} p.23 figure 3 and p.38 figure 5)
 and do several adjustments to get support work smoothly automated way without bureaucracy.
@@ -170,11 +170,11 @@ Now when we have combined different old benefits from birth to death to one figu
 % \begin{equation} \label{eq:sup_gross3} \index{social support}
 % s_d(a,20,1) = \left\lbrace
 %  \begin{array}{rlrcr}
-%			20\EUR	&;& 0y &\leq a \leq&  1y\\
-%  \frac {7y-2a} y	 5\EUR	&;& 1y &  <  a   < &  3y\\
-%			 5\EUR	&;& 3y &\leq a \leq&  7y\\
-%  \frac {4y+a} {11y}	 5\EUR	&;& 7y &  <  a   < & 18y\\
-%			10\EUR	&;&18y &\leq a \leq&death
+%			20\euro	&;& 0y &\leq a \leq&  1y\\
+%  \frac {7y-2a} y	 5\euro	&;& 1y &  <  a   < &  3y\\
+%			 5\euro	&;& 3y &\leq a \leq&  7y\\
+%  \frac {4y+a} {11y}	 5\euro	&;& 7y &  <  a   < & 18y\\
+%			10\euro	&;&18y &\leq a \leq&death
 %  \end{array}
 %  \right.
 % \end{equation}
@@ -193,11 +193,11 @@ s_d(a,d,r) = \left\lbrace
 \begin{equation} \label{eq:sup_gross6} \index{social support}
 s_d(a,20,1) = \left\lbrace
  \begin{array}{rlrcr}
-			20\EUR	&;& 0y &\leq a \leq&  1y\\
- \frac {7y-2a} y	 4\EUR	&;& 1y &  <  a   < &  3y\\
-			 4\EUR	&;& 3y &\leq a \leq&  7y\\
- \frac {4y+a} {11y}	 4\EUR	&;& 7y &  <  a   < & 18y\\
-			20\EUR	&;&18y &\leq a \leq&death
+			20\euro	&;& 0y &\leq a \leq&  1y\\
+ \frac {7y-2a} y	 4\euro	&;& 1y &  <  a   < &  3y\\
+			 4\euro	&;& 3y &\leq a \leq&  7y\\
+ \frac {4y+a} {11y}	 4\euro	&;& 7y &  <  a   < & 18y\\
+			20\euro	&;&18y &\leq a \leq&death
  \end{array}
  \right.
 \end{equation}
@@ -254,10 +254,10 @@ fit function marginal tax equation \ref{eq:tax_mrg}, \ref{eq:mfit_func}.
  f(a,i,m,c,r) = m b^{-\frac{cr}i} ~;~ b > 1.0
 \end{equation}
 \begin{equation} \label{eq:dfit_func}
- f'(a,i,m,c,r) = m b^{-\frac{cr}i}\frac{cr}{i^2}\ln(b)
+ f'(a,i,m,c,r) = \left(\frac{cr}{i^2}\ln(b)\right) m b^{-\frac{cr}i}
 \end{equation}
 \begin{equation} \label{eq:mfit_func}
- m(a,i,m,c,r) = m b^{-\frac{cr}i}(\frac{cr}i\ln(b)+1)
+ m(a,i,m,c,r) = \left(\frac{cr}i\ln(b)+1\right) m b^{-\frac{cr}i}
 \end{equation}
 Next we select coefficients; marginal tax $m$, income cash $c$ on period you have $m/b$ \% tax,
 consumer price index ratio $r$ for period, equations \ref{eq:fyearly_tax}-\ref{eq:fdaily_tax}
@@ -297,7 +297,7 @@ t_d(a,i_d)=f(a,b=e,i=i_d,m=0.6,c=\frac{30000}{365},r=1)
  \end{center}
 \end{figure}
 
-Next we use support daily gross value $s_d$ and define equations \ref{eq:support_net_cash}-\ref{eq:supported_tax_cash};
+Next we use support daily gross value $s_d$ and define equations \ref{eq:support_net_cash} - \ref{eq:supported_tax_cash};
 support daily net value after tax $S_d$, tax including support as negative tax value $T_s$, net income,
 including social support $I_s$, and tax counting daily support as taxable $T_d$.
 If using original tax in current, cash $T$ equation \ref{eq:tax_cash_daily}
@@ -327,13 +327,14 @@ In Finland most income and tax related things are public, at least in theory,
 if information acquirement cost in time, money and other resources
 is limitless you can get yearly income numbers form past years.
 In practice you have some statistics available for free,
-and about top 1000 individuals are listed on yellow press tabloids, web pages.
+and about top 1000 individuals are listed on yellow press tabloids,
+web pages\cite{IncomeTaxSmoothness}.
 Electrically income data, even in obfuscated form,
 nor income distribution function details,
 are not available, at least I didn't found those.
 Available statistics are from "consumption units",
 including some interpretation from childs,
-young peoples as consumption units, not individuals.
+young peoples as consumption units, not individuals\cite{ConsumptionUnitD}.
 Statistic already include income transfers,
 meaning that needed data from individuals is not availalable.
 Income statistics appendix on page \pageref{statistics} tell more from data acquisition.
@@ -341,7 +342,7 @@ Income statistics appendix on page \pageref{statistics} tell more from data acqu
 Without correct data from individuals we only illustriate from "consumption units"
 aquired data, figure \ref{fig:ConsumptionUnit} on page \pageref{fig:ConsumptionUnit}
 as kind of data needed from individuals to estimate,
-define possible cost neutral changes for taxation to create income
+define possible cost neutral chan\-ges for taxation to create income
 transfers automation -- and reduce costly unnecessary bureaucracy.
 Either original obfuscated data or accurate propability density function fitting for data is needed.
 
@@ -355,11 +356,11 @@ Either original obfuscated data or accurate propability density function fitting
 
 Even this 2021 unit density data after all corrections during years looks good now on 2023
 and seems that nearly all has got more than daily basic social assistance
-$18.5\EUR$$\slash d$\cite{KELA_BASIC_ASSISTANCE}
-except students $9.3\EUR$$\slash d$\cite{KELA_StudyGrant};
-I again recall full working automation for basic income \cite{BasicIncomeInit}
+$18.5\euro/d$\cite{KELA_BASIC_ASSISTANCE}
+except students $9.3\euro/d$\cite{KELA_StudyGrant};
+I again recall full working automation for basic
+income\cite{BasicIncomeInit}\-\cite{A2PalkkaerotIlta}
 because uncertainty is the worst thing for people having scare resources.
-% If someone has arrogance, attitude problems in this; I suggest that spouse could arrange special "Empathy-Exercise-Test" and silently drop all e-invoice agreements before holiday, then looking partner's behaviour when first for thirdparty sold invoice claims arrive with elevated price, missing, poor or obfuscated references to original bills, and that all having only purpose to get most out from the case. Even having enough money to easily close all cases without checking that all claims are correct wihout dublicates or unnecessary payments included, it is still shitload of extra work, you do not needed nor wanted. Then is good time to ask the test question; How do you think somenone will survice if they only have money for original bills? If answer is pure nonwritable from own-personal-situation, then there isn't enough empathy, but at least "Test"-person may be able to gatch some feelings what peoles really feel when needing basic support and have this kind of situation's after each hickup in system. Currently there are peoples involved, which means that it kind of works, but not on time as it should, which seriously increase cost and causes. Therefore FULL AUTOMATION for peoples BASIC ASSISTANCE daily delivery! No matter do you call it: Citizen Wage, Negative Tax, or what ever, it has to work on time as a klock!! If doesn't then overall costs rise.
 
 \section{Cost neutral fitting}
 \label{cost_neutral_fitting}
@@ -427,9 +428,9 @@ see Viitam\"aki\cite{VM_46_2019} p.47 Figure 15, from similar fitting.
  \end{center}
 \end{figure}
 
-Figure \ref{fig:SocTax} on page \pageref{fig:SocTax} show how nominal $20\EUR$ daily
-social support with zero income leaves about $15\EUR$ net support income to account.
-It represents negative $-15\EUR$ tax at that same operation point.
+Figure \ref{fig:SocTax} on page \pageref{fig:SocTax} show how nominal $20\euro$ daily
+social support with zero income leaves about $15\euro$ net support income to account.
+It represents negative $-15\euro$ tax at that same operation point.
 When you follow net support effect comparing to old curve
 then you notice that soon when income grows support turns to negative
 even in new situation official net support is still positive.
@@ -467,8 +468,9 @@ unemployed basic allowance.
 Besides these basic allowance's citizen may have voluntary insurances
 paid separately over these basic social support allowances
 which will guarantee some support, no matter which is financial situation.
-For example if under $\nicefrac{1}{3}$ income distraint persons wage is already used,
+For example if under \char"2153~income distraint persons wage is already used,
 still every day paid support guarantees few euros on account every day.
+%$\text{\char"2153}$$\frac{1}{3}$\sfrac{1}{3}\textonethird$\nicefrac{1}{3}$
 
 \begin{figure} %[p] %[H] %\usepackage{float}
  \begin{center}
@@ -495,12 +497,12 @@ And that's reason why supported child daycare basic payment has to be added to c
 It also makes parents free to grow they own incomes by doing work,
 because parents income increase do not drop child's income
 (A-Talk\cite{ATalk230413213839}, NCP questions\cite{NCPquestions}).
-This flat support is shown on figure \ref{fig:SocialSu2} on page \pageref{fig:SocialSu2}.
+This flat support is shown on figure \ref{fig:EvenSu} on page \pageref{fig:EvenSu}.
 \begin{figure} %[p] %[H] %\usepackage{float}
  \begin{center}
-  \epsfig{figure=figures/socialsu2.eps,width=\textwidth}
+  \epsfig{figure=figures/evensu.eps,width=\textwidth}
   \caption{Support including childhood housing and daycare}
-  \label{fig:SocialSu2} \index{support daycare} \index{support housing}
+  \label{fig:EvenSu} \index{support daycare} \index{support housing}
  \end{center}
 \end{figure}
 
@@ -515,19 +517,130 @@ All money values here are more or less guesses.
 This insufficiency is due limited visibility to current situation
 without existing compensation infomation embedded into statistics.
 Some idea you might get from these reference values;
-study grant $9.3\EUR$$\slash d$ \cite{KELA_StudyGrant},
-social assitance basic amount $18.5\EUR$$\slash d$ \cite{KELA_BASIC_ASSISTANCE},
-adult education allowance $22\EUR$$\slash d$ \cite{AdultEducationAllowance},
-national pension $24\EUR$$\slash d$ \cite{KELA_NATIONAL_PENSION},
-guarantee pension $31\EUR$$\slash d$ \cite{GUARANTEE_PENSION},
-minimum wage $42\EUR$$\slash d$ \cite{KELA_WORK_REQ},
-a decent life in province $38\EUR$$\slash d$,
-in a university town $42\EUR$$\slash d$,
-in the capitol $50\EUR$$\slash d$,
-in the capital region $52\EUR$$\slash d$ \cite{THL_2023_1}.
+study grant $9.3\euro/d$ \cite{KELA_StudyGrant},
+social assitance basic amount $18.5\euro/d$ \cite{KELA_BASIC_ASSISTANCE},
+adult education allowance $22\euro/d$ \cite{AdultEducationAllowance},
+national pension $24\euro/d$ \cite{KELA_NATIONAL_PENSION},
+guarantee pension $31\euro/d$ \cite{GUARANTEE_PENSION},
+minimum wage $42\euro/d$ \cite{KELA_WORK_REQ},
+a decent life in province $38\euro/d$,
+in a university town $42\euro/d$,
+in the capitol $50\euro/d$,
+in the capital region $52\euro/d$ \cite{THL_2023_1}.
 The Central Organisation of Finnish Trade Unions (SAK) President Jarkko Eloranta
-propose minimum wage $13\EUR$$\slash h$ at HS interview\cite{HS_202307290200_RS}.
-That is about $63\EUR$$\slash d$ when divided to all 365 days in year.
+propose minimum wage $13\euro/h$ at HS interview\cite{HS_202307290200_RS}.
+That is about $63\euro/d$ when divided to all 365 days in year. Current
+estimation is that lowest income tenciles will get even less in future.
+Government Prime Minister commented \cite{CutExplanation} estimations from
+different citizens income tenciles behaviour after govenment program has
+been implemented. Government proposal 73/2023\cite{HE_73/2023_vp} part time job
+$31\euro/d$ and for full time job $37.8\euro/d$ is minimum, starting from
+2024/9/2.
+
+\section{Empathy test}
+\label{Empathy_test}
+\index{arrogance}
+\index{empathy test}
+If someone has arrogance\cite{OwnFault}, attitude problems against basic
+support delivery automation; I suggest that spouse could arrange special
+"Empathy-Exercise-Test" for conclusions, and silently drop all e-invoice
+agreements before holiday, then looking partner's behavior when first for
+thirdparty sold invoice claims arrive about on due day with elevated price,
+missing, poor or obfuscated references to original bills, and that all having
+only purpose to get most out from the case. Even having enough money to easily
+close all cases without checking that all claims are correct without
+duplicates or unnecessary payments included, it's still shitload of extra
+work, you didn't needed nor wanted. Then is good time to ask the test
+question; How do you think someone will survive if they only have money for
+original bills? If answer is pure nonwritable from own-personal-situation,
+then there isn't enough empathy, and it's time for conlusions, but at least
+"Test"-person may be able to catch some feelings what peoples really feel when
+needing basic support and have this kind of situation after each hickup in
+system\cite{KelaSystemUpdates}.
+Currently there are peoples involved, which means that "It kind of
+works."\cite{KelaProcessUpdates}, but not on time\cite{KELAProcessingTime} as
+it should, which seriously increase cost and causes. Therefore FULL AUTOMATION
+for peoples BASIC ASSISTANCE daily delivery is needed! No matter do you call
+it: Basic Account\cite{LiberaPerustili}, Basic Income, Citizen Wage, Freedom
+Dividend, Negative Tax\cite{BasicIncomeInit}, Universal Basic Income
+(UBI)\cite{UniversalBasicIncome} Universal Credit\cite{UniversalCredit}, or
+what ever, it has to work on time as a klock! If it doesn't, then overall
+monetary and social cost rise for individuals and for whole society.
+
+\subsection{Empathy test -- By the way}
+\label{Empathy_test_by_the_way}
+\index{empathy test}
+\index{arrogance}
+\index{selfiness}
+\index{above oneself}
+When we are going into details of possible found arrogant, above oneself
+person, self intended "boss"/"leader"- case we really notice that it's not
+under powered citizens fault that he/she got problems. No. Actually it's
+mostly this arrogant persons fault. How/Why?
+
+We can take practical example case; people without email and cellular phone
+want to order service and want electric billing to avoid paper bill taken
+higher cost. Purchase agreement is done face by face with at the vendors
+office, but by the poor system design or slowness, vendor customer service
+sales person do not able to give or print customer billing information because
+they SAP implementation can't allocate reference number on sales situation, or
+configure pre-allocated number, or use some known or agreed reference given
+directly for customer.
+
+If vendor can't give or name billing reference at the sales situation it's not
+customers fault. Customer has right to get correct payment information and
+vendor has to deliver it freely afterwards and not to demand to take more
+expensive paper billing. Information including the reference needed at bank to
+automatically pay correct bills.
+
+Without correct billing information bill comes, but it's already sold for
+thirdparty, which obviously has let the original billing reference out from
+they documentation and added $25\EUR$ to price. So, here is no delivery for
+information how to pay e-bill, and automated squeezing with elevated price
+bills has been started. This can be the start of personal bankruptcy for
+someone, unless he/she goes to same dealer claims billing reference or shuts
+down service if possible, it might be fixed length agreement. This is
+untolerable situation especially in country where personal bankruptsy is not
+possible.
+
+As summary: It is this arrocant, above oneself, persons fault, and he/she
+doesn't even understand nor willing to understand that they customer service
+and sales processess sucks badly. Maybe he/she may even understand the
+situation but really do not care from situation, because from company
+perspective customer is hooked and payments run due for immediately from
+first bill for third party sold bills.
+%Person who is so bysy to change hes/her 1.5 year old car to newer and bigger
+%as status from hes/her capability used to legitimate hes/her own personall
+%billing growth towards the company.
+
+\subsection{Empathy test -- No understanding nor empathy, law update and enforcement needed}
+\label{Empathy_test_fail_law_needed}
+\index{empathy test fail}
+\index{arrogance}
+\index{selfiness}
+\index{above oneself}
+
+We have poor customer process automations in several companies,
+without any aim to fix this situatuation, which means
+that Electronic Invoicing directive\cite{EULEX_2014_55} and it's local law
+imp\-le\-men\-ta\-tion\cite{LEX_2019_241} from government and corporate operator
+rights to get electronic billing for purchases has to be extended with
+oblications towards same organizations operation towards private individual
+customers. Private individual users has to have right to get electronic
+billing reference during agreement creation, so that he/she can go to bank
+enable e-invoice payments for company before first e-bill comes. Other option
+could be generating, immediately when they have needed iformation available,
+freely delivered paper note or "zero-bill" holding needed information for
+e-invoising setup on bank or delivery initial bill freely with the paper and
+then rest bills through e-incoice system. This has to be added as legal
+oblication to serve they own individual customers better, in practice as
+addition or amendmend to Electric Invoising Directive\cite{EULEX_2014_55}.
+Same amendmend has to include statement from for forward sold bills
+refinancing companies obilcation to maintain all previous payment information
+including original e-billing references and reference chains visible in they
+billing, so that this refinance scavengers group do not get unearned increment
+into they incomes and this way foster too big counterproductive players group
+growth into our society, due into current digital time incomplete law making.
 
 \begin{comment}\end{comment}
 %-END OF INCLUDE FILE----------------------------------------------------------

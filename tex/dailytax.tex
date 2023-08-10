@@ -35,7 +35,7 @@
 %	LANGUAGE:	LaTeX2e to be used with latexmk
 %
 %
-%	REFERENCE ( http://latex-project.org/help/books , http://tug.org/books ):
+%	REFERENCE (http://latex-project.org/help/books , http://tug.org/books):
 %
 %	- http://ctan.org/starter
 %	  http://ctan.org/pkg/amsmath
@@ -84,12 +84,21 @@
 %123456789012345678901234567890123456789012345678901234567890123456789012345678
 %-DOCUMENT PREAMBLE------------------------------------------------------------
 % http://wikipedia.org/wiki/Ebook
-% http://www.ctan.org/pkg/ebook
+% http://ctan.org/pkg/ebook
+% http://ctan.org/pkg/fontspec
 % http://www.linux.fi/wiki/LaTeX
-% http://wikipedia.org/wiki/LaTeX
+% file:///usr/share/doc/texlive-doc/generic/knuth-pdf/index.html
+% http://wikipedia.org/wiki/TeX
+% http://wikipedia.org/wiki/LaTeX % /usr/share/doc/texlive-doc/latex
+% http://wikipedia.org/wiki/XeTeX % xetex/xetexref/xetex-reference.pdf
+% http://wikipedia.org/wiki/LuaTeX % doc/texlive-doc/luatex/base/luatex.pdf
+% http://wikibooks.org/wiki/LaTeX/Fonts
 % http://users.jyu.fi/~lehtonen/texopas/
+% http://tug.org/texlive/mapenc.html
+% http://tug.org/texinfohtml/kpathsea.html#Debugging
 % http://tug.org/pracjourn/2012-1/luca/luca.pdf
 % http://wikibooks.org/wiki/LaTeX/Document_Structure
+% http://wikipedia.org/wiki/LuaTeX http://luatex.org
 % http://kdp.amazon.com/en_US/help/topic/G201834180#trim
 % http://github.com/psampaz/latex-nonfiction-ebook-template-1
 % http://mirrors.ctan.org/macros/latex/contrib/a4wide/a4wide.pdf
@@ -102,8 +111,8 @@
 %\documentclass[12pt,a4paper,finnish,oneside]{article}
 %\documentclass[11pt,twoside,openright]{book}
 %\documentclass[a4paper,finnish]{report}
-%\documentclass[a5paper,draft]{memoir}
-\documentclass[a5paper,final]{memoir}
+%\documentclass[a5paper,draft]{memoir} % texlive-doc/latex/memoir/setpage-example.pdf
+\documentclass[a5paper,final]{memoir} % texlive-doc/latex/memoir/memman.pdf
 %\documentclass[10pt,a5paper]{book}
 %\documentclass[a4paper]{report}
 %\documentclass[a4paper]{book}
@@ -117,73 +126,143 @@
 %\usepackage[utf8]{inputenc} % Linux, UTF-8
 %\usepackage[utf8x]{inputenc} % Linux, UTF-8
 %\usepackage[latin1]{inputenc} % Linux
-%\usepackage[latin1]{inputenc}
-%\usepackage[english,finnish]{babel}
-%\usepackage[finnish]{babel}
-\usepackage[english]{babel}
-%\usepackage{siunitx}
-%\usepackage{eurosym}
-\usepackage[gen]{eurosym}
-%\usepackage[official]{eurosym}
-%\usepackage{icomma} % desimalcomma
-%\usepackage{marvosym}
-%\usepackage{amstex}
-\usepackage{amsmath}
-\usepackage{amssymb}
-\usepackage{nicefrac}
-%\usepackage{xfrac}
-%\usepackage{unicode-math}
+%\usepackage[LGR,T1,OT1]{fontenc} % /usr/share/doc/texlive-doc/latex/base/encguide.pdf
+%\usepackage[english,finnish]{babel} % \selectlanguage{finnish}
+%\usepackage[finnish]{babel} % /usr/share/doc/texlive-doc/latex/babel/babel.pdf
+\usepackage[english]{babel} % /usr/share/doc/texlive-doc/latex/babel/babel.pdf
+\usepackage{advdate} % /usr/share/doc/texlive-doc/latex/advdate/advdate.pdf
+\usepackage{mathtools}
+\usepackage{fontspec} % /usr/share/doc/texlive-doc/latex/fontspec/fontspec.pdf
+%\usepackage{fontsetup} %
+% cm, cm-unicode unicode
+%\usepackage{xunicode} % for XeLaTeX only xelatex/xecjk/xunicode-symbols.pdf
+\usepackage[gen]{eurosym} % doc/texlive-doc/fonts/eurosym/testeuro.pdf
+%\usepackage{icomma} % desimalcomma doc/texlive-doc/latex/was/icomma.pdf
+%\usepackage{textualicomma} % latex/textualicomma/textualicomma-doc.pdf
+%\usepackage{marvosym} % doc/texlive-doc/fonts/marvosym/marvosym-doc.pdf
+%\usepackage{beton} % /usr/share/doc/texlive-doc/latex/beton/beton.pdf
+%\usepackage{euler} % /usr/share/doc/texlive-doc/latex/euler/euler.pdf
+%\usepackage{eulervm} % /usr/share/doc/texlive-doc/latex/eulervm/eulervm.pdf
+%\usepackage{fourier} % doc/texlive-doc/fonts/fourier/fourier-doc-en.pdf
+%\usepackage{concmath} % /usr/share/doc/texlive-doc/fonts/concmath/concmath.pdf
+%\usepackage{amsthm} 
+%\usepackage{amsbsy}
+%\usepackage{amstex} % /usr/share/doc/texlive-doc/amstex/base/amsguide.pdf
+%\usepackage{amsmath} % /usr/share/doc/texlive-doc/latex/amsmath/amsmath.pdf
+%\usepackage{amssymb} % /usr/share/doc/texlive-doc/fonts/amsfonts/amssymb.pdf
+%\usepackage{amsfonts}
+%\usepackage{mathalfa}
+%\usepackage{mathspazo} % doc/texlive-doc/latex/mathpazo/pazotest.pdf
+%\usepackage{mathdesign} % doc/texlive-doc/fonts/mathdesign/mathdesign-doc.pdf
+%\RequirePackage{unicode-math} % texlive-doc/latex/unicode-math/unicode-math.pdf
+\usepackage{unicode-math} % doc/texlive-doc/latex/unicode-math/unicode-math.pdf
+%\usepackage{notomath} % doc/texlive-doc/fonts/notomath/notomath-doc.pdf
+%\usepackage{newtxtext,newtxmath} % http://ctan.org/pkg/newtx
+%\usepackage{newpxtext,newpxmath} % http://ctan.org/pkg/newpx
+%\usepackage{textcomp} % http://ctan.org/pkg/textcomp
+
+%find /usr/share/texlive -type f -iname "*math*.sty"
+%/usr/share/doc/texlive-doc/latex/fontspec/fontspec.pdf
+%/usr/share/texlive/texmf-dist/fonts/TYPE/MODE/SUPPLIER/TYPEFACE/dpiNNN/
+% http://gnu.org/software/freefont
+% http://savannah.gnu.org/projects/unifont
+% /usr/share/texlive/texmf-dist/fonts/opentype/public/gnu-freefont
+% /usr/share/texlive/texmf-dist/fonts/truetype/public/gnu-freefont
+% GNU Fonts with font exception http://gnu.org/licenses/gpl-faq.html#FontException
+% fc-list :foundry=psbk:fontformat=CFF family
+%  Junicode http://wikipedia.org/wiki/Junicode
+%	Junicode Two Beta
+% fc-list :lang=en family | grep Linux
+%  Linux Libertine http://wikipedia.org/wiki/Linux_Libertine
+%	Linux Biolinum O
+%	Linux Libertine O
+%\setmainfont{Linux Biolinum O}
+\setmainfont{Linux Libertine O}
+% fc-list :foundry=GNU :fontformat=TrueType family
+%  GNU FreeFont http://wikipedia.org/wiki/GNU_FreeFont
+%  GNU Unifont http://wikipedia.org/wiki/GNU_Unifont
+%	FreeSerif
+%	FreeSans
+%	FreeMono
+%	Unifont
+%\setmainfont{FreeSerif}
+%\setmainfont{FreeSans}
+%\setmonofont{FreeMono}
+%\setmainfont{Unifont}
+
+% SIL Open Font License https://openfontlicense.org
+% fc-list :foundry=GOOG:fontformat=CFF family | sort -u
+%  Noto http://wikipedia.org/wiki/Noto_fonts
+%	Noto Mono
+%	Noto Sans
+%	Noto Serif
+% fc-list :foundry=SIL :fontformat=CFF family
+%  Gentium http://wikipedia.org/wiki/Gentium
+%	Gentium
+%\setmainfont{Noto Sans}
+%\setmainfont{Noto Serif}
+%\setmonofont{Noto Mono}
+%\setmathfont{notomath}
+%\setmainfont{Gentium}
+
+%\usepackage{nicefrac}
+%\usepackage{xfrac} % doc/texlive-doc/latex/l3packages/xfrac/xfrac.pdf
 %\usepackage{fp} % /usr/share/doc/texlive-doc/latex/fp/documentation.pdf
 %\usepackage{xfp} % /usr/share/doc/texlive-doc/latex/l3packages/xfp/xfp.pdf
-%\usepackage{tikz}
+%\usepackage{tikz} % /usr/share/doc/texlive-doc/generic/pgf/pgfmanual.pdf
 %\usetikzlibrary{calc}
 %\usepackage{calc} % /usr/share/doc/texlive-doc/latex/tools/calc.pdf
 %\usepackage{calculation} % /texlive-doc/latex/calculation/calculation.pdf
 %\usepackage{calculator} % doc/texlive-doc/latex/calculator/calculator.pdf
-%\usepackage{sagetex} % Needs sagemath
+%\usepackage{sagetex} % /usr/share/texmf/doc/latex/sagetex/sagetex.pdf
 %\usepackage{fig}
 %\usepackage{righttag}
 %\usepackage{epic}
 %\usepackage{eepic}
-%\usepackage{dyntree}
-%\usepackage{pst-tree}
-%\usepackage{pst-jtree}
-%\usepackage{pst-qtree}
-%\usepackage{synttree}
-%\usepackage{ecltree}
-%\usepackage{xytree}
+%\usepackage{dyntree} % /usr/share/doc/texlive-doc/latex/dyntree/dyntree.pdf
+%\usepackage{pst-tree} % doc/texlive-doc/generic/pst-tree/pst-tree-doc.pdf
+%\usepackage{pst-jtree} % doc/texlive-doc/generic/pst-jtree/pst-jtree-doc.pdf
+%\usepackage{pst-qtree} % texlive-doc/generic/pst-qtree/pst-qtree-manual.pdf
+%\usepackage{synttree} % doc/texlive-doc/latex/synttree/synttree.pdf
+%\usepackage{ecltree} % doc/texlive-doc/latex/ecltree/ecltreesample.pdf
+%\usepackage{xytree} % doc/texlive-doc/latex/xytree/xytree-doc-en.pdf
 %\usepackage{float} % /usr/share/doc/texlive-doc/latex/float/float.pdf
-\usepackage{graphicx} % share/doc/texlive-doc/latex/graphics/graphicx.pdf
+%\usepackage{graphicx} % doc/texlive-doc/latex/graphics/graphicx.pdf
 %\usepackage{svg} % /usr/share/doc/texlive-doc/latex/svg/svg.pdf
 %\usepackage{svg-extract} 
 \usepackage{epsfig} % /usr/share/doc/texlive-doc/latex/graphics/epsfig.pdf
 \usepackage{rotating} % share/doc/texlive-doc/latex/graphics/rotating.pdf
 %\usepackage{figlatex} % doc/texlive-doc/support/latex-make/figlatex.pdf
 %\usepackage{pictex}
-%\usepackage{picture}
+%\usepackage{picture} % /usr/share/doc/texlive-doc/latex/picture/picture.pdf
 %\usepackage{showidx}
 %\usepackage{trees}
-%\usepackage{siunitx}
-%\usepackage{gensymb}
-%\usepackage{textcomp}
-\usepackage{supertabular}
-%\usepackage{verbatim}
-%\usepackage{lscape}
-%\usepackage{pdflscape}
-%\usepackage{csquotes}
-%\usepackage{bibtopic}
-%\usepackage{babelbib}
-%\usepackage[backend = biber,babel=other]{biblatex} % /usr/share/texmf/doc/bibtex/biber/biber.pdf
-%\usepackage[backend = biber,autolang=other]{biblatex} % doc/texlive-doc/bibtex/biber-ms/biber-ms.pdf
-%\usepackage[hyphens]{url}
+%\usepackage{siunitx} % /usr/share/doc/texlive-doc/latex/siunitx/siunitx.pdf
+%\usepackage{gensymb} % /usr/share/doc/texlive-doc/latex/gensymb/gensymb.pdf
+%\usepackage{textcomp} % 
+\usepackage{supertabular} % texlive-doc/latex/supertabular/supertabular.pdf
+%\usepackage{verbatim} % /usr/share/doc/texlive-doc/latex/tools/verbatim.pdf
+%\usepackage{lscape} % /usr/share/doc/texlive-doc/latex/graphics/lscape.pdf
+%\usepackage{pdflscape} % doc/texlive-doc/latex/pdflscape/pdflscape.pdf
+\usepackage{csquotes} % doc/texlive-doc/latex/csquotes/csquotes.pdf
+%\usepackage{bibtopic} % doc/texlive-doc/latex/bibtopic/bibtopic.pdf
+%\usepackage{babelbib} % doc/texlive-doc/bibtex/babelbib/babelbib.pdf
+%\usepackage[backend=bibtex,defernumbers=true,sorting=nty]{biblatex}%
+%\usepackage[backend=biber,babel=other]{biblatex} % /usr/share/texmf/doc/bibtex/biber/biber.pdf
+%\usepackage[backend=biber,autolang=other]{biblatex} % doc/texlive-doc/bibtex/biber-ms/biber-ms.pdf
 \usepackage{biblatex} % /usr/share/doc/texlive-doc/latex/biblatex/biblatex.pdf
 %\usepackage{url} % /usr/share/doc/texlive-doc/latex/url/url.pdf
-\usepackage{xurl} % /usr/share/doc/texlive-doc/latex/xurl/xurl.pdf
-\usepackage[hidelinks]{hyperref} % /usr/share/doc/texlive-doc/latex/hyperref/hyperref-doc.pdf
+%\usepackage[hyphens]{url} %  \PassOptionsToPackage{hyphens}{url}
+%\PassOptionsToPackage{hyphens}{url}
+\usepackage{xurl} % doc/texlive-doc/latex/xurl/xurl.pdf Penalties for biblatex
+\usepackage[hidelinks]{hyperref} % texlive-doc/latex/hyperref/hyperref-doc.pdf
+%\usepackage[bookmarks=true,hidelinks]{hyperref} % hyperref/hyperref-doc.pdf
+\usepackage{bookmark} % /bookmark/bookmark.pdf Redefine hyperref’s bookmarks.
+\usepackage{breakurl} % /usr/share/doc/texlive-doc/latex/breakurl/breakurl.pdf
 %\addbibresource{biblatex.bib}
 \bibliography{biblatex}
 %\usepackage[nottoc,numbib]{tocbibind}
-%\usepackage{makeidx}
+\usepackage{makeidx} % /usr/share/doc/texlive-doc/latex/imakeidx/imakeidx.pdf
 \makeindex
 %-DOCUMENT PREAMBLE END--------------------------------------------------------
 \begin{document}
@@ -194,9 +273,12 @@
 %\begin{titlepage}
 \pagenumbering{gobble}
 %\pagestyle{empty}
-\title{\Huge\textbf{Daily Tax} \linebreak DRAFT}
-%\title{\Huge\textbf{Daily Tax}}
+\title{\Huge\textbf{Daily Tax} \linebreak DRAFT \linebreak \linebreak
+%\includegraphics[height=64pt,width=64pt]{figures/dtaxlogo.eps}}
+\includegraphics[height=64pt,width=64pt]{figures/dtaxlobw.eps}}
+%\includegraphics[height=64pt,width=64pt]{figures/dtaxlotb.eps}}
 \author{\Large Potkonen Ari} 
+%\SetDate[31/08/2023]
 \maketitle
 %\end{titlepage}
 \pagebreak
@@ -231,10 +313,10 @@
 %\include{biblio}
 %-APPENDIX---------------------------------------------------------------------
 \appendix
-\include{appendix}
+\include{appenda}
 %\pagebreak %\clearpage
 %-INDEX------------------------------------------------------------------------
-%\printindex
+\printindex
 %\backmatter
 \pagestyle{plain}
 \include{abstract}

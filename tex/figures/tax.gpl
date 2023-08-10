@@ -9,7 +9,11 @@
 #
 # 	gnuplot -c tax.gpl
 #
-#
+# NOTE:
+# If you need svg -files to use images in documentation, it's possible to set
+# terminal to svg for plotting, problem is that if you need similar black and
+# white charts this svg chart differs, then you may prefer direct conversion
+# from eps to svg like using incscape: inkscape -D -l -o figure.svg figure.eps
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 a=20        # Age is 20 years
 sup=20      # Daily taxed social support or negative tax we use for testing
@@ -45,15 +49,26 @@ sf(a)=a<0?0:a<=1?20:a<3?(4*(7-2*a)):a<=7?4:a<18?(4*(4+a)/11):a<=120?20:0
 # Sample support function too
 sf2(a)=a<0?0:a<=1?20:a<=120?20:0
 # Sd() Support daily value after tax
-Sd(a,i,b1,b2)=sf(a)+tf(a=a,b=b1,i,m=maximum,c=curc,r=1)*i-tf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*(sf(a)+i)
+Sd(a,i,b1,b2)=sf(a)+tf(a,b1,i,maximum,curc,1)*i-tf(a,b2,sf(a)+i,maximum,curc,1)*(sf(a)+i)
 # Ts() Negative tax from income including support, taxed with municipality and government taxes 
-Ts(a,i,b)=(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1))*(sf(a)+i)-sf(a)
-Ts2(a,i,b)=(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1))*(sf2(a)+i)-sf2(a)
+#Ts(a,i,b)=(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1))*(sf(a)+i)-sf(a)
+Ts(a,i,b)=(tf(a,b,i+sf(a),mmun,curc,1)+tf(a,b,i+sf(a),mgov,curc,1))*(sf(a)+i)-sf(a)
+#Ts2(a,i,b)=(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1))*(sf2(a)+i)-sf2(a)
+Ts2(a,i,b)=(tf(a,b,i+sf2(a),mmun,curc,r=1)+tf(a,b,i+sf2(a),mgov,curc,1))*(sf2(a)+i)-sf2(a)
 # Is() Net Income including support and taxed with municipality and government taxes 
-Is(a,i,b)=(1-(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1)))*(i+sf(a))
-Is2(a,i,b)=(1-(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1)))*(i+sf2(a))
+#Is(a,i,b)=(1-(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1)))*(i+sf(a))
+Is(a,i,b)=(1-(tf(a,b,i+sf(a),mmun,curc,1)+tf(a,b,i+sf(a),mgov,curc,1)))*(i+sf(a))
+#Is2(a,i,b)=(1-(tf(a,b,i+sf2(a),mmun,curc,1)+tf(a,b,i+sf2(a),mgov,curc,1)))*(i+sf2(a))
+#Is2(a,i,b)=(1-(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1)))*(i+sf2(a))
+Is2(a,i,b)=(1-(tf(a,b,i+sf2(a),mmun,curc,1)+tf(a,b,i+sf2(a),mgov,curc,1)))*(i+sf2(a))
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
-set terminal postscript
+#set terminal postscript eps font "Times-Roman,12"
+#set terminal postscript eps font "Helvetica,12"
+set terminal postscript eps font "FreeSerif,16"
+#set terminal postscript eps font "FreeSans,14"
+#set terminal postscript eps font "FreeMono,12"
+#set terminal postscript eps font "Unifont,12"
+#set terminal postscript
 set output 'tax.eps'
 set title "Tax function adabtation to margins"
 set y2label "Marginal tax as function of income (i) [1]"
@@ -99,7 +114,8 @@ unset output
 reset
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 set output 'basecomp.eps'
-set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily cash \"c\""
+#set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily cash \"c\""
+set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily income \"i\""
 set y2label "Period marginal tax [1]"
 set y2range [minimum-margin:maximum+margin]
 set y2tics
@@ -119,6 +135,29 @@ tm(a=20,b=b2,i,m=maximum,c=curc,r=1) title "marginal tax(".bt(s,b2).",i)",\
 tm(a=20,b=b1,i,m=maximum,c=curc,r=1) title "marginal tax(".bt(0,b1).",i)",\
 tf(a=20,b=b2,i,m=maximum,c=curc,r=1) title "tax function(".bt(s,b2).",i)",\
 tf(a=20,b=b1,i,m=maximum,c=curc,r=r) title "tax function(".bt(0,b1).",i)",\
+minimum
+unset output
+set output 'basecofi.eps'
+set title "Verofunktion kannan \"b\" kustannusneutraali sovittaminen sosiaalitukeen \"s\" tuella \"c\""
+set y2label "Vuorokauden jakson marginaalivero [1]"
+set y2range [minimum-margin:maximum+margin]
+set y2tics
+unset x2label
+unset x2range
+unset x2tics
+set ylabel "Vuorokauden jakson tuloverokerroin [1]"
+set yrange [minimum-margin:maximum+margin]
+set xlabel "Vuorokauden verojakson tulot (i) [EUR]"
+set xrange [0:inpday]
+set key right Right center nobox
+b1=1.9
+b2=b2cridis(s)
+bt(s,b) = sprintf("b(s=%2d)=%1.2f",s,b)
+plot [i=0:inpday] maximum,\
+tm(a=20,b=b2,i,m=maximum,c=curc,r=1) title "marginaalivero(".bt(s,b2).",i)",\
+tm(a=20,b=b1,i,m=maximum,c=curc,r=1) title "marginaalivero(".bt(0,b1).",i)",\
+tf(a=20,b=b2,i,m=maximum,c=curc,r=1) title "verofunktio(".bt(s,b2).",i)",\
+tf(a=20,b=b1,i,m=maximum,c=curc,r=r) title "verofunktio(".bt(0,b1).",i)",\
 minimum
 unset output
 reset
@@ -218,12 +257,12 @@ set xrange [0:inpday]
 set key left Left top nobox
 isn=sprintf("%1.0f",Is(a,0,b=b2))
 plot [i=0:inpday]\
-sf(a)+i title "supported income gross value",\
 nf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*sf(a) title "official net support on new situation",\
+sf(a)+i title "supported income gross value",\
+sf(a) title "support nominal gross value",\
 Sd(a,i,b1,b2) title "net effect comparing to old",\
 '+' using (0):(Is(a,0,b=b2)) title "zero wage net support +".isn,\
 Is(a,i,b=b2) title "supported net income",\
-sf(a) title "support nominal gross value",\
 i title "wage gross value",\
  0 title "zero support, tax",\
 '+' using (0):(-Is(a,0,b=b2)) title "zero wage tax -".isn,\
@@ -231,7 +270,25 @@ Ts(a,i,b=b2) title "taxed value"
 #'+' using (0):(-Is(a,0,b=b2)) title "point (0.0,-".isn.")"
 #'+' using (0):(Is(a,0,b=b2)) title "point (0.0,+".isn.")",\
 unset output
+set output 'soctaxfi.eps'
+set title 'Perusturvan muutos vuorokausittaiseksi verolliseksi tuloksi ja tasaava verokompensointi'
+set y2label "Jakson vuorokausi vero ja verotettu tuki [EUR]"
+set ylabel "Jakson vuorokausi tulo ja tuki [EUR]"
+set xlabel "Tukematon bruttotulo vuorokauden verojaksolta [EUR]"
+plot [i=0:inpday]\
+Sd(a,i,b1,b2) title "nettovaikutus vanhaan verrattuna",\
+nf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*sf(a) title "nettotuki uudessa tilanteessa",\
+'+' using (0):(Is(a,0,b=b2)) title "tulottoman nettotuki +".isn." EUR",\
+sf(a)+i title "tuetun tulon bruttoarvo",\
+'+' using (0):(-Is(a,0,b=b2)) title "nollatulon vero -".isn." EUR",\
+i title "bruttotulo",\
+sf(a) title "bruttotuki",\
+ 0 title "nollataso",\
+Is(a,i,b=b2) title "nettotuki",\
+Ts(a,i,b=b2) title "vero"
+unset output
 reset
+#inkscape -D -l -o soctaxfi.svg soctaxfi.eps # All
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 set output 'socialsu.eps'
 set title "Daily social security support if no other income is adding tax"
@@ -254,12 +311,12 @@ Is(a=x,0,b=b2)*2/3 title "under distraint (a)"
 unset output
 reset
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
-set output 'socialsu2.eps'
+set output 'evensu.eps'
 set title "Daily social security support if no other income is adding tax"
 set y2label "Euros per day net support [EUR]"
 set y2range [0:21]
 set y2tics
-set x2label "sample chart combining several supports as one taxable support"
+set x2label "(sample chart combining several supports as one taxable support)"
 set ylabel "Euros per day nominal gross support [EUR]"
 set yrange [0:21]
 set xlabel "Age \"a\" years [y]"
@@ -272,7 +329,18 @@ plot sf2(x) title "support gross (a)",\
 Is2(a=x,0,b=b2) title "support net (a)",\
 Is2(a=x,0,b=b2)*2/3 title "under distraint (a)"
 unset output
+set output 'evensufi.eps'
+set title "Vuorokausittainen sosiaalinen tuki ilman muita tuloja veroa nostamassa"
+set y2label "Nettotuki euroja vuorokaudessa [EUR]"
+set x2label "(mallikuvaaja summaa useita sosiaalisia tukia yhdeksi verotettavaksi perustueksi)"
+set ylabel "Nimellinen bruttotuki euroja vuorokaudessa [EUR]"
+set xlabel "Elinaika \"a\" vuosia [y]"
+plot sf2(x) title "bruttotuki elinajan funktiona (a)",\
+Is2(a=x,0,b=b2) title "nettotuki elinajan funktiona (a)",\
+Is2(a=x,0,b=b2)*2/3 title "nettotuki ulosoton alla (a)"
+unset output
 reset
+#inkscape -D -l -o evensifi.svg evensufi.eps # All
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 # https://www.scb.se/en/api
 # http://scb.se/en/services/open-data-api/api-for-the-statistical-database
@@ -289,6 +357,7 @@ reset
 # curl -d @intrest.json https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
 # wget --post-file=intrest.json -O interest.csv https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
 # piecewice.dem sampling.dem prob.dem pareto prob2.dem binomial poisson PDF normal approx
+# http://wikipedia.org/wiki/Inverse_transform_sampling
 set output 'unitdist.eps'
 set title "Consumption unit distribution"
 set y2label "From 0 to income (i) cumulated consumption units group g(i) [1M]"
@@ -303,19 +372,26 @@ set xlabel "Income (i) from tax period day [EUR] (average for all 365 days/year)
 set xrange [0:250]
 set xtics add (18.5 2)
 set key center Right top nobox
+#http://wikipedia.org/wiki/Log-logistic_distribution
+#http://en.wikipedia.org/wiki/Shifted_log-logistic_distribution#Alternate_parameterization
+#From distfit fitter difi.py:
 #{'fisk': (4.700298735631105, -37.671680183085634, 98.64542740340752)}
 #{'fisk': (0.2833049412519959, -1.8862759967692898e-23, 2.172997272429371)}
 #fisk(c=2.34012, loc=22.580040, scale=53.526429)
 #fisk(c=1.61796, loc=22.6727, scale=49.3388)
 #[fisk] [0.14 sec] [RSS: 3.74927e-06] [loc=22.580040 scale=53.526429]
 #[fisk] [0.16 sec] [RSS: 1.65361e-05] [loc=27.672654 scale=49.308820]
-b=2.9
-a=22.580040 
-c=53.526429 
-d=1900
-m=0.4
-F(i,a,b)=c*((i-a)*m)**b/(a**b+((i-a)*m)**b)
-f(i,a,b)=d*((b/a)*((i-a)*m/a)**(b-1))/(1+((i-a)*m/a)**b)**2
+#http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisk.html
+#http://wikipedia.org/wiki/Log-logistic_distribution#Characterization
+# Hand picked values to get suitable picture to document created
+a=58.82 # Y-scale "amplification" median
+b=2.34012 # Shape
+o=22.580040 # X-axis "location" i0 or origin
+#U=53.526429 # Scale used units for CDF F(i)
+U=54.28508 # Scale used units for CDF F(i), population/100000
+d=100 # Scale (PDF f(i), median dg(i)=a) for set axis range
+F(i,a,b)=U*(i-o)**b/((i-o)**b+(a)**b) # Cumulative Distribution Function
+f(i,a,b)=d*a*((b/a)*((i-o)/a)**(b-1))/(1+((i-o)/a)**b)**2 # Propability Density Function
 plot f(x,a,b) title "Propability Density Function (Fisk) fitting f(i)",\
      F(x,a,b) title "Cumulative Distribution Function fitting F(i)",\
      '-' using 1:2 with lines title "2021 grouped units sum from i=0 to g(i)",\
@@ -410,6 +486,35 @@ EOD
 381	0.3
 74466	0.0
 EOF
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'invcdf.eps'
+set title "Inverse Cumulative Distribution Function InvCDF"
+set y2label "Income (i) from tax period year(365d) [kEUR]"
+set y2range [0:27180] # 365*74466
+#set y2range [0:250*365/1000]
+set y2tics
+set ylabel "Income (i) from tax period day [EUR] (average for all 365 days/year)"
+set yrange [0:74466] # 0-5428508 th citizens monthly pay [EUR]
+#set yrange [0:250]
+set ytics
+set xlabel "From 0 to income (i) cumulated consumption units group g(i) [1M]"
+set xtics
+set key center Right top nobox
+a=58.82 # Y-scale "amplification" median
+b=2.34012 # Shape
+o=22.580040 # X-axis "location" i0 or origin
+#U=5.3526429 # Scale used units for CDF F(i)
+U=5.428508 # Scale used units for CDF F(i), consumption Units ~ population/100000
+set xrange [0:U]
+#InvCDF(P,a,b)=a*((1-P)/P)**b # Inverse Cumulative Distribution Function Fisk
+#InvF(g,a,b,U,o)=a*((1-g/U)/(g/U))**b+o # Inv Function
+#InvF(g,a,b,U,o)=a*((1-g/U)/g*U)**b+o # Inv Function
+#InvF(g,a,b,U,o)=a*((U-g)/g)**b+o # Inv Function
+InvF(g,a,b,U,o)=a*(U/g-1)**b+o # Inv Function
+#plot InvCDF(x,a,b) title "Inverse Cumulative Distribution Function InvCDF(g)"
+plot InvF(x,a,b,U,o) title "Inverse Cumulative Distribution Function InvF(g)"
 unset output
 reset
 quit

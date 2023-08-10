@@ -9,7 +9,7 @@
 %         1         2         3         4         5         6         7
 %123456789012345678901234567890123456789012345678901234567890123456789012345678
 %-BEGIN OF INCLUDE FILE--------------------------------------------------------
-%\appendix
+
 \chapter{Income statistics}
 %\addcontentsline{toc}{chapter}{Income statistics}
 \index{statistics}
@@ -23,7 +23,7 @@ It's also possible to edit and repeat query from commandline in simplistic form
 using "curl -d @query.json" or "wget --post-file=query.json" from commandline.
 
 From those available statistics we can get consumption units
-$u$ grouped to fractile groups $g$,
+$u$ grou\-ped to fractile groups $g$,
 and when we sum up these fractiles we get number of consumption units in population,
 which should be about the number of citizens in country.  
 
@@ -32,7 +32,7 @@ which should be about the number of citizens in country.
 	\sum_{0\%}^{5\%} u +
 	\sum_{5\%}^{10\%} u +
 	...+
-	\sum_{95\%}^{100\%} u = citizens
+	\sum_{95\%}^{100\%} u = U \approx citizens
 \end{equation}
 
 Besides the percentage limits of fractile group $g$
@@ -56,6 +56,12 @@ $i=i_{top}$.
 
 \begin{equation} \label{eq:group}
 	g(i)=g(0,i)
+\end{equation}
+
+\begin{equation} \label{eq:units_group_max}
+	g(0,i_{top}) =
+%	g_{max}(i) = 
+	U \approx citizens
 \end{equation}
 
 \begin{equation} \label{eq:units_group_propability}
@@ -101,15 +107,68 @@ $i=i_{top}$.
 	P(0,\infty)=\int_{i=0}^{\infty} p(i)=1
 \end{equation}
 
-From statistics is possible to get some information to try find suitable
-PDF (Propability Distribution Function) $f(i)$ to be fitted into collected $g'(i)$
-points and respective CDF (Cumulative Density Function) F(i) to fit into $g(i)$ points.
-Suitable function candidates can be found based to experience or by using Python-Fitter
-and/or -Distfit-software to do Sum of Squared Errors (SSE) or Residual Sum of Squares (RSS).
-Log-logistic distribution (Peter R. Fisk) would be good starting point to look suitable distribution function.
-
 %\begin{equation} \label{eq:GrossIncome}
 %	G=\int_{i=0}^{i_{top}} i g'(i) =
 %	g(0,i_{top}) \int_{i=0}^{i_{top}} i p(i)
 %\end{equation}
+
+From statistics is possible to get some information to try find suitable
+PDF (Propability Distribution Function) $f(i)$ to be fitted into collected $g'(i)$
+points and respective CDF (Cumulative Density Function) F(i) to fit into $g(i)$ points.
+Suitable function candidates can be found based to experience or by using Python-Fitter
+and/or -Distfit-software to do Sum of Squared Errors (SSE) or Residual Sum of Squa\-res (RSS).
+Log-logistic distribution\cite{LogLogisticDistribution} (Peter R. Fisk\cite{Fisk})
+would be good starting point to look suitable distribution function.
+
+%\begin{equation} \label{eq:Alpha} \alpha=\tilde{g'} \end{equation}
+\begin{equation} \label{eq:PDFfisk}
+ PDF_{fisk}(i,\alpha,\beta)=\frac{(\beta/\alpha)(i/\alpha)^{(\beta-1)}}{(1+(i/\alpha)^\beta)^2}
+\end{equation}
+\begin{equation} \label{eq:PDFf}
+ f(i;i_0,\alpha,\beta)=
+ \alpha\frac{(\beta/\alpha)((i-i_0)/\alpha)^{(\beta-1)}}{(1+((i-i_0)/\alpha)^\beta)^2}
+\end{equation}
+
+%http://wikipedia.org/wiki/Log-logistic_distribution#Characterization
+\begin{equation} \label{eq:CDFfisk}
+ CDF_{fisk}(i;\alpha,\beta)
+ =\frac{1}{1+(i/\alpha)^{-\beta}}
+%=\frac{(i/\alpha)^\beta}{(i/\alpha)^\beta+1}
+%=\frac{i^\beta}{i^\beta+\alpha^\beta}
+%=F(i;\alpha,\beta)
+\end{equation}
+
+\begin{equation} \label{eq:CDFF}
+ F(i;i_0,\alpha,\beta,U)
+ =\frac{U}{1+((i-i_0)/\alpha)^{-\beta}}
+%=\frac{U((i-i_0)/\alpha)^\beta}{((i-i_0)/\alpha)^\beta+1}
+%=\frac{U((i-i_0))^\beta}{((i-i_0))^\beta+a^\beta}
+%=\frac{U(i-i_0)^\beta}{(i-i_0)^\beta+a^\beta}
+\end{equation}
+
+To be able to fill database for testing with the data, what known propability
+distribution represents, we could use inverse transform sampling from interval
+$(0,1]$. Given random numbers are interpreted as propability and mapped with
+inverse cumulative distribution to data points\cite{InvTransformSampling}.
+In this case it's also possible to sample consumption units group $g \in [1,U]$
+size from one unit-person to number of citizens, and then do inverse transform
+with scaled cumulative distribution function CDF inversion $F^{-1}(g)$ .
+
+%http://wikipedia.org/wiki/Inverse_transform_sampling
+\begin{equation} \label{eq:Propability}
+ P(g;U)=\frac{g}{U} \in [1/U,1] ~;~ g \leq U ~;~ g,U \in \mathbb{N}^+
+\end{equation}
+
+\begin{equation} \label{eq:CDFfiskInverse}
+%CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha\left(\frac{1-P}{P}\right)^\beta
+ CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha\left(\frac{1}{P}-1\right)^\beta
+\end{equation}
+
+%http://wikipedia.org/wiki/Inverse_transform_sampling
+\begin{equation} \label{eq:FInverse}
+ F^{-1}(g;\alpha,\beta,U,i_0)
+%=i(g;\alpha,\beta,U,i_0)
+ =\alpha\left(\frac{U}{g}-1\right)^\beta+i_0
+\end{equation}
+
 %-END OF INCLUDE FILE----------------------------------------------------------

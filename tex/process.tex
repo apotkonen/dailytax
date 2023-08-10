@@ -48,7 +48,7 @@ event streams still using same daily taxation technology.
 \section{Interfaces and integration}
 \label{interfaces_and_integration}
 \index{interfaces and integration}
-Daily taxation needs; income account into some bank, and method to transfer details,
+Daily taxation needs; income account into some bank, and met-hod to transfer details,
 from income along transaction or as separate data transaction.
 Here local government save income details into register.
 Same register can hold different income class event details,
@@ -90,7 +90,7 @@ This leads to ineffective operation.
 New social security reform leads to province level taxation because this responsibility need
 and legislation to manage this situation even now province level taxes are taken along with national tax.
 Practice means that we have to have input parameters;
-social security support, income, age, municipality, community, national (province, state, union)
+social security support, income, age, municipality, community, national (pro\-vin\-ce, state, union)
 and consumer price index ratio for tax fitting function definition.
 Most likely there has to be several tax fittings for different parameter combinations.
 
@@ -151,8 +151,9 @@ then fixed daily with latest up-to-date tax information day by day.
 If tax function is changed for higher tax and consumer price index,
 inflation corrected withholding is not enough to fill that gap,
 then is risk is that without any other income than daily support there could be tax debt cumulating,
-still citizen should get $\nicefrac{2}{3}$ from net support even under tax dept distraint,
+still citizen should get \char"2154~from net support even under tax dept distraint,
 see figure \ref{fig:SocialSu} on page \pageref{fig:SocialSu}.
+%$\text{\char"2154}$$\frac{2}{3}$ %\sfrac{2}{3}\texttwothird$\nicefrac{2}{3}$
 \begin{figure} %[p] %[H] %\usepackage{float}
  \begin{center}
   \epsfig{figure=figures/taxing.eps,width=\textwidth}
@@ -179,11 +180,10 @@ times capasity is needed.
 If we take tax administration year 1990\cite{VeroItDeployment} as reference,
 when taxes computer calculation get done about at one year with calculation
 capasity existed. Then estimating computing power change with inverse of
-Koomey's law\cite{KoomeysLaw}\cite{DennartScaling}\cite{PerformanceDevelTop500}
+Koomey's law\cite{KoomeysLaw}\cite{DennardScaling}\cite{PerformanceDevelTop500}
 equation \ref{eq:Koomey} on page \pageref{eq:Koomey} to estimate when tax
-administration has possibility to $32\times 365 = 11680$ times higher
-computing rate comparing to 1990, to manage payday computing need for daily
-tax.
+administration has possibility to 32x365=11680 times higher computing rate
+comparing to 1990, to manage payday computing need for daily tax.
 
 \begin{equation} \label{eq:Koomey}
 	K(\Delta t) =
@@ -193,14 +193,14 @@ tax.
 \end{equation}
 
 \begin{equation} \label{eq:InverseKoomey}
-	K^{-1}(\frac{R_{t_2}}{R_{t_1}}) =
-	1.57_y \log_2(\frac{R_{t_2}}{R_{t_1}}) =
+	K^{-1}\left(\frac{R_{t_2}}{R_{t_1}}\right) =
+	1.57_y \log_2\left(\frac{R_{t_2}}{R_{t_1}}\right) =
 	t_2 - t_1 =
 	\Delta t
 \end{equation}
 
 \begin{equation} \label{eq:InverseKoomeyTime}
-t_1 + 1.57_y \log_2(\frac{R_{t_2}}{R_{t_1}}) = t_2
+t_1 + 1.57_y \log_2\left(\frac{R_{t_2}}{R_{t_1}}\right) = t_2
 \end{equation}
 
 \begin{equation} \label{eq:InverseKoomeyTime20052021}
@@ -217,7 +217,7 @@ come lump sum divided to next three years and taxation correction for past tax
 during same day. Estimating, correction may affect max three years back and
 lump sum three years forward resulting to max 6x365=2190 times existing
 calculation load at one day for this persons data. It in worst case every
-person have same problem then 2190x365 more computing power in needed
+person have same problem then 2190x365 more computing power is needed
 comparing to year 1990 to do fixes during an day-24h. When checking time with
 Inverse Koomeys law \ref{eq:InverseKoomey} on page \pageref{eq:InverseKoomey},
 we notice that we have about now capasity to change daily taxation and tolerate
@@ -236,5 +236,21 @@ Storage need could be estimated to be about 10 doubles -- 80 bytes per day for
 storing sums. It is 175kB per user and one terabyte 1TB for 5.5M users, not
 including userdata holding addresses etc. which add some gigabytes GB over
 that.
+
+\section{Legal complexity}
+\label{legal_complexity}
+\index{legal complexity}
+
+As we have seen this daily tax is doable from information technology
+performance perspective. Totally other thing is to get this done from national
+legal legacy perspective. Of course existing yearly tax fixed reporting
+dates can be done by adjusting sliding window (fig:\ref{fig:taxing} 
+p.\pageref{fig:taxing}) size and doing summary tasks for certain dates.
+
+Still, most biggest blocker for the sliding window daily tax usage is our
+legal legacy habbits which are like patchwork quilt and natural process to
+move patches from end to another and perhaps replace some worn patches with
+few new even smaller ones. Result is still same length patchwork, but now with
+even more mixed and distressing experience than before.
 
 %-END OF INCLUDE FILE----------------------------------------------------------
