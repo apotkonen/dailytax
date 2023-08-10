@@ -21,11 +21,10 @@ CLEAN = rm -f $(DOC).pdf clean all
 all: $(DOC).pdf
 
 $(DOC).pdf :
-	make -C $(SUBM) all
-	make -C $(SUBM) clean
+	make -C $(SUBM) all && make -C $(SUBM) clean
 
 # Clean : Remove temporary files.
 .PHONY : clean 
 clean :
-	$(CLEAN)
+	$(CLEAN) && make -C $(SUBM) clean && rm $(DOC).pdf
 
