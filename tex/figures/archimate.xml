@@ -27,7 +27,7 @@
     <element xsi:type="archimate:BusinessProcess" name="Service need reassesment" id="id-fd5b919b82b74a4188c7cd90eafca187"/>
     <element xsi:type="archimate:BusinessProcess" name="Application update" id="id-2a1bba54492d4ff898a6f1b403e2fdd5"/>
     <element xsi:type="archimate:BusinessProcess" name="Financing decision" id="id-4fde3e3d491c4e1793d4c3d26ae93e4d"/>
-    <element xsi:type="archimate:BusinessProcess" name="Responce evaluation" id="id-93ec8341ff88427d9b91ed80bb2e2a54"/>
+    <element xsi:type="archimate:BusinessProcess" name="Response evaluation" id="id-93ec8341ff88427d9b91ed80bb2e2a54"/>
     <element xsi:type="archimate:BusinessProcess" name="Register read" id="id-1d9be148a7084c64a91d019827fd0d42"/>
     <element xsi:type="archimate:BusinessProcess" name="Application evaluation" id="id-9db4991279094eb7be1ee50484bdf5f4"/>
   </folder>
