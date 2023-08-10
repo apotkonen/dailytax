@@ -289,6 +289,7 @@ reset
 # curl -d @intrest.json https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
 # wget --post-file=intrest.json -O interest.csv https://pxdata.stat.fi:443/PxWeb/api/v1/fi/StatFin/tjt/statfin_tjt_pxt_11wh.px
 # piecewice.dem sampling.dem prob.dem pareto prob2.dem binomial poisson PDF normal approx
+# http://wikipedia.org/wiki/Inverse_transform_sampling
 set output 'unitdist.eps'
 set title "Consumption unit distribution"
 set y2label "From 0 to income (i) cumulated consumption units group g(i) [1M]"
@@ -303,19 +304,26 @@ set xlabel "Income (i) from tax period day [EUR] (average for all 365 days/year)
 set xrange [0:250]
 set xtics add (18.5 2)
 set key center Right top nobox
+#http://wikipedia.org/wiki/Log-logistic_distribution
+#http://en.wikipedia.org/wiki/Shifted_log-logistic_distribution#Alternate_parameterization
+#From distfit fitter difi.py:
 #{'fisk': (4.700298735631105, -37.671680183085634, 98.64542740340752)}
 #{'fisk': (0.2833049412519959, -1.8862759967692898e-23, 2.172997272429371)}
 #fisk(c=2.34012, loc=22.580040, scale=53.526429)
 #fisk(c=1.61796, loc=22.6727, scale=49.3388)
 #[fisk] [0.14 sec] [RSS: 3.74927e-06] [loc=22.580040 scale=53.526429]
 #[fisk] [0.16 sec] [RSS: 1.65361e-05] [loc=27.672654 scale=49.308820]
-b=2.9
-a=22.580040 
-c=53.526429 
-d=1900
-m=0.4
-F(i,a,b)=c*((i-a)*m)**b/(a**b+((i-a)*m)**b)
-f(i,a,b)=d*((b/a)*((i-a)*m/a)**(b-1))/(1+((i-a)*m/a)**b)**2
+#http://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.fisk.html
+#http://wikipedia.org/wiki/Log-logistic_distribution#Characterization
+# Hand picked values to get suitable picture to document created
+a=58.82 # Y-scale "amplification" median
+b=2.34012 # Shape
+o=22.580040 # X-axis "location" i0 or origin
+#U=53.526429 # Scale used units for CDF F(i)
+U=54.28508 # Scale used units for CDF F(i), population/100000
+d=100 # Scale (PDF f(i), median dg(i)=a) for set axis range
+F(i,a,b)=U*(i-o)**b/((i-o)**b+(a)**b) # Cumulative Distribution Function
+f(i,a,b)=d*a*((b/a)*((i-o)/a)**(b-1))/(1+((i-o)/a)**b)**2 # Propability Density Function
 plot f(x,a,b) title "Propability Density Function (Fisk) fitting f(i)",\
      F(x,a,b) title "Cumulative Distribution Function fitting F(i)",\
      '-' using 1:2 with lines title "2021 grouped units sum from i=0 to g(i)",\
@@ -410,6 +418,35 @@ EOD
 381	0.3
 74466	0.0
 EOF
+unset output
+reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'invcdf.eps'
+set title "Inverse Cumulative Distribution Function InvCDF"
+set y2label "Income (i) from tax period year(365d) [kEUR]"
+set y2range [0:27180] # 365*74466
+#set y2range [0:250*365/1000]
+set y2tics
+set ylabel "Income (i) from tax period day [EUR] (average for all 365 days/year)"
+set yrange [0:74466] # 0-5428508 th citizens monthly pay [EUR]
+#set yrange [0:250]
+set ytics
+set xlabel "From 0 to income (i) cumulated consumption units group g(i) [1M]"
+set xtics
+set key center Right top nobox
+a=58.82 # Y-scale "amplification" median
+b=2.34012 # Shape
+o=22.580040 # X-axis "location" i0 or origin
+#U=5.3526429 # Scale used units for CDF F(i)
+U=5.428508 # Scale used units for CDF F(i), consumption Units ~ population/100000
+set xrange [0:U]
+#InvCDF(P,a,b)=a*((1-P)/P)**b # Inverse Cumulative Distribution Function Fisk
+#InvF(g,a,b,U,o)=a*((1-g/U)/(g/U))**b+o # Inv Function
+#InvF(g,a,b,U,o)=a*((1-g/U)/g*U)**b+o # Inv Function
+#InvF(g,a,b,U,o)=a*((U-g)/g)**b+o # Inv Function
+InvF(g,a,b,U,o)=a*(U/g-1)**b+o # Inv Function
+#plot InvCDF(x,a,b) title "Inverse Cumulative Distribution Function InvCDF(g)"
+plot InvF(x,a,b,U,o) title "Inverse Cumulative Distribution Function InvF(g)"
 unset output
 reset
 quit

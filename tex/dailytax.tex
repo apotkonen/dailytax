@@ -117,13 +117,13 @@
 %\usepackage[utf8]{inputenc} % Linux, UTF-8
 %\usepackage[utf8x]{inputenc} % Linux, UTF-8
 %\usepackage[latin1]{inputenc} % Linux
-%\usepackage[latin1]{inputenc}
 %\usepackage[english,finnish]{babel}
 %\usepackage[finnish]{babel}
 \usepackage[english]{babel}
 %\usepackage{siunitx}
 %\usepackage{eurosym}
 \usepackage[gen]{eurosym}
+%\usepackage{eurosans}
 %\usepackage[official]{eurosym}
 %\usepackage{icomma} % desimalcomma
 %\usepackage{marvosym}
@@ -170,7 +170,7 @@
 %\usepackage{verbatim}
 %\usepackage{lscape}
 %\usepackage{pdflscape}
-%\usepackage{csquotes}
+\usepackage{csquotes} % /usr/share/doc/texlive-doc/latex/csquotes/csquotes.pdf
 %\usepackage{bibtopic}
 %\usepackage{babelbib}
 %\usepackage[backend = biber,babel=other]{biblatex} % /usr/share/texmf/doc/bibtex/biber/biber.pdf
@@ -178,12 +178,14 @@
 %\usepackage[hyphens]{url}
 \usepackage{biblatex} % /usr/share/doc/texlive-doc/latex/biblatex/biblatex.pdf
 %\usepackage{url} % /usr/share/doc/texlive-doc/latex/url/url.pdf
-\usepackage{xurl} % /usr/share/doc/texlive-doc/latex/xurl/xurl.pdf
-\usepackage[hidelinks]{hyperref} % /usr/share/doc/texlive-doc/latex/hyperref/hyperref-doc.pdf
+\usepackage{xurl} % /usr/share/doc/texlive-doc/latex/xurl/xurl.pdf penalties for biblatex
+%\usepackage[hidelinks]{hyperref} % texlive-doc/latex/hyperref/hyperref-doc.pdf
+\usepackage[bookmarks=true,hidelinks]{hyperref} % hyperref/hyperref-doc.pdf
+\usepackage{bookmark} % /usr/share/doc/texlive-doc/latex/bookmark/bookmark.pdf
 %\addbibresource{biblatex.bib}
 \bibliography{biblatex}
 %\usepackage[nottoc,numbib]{tocbibind}
-%\usepackage{makeidx}
+\usepackage{makeidx}
 \makeindex
 %-DOCUMENT PREAMBLE END--------------------------------------------------------
 \begin{document}
@@ -194,8 +196,8 @@
 %\begin{titlepage}
 \pagenumbering{gobble}
 %\pagestyle{empty}
-\title{\Huge\textbf{Daily Tax} \linebreak DRAFT}
-%\title{\Huge\textbf{Daily Tax}}
+\title{\Huge\textbf{Daily Tax} \linebreak DRAFT \linebreak \linebreak
+\includegraphics[height=64pt,width=64pt]{figures/dtaxlogo.eps}}
 \author{\Large Potkonen Ari} 
 \maketitle
 %\end{titlepage}
@@ -231,10 +233,10 @@
 %\include{biblio}
 %-APPENDIX---------------------------------------------------------------------
 \appendix
-\include{appendix}
+\include{appenda}
 %\pagebreak %\clearpage
 %-INDEX------------------------------------------------------------------------
-%\printindex
+\printindex
 %\backmatter
 \pagestyle{plain}
 \include{abstract}
