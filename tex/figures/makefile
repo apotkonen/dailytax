@@ -3,6 +3,7 @@
 # Definitions:
 DIA2EPS = dia -t eps
 FIG2EPS = fig2dev -L eps
+FONT2FO = sed -e 's/Helvetica/LinLibertineO/g'
 SVG2EPS = inkscape -o
 GPL2EPS = gnuplot -c
 
@@ -27,7 +28,7 @@ epsfiles = $(diatoeps) $(figtoeps) $(svgtoeps) $(gpltoeps)
 %.eps: %.dia
 	$(DIA2EPS) $<
 %.eps: %.fig
-	$(FIG2EPS) $< $@
+	$(FIG2EPS) $< | $(FONT2FO) > $@
 %.eps: %.svg
 	$(SVG2EPS) $@ $<
 %.eps: %.gpl

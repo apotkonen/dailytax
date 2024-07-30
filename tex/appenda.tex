@@ -23,7 +23,7 @@ It's also possible to edit and repeat query from commandline in simplistic form
 using "curl -d @query.json" or "wget --post-file=query.json" from commandline.
 
 From those available statistics we can get consumption units
-$u$ grouped to fractile groups $g$,
+$u$ grou\-ped to fractile groups $g$,
 and when we sum up these fractiles we get number of consumption units in population,
 which should be about the number of citizens in country.  
 
@@ -116,7 +116,7 @@ From statistics is possible to get some information to try find suitable
 PDF (Propability Distribution Function) $f(i)$ to be fitted into collected $g'(i)$
 points and respective CDF (Cumulative Density Function) F(i) to fit into $g(i)$ points.
 Suitable function candidates can be found based to experience or by using Python-Fitter
-and/or -Distfit-software to do Sum of Squared Errors (SSE) or Residual Sum of Squares (RSS).
+and/or -Distfit-software to do Sum of Squared Errors (SSE) or Residual Sum of Squa\-res (RSS).
 Log-logistic distribution\cite{LogLogisticDistribution} (Peter R. Fisk\cite{Fisk})
 would be good starting point to look suitable distribution function.
 
@@ -160,15 +160,15 @@ with scaled cumulative distribution function CDF inversion $F^{-1}(g)$ .
 \end{equation}
 
 \begin{equation} \label{eq:CDFfiskInverse}
-%CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha(\frac{1-P}{P})^\beta
- CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha(\frac{1}{P}-1)^\beta
+%CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha\left(\frac{1-P}{P}\right)^\beta
+ CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha\left(\frac{1}{P}-1\right)^\beta
 \end{equation}
 
 %http://wikipedia.org/wiki/Inverse_transform_sampling
 \begin{equation} \label{eq:FInverse}
  F^{-1}(g;\alpha,\beta,U,i_0)
 %=i(g;\alpha,\beta,U,i_0)
- =\alpha(\frac{U}{g}-1)^\beta+i_0
+ =\alpha\left(\frac{U}{g}-1\right)^\beta+i_0
 \end{equation}
 
 %-END OF INCLUDE FILE----------------------------------------------------------

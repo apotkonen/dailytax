@@ -49,15 +49,26 @@ sf(a)=a<0?0:a<=1?20:a<3?(4*(7-2*a)):a<=7?4:a<18?(4*(4+a)/11):a<=120?20:0
 # Sample support function too
 sf2(a)=a<0?0:a<=1?20:a<=120?20:0
 # Sd() Support daily value after tax
-Sd(a,i,b1,b2)=sf(a)+tf(a=a,b=b1,i,m=maximum,c=curc,r=1)*i-tf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*(sf(a)+i)
+Sd(a,i,b1,b2)=sf(a)+tf(a,b1,i,maximum,curc,1)*i-tf(a,b2,sf(a)+i,maximum,curc,1)*(sf(a)+i)
 # Ts() Negative tax from income including support, taxed with municipality and government taxes 
-Ts(a,i,b)=(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1))*(sf(a)+i)-sf(a)
-Ts2(a,i,b)=(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1))*(sf2(a)+i)-sf2(a)
+#Ts(a,i,b)=(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1))*(sf(a)+i)-sf(a)
+Ts(a,i,b)=(tf(a,b,i+sf(a),mmun,curc,1)+tf(a,b,i+sf(a),mgov,curc,1))*(sf(a)+i)-sf(a)
+#Ts2(a,i,b)=(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1))*(sf2(a)+i)-sf2(a)
+Ts2(a,i,b)=(tf(a,b,i+sf2(a),mmun,curc,r=1)+tf(a,b,i+sf2(a),mgov,curc,1))*(sf2(a)+i)-sf2(a)
 # Is() Net Income including support and taxed with municipality and government taxes 
-Is(a,i,b)=(1-(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1)))*(i+sf(a))
-Is2(a,i,b)=(1-(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1)))*(i+sf2(a))
+#Is(a,i,b)=(1-(tf(a=a,b=b,i+sf(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf(a),m=mgov,c=curc,r=1)))*(i+sf(a))
+Is(a,i,b)=(1-(tf(a,b,i+sf(a),mmun,curc,1)+tf(a,b,i+sf(a),mgov,curc,1)))*(i+sf(a))
+#Is2(a,i,b)=(1-(tf(a,b,i+sf2(a),mmun,curc,1)+tf(a,b,i+sf2(a),mgov,curc,1)))*(i+sf2(a))
+#Is2(a,i,b)=(1-(tf(a=a,b=b,i+sf2(a),m=mmun,c=curc,r=1)+tf(a=a,b=b,i+sf2(a),m=mgov,c=curc,r=1)))*(i+sf2(a))
+Is2(a,i,b)=(1-(tf(a,b,i+sf2(a),mmun,curc,1)+tf(a,b,i+sf2(a),mgov,curc,1)))*(i+sf2(a))
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
-set terminal postscript
+#set terminal postscript eps font "Times-Roman,12"
+#set terminal postscript eps font "Helvetica,12"
+set terminal postscript eps font "FreeSerif,16"
+#set terminal postscript eps font "FreeSans,14"
+#set terminal postscript eps font "FreeMono,12"
+#set terminal postscript eps font "Unifont,12"
+#set terminal postscript
 set output 'tax.eps'
 set title "Tax function adabtation to margins"
 set y2label "Marginal tax as function of income (i) [1]"
@@ -103,7 +114,8 @@ unset output
 reset
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 set output 'basecomp.eps'
-set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily cash \"c\""
+#set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily cash \"c\""
+set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily income \"i\""
 set y2label "Period marginal tax [1]"
 set y2range [minimum-margin:maximum+margin]
 set y2tics
@@ -245,12 +257,12 @@ set xrange [0:inpday]
 set key left Left top nobox
 isn=sprintf("%1.0f",Is(a,0,b=b2))
 plot [i=0:inpday]\
-sf(a)+i title "supported income gross value",\
 nf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*sf(a) title "official net support on new situation",\
+sf(a)+i title "supported income gross value",\
+sf(a) title "support nominal gross value",\
 Sd(a,i,b1,b2) title "net effect comparing to old",\
 '+' using (0):(Is(a,0,b=b2)) title "zero wage net support +".isn,\
 Is(a,i,b=b2) title "supported net income",\
-sf(a) title "support nominal gross value",\
 i title "wage gross value",\
  0 title "zero support, tax",\
 '+' using (0):(-Is(a,0,b=b2)) title "zero wage tax -".isn,\

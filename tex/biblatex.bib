@@ -23,9 +23,27 @@
 % http://ctan.org/pkg/biblatex
 % http://wikibooks.org/wiki/LaTeX
 % http://wikipedia.org/wiki/BibTeX
-% http://bibtex.com/format/fields 
+% http://bibtex.com/format/fields
 %
-% Umlaut etc. hast to be "backslashed" for pure ASCII!
+% Test your bibtex file compatibility with: iconv -t ASCII biblatex.bib
+% If giving error go to informed character and check what to do for/with it.
+%
+% Umlaut etc. hast to be "backslashed" to 7-bit ASCII compatible level to
+% avoid any problems when codebase possibly transferred from system to another
+% using any available method, therefore common denominator of limitations is
+% expected to affecting. Tight limitations are FAT compatible 8.3 naming and
+% 79 writable char plus one NULL - line length is expectected. Now can't ;-)
+% recall vendor name who did this one character shorter line support to they
+% terminals than others, due commercial reasons. Perhaps same company which
+% try pushing OS up from hardware over they software API and then start to
+% control (and limit) systems supporting this API, this way driving customers
+% over they own system offering. Only good protection for this is vote with
+% foots, wallet and perhaps point abuse of a dominant market positions use for
+% to drive competition out by derailing competiting software with this above
+% mentioned trick. EU government could then offer stick and punish with the
+% turnover tied fine, what they business managers definedly notice -- and feel
+% in they yearly bonuses.
+%
 % http://aajanki.github.io/yle-dl/index-en.html
 %
 @www{YleTemplate,
@@ -111,7 +129,7 @@
 %http://eduskunta.fi/FI/vaski/HallituksenEsitys/Documents/HE_75+2023.pdf
 
 @www{KEVA_tyovoimaennuste,
- title = {Kuntien ty\"ovoimaennuste: Hoitajapula kaksinkertaistui kahdessa vuodessa},
+ title = {Kuntien ty\"ovoimaennuste: Hoitajapula kak\-sin\-ker\-tais\-tui kahdessa vuodessa},
  author = {Ismo Kainulainen},
  publisher = {KEVA (Kuntien El\"akeVAkuutus)},
 %note = {Aula Reseach paper \url{http://www.keva.fi/contentassets/de5752333bfb4e0a8194a8797ed24935/analyysi-kuntien-tyovoimatarpeista-2023.pdf}},
@@ -119,7 +137,7 @@
 }
 
 @www{YLE202209221026,
- title = {Sairaanhoitajaksi hakevien m\"a\"ar\"a romahti syksyn yhteishaussa -- toiminnanjohtaja Mielityinen: "Hoitajapula ei ratkea aloituspaikkoja li\-s\"a\"a\-m\"al\-l\"a"},
+ title = {Sairaanhoitajaksi hakevien m\"a\"ar\"a romahti syksyn yhteishaussa -- toiminnanjohtaja Mielityinen: "Hoitajapula ei ratkea a\-loi\-tus\-paik\-ko\-ja li\-s\"a\"a\-m\"al\-l\"a"},
  author = {Hannu Tikkala - Jani Saikko}, 
  publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
  url={http://yle.fi/a/3-12633574}
@@ -227,7 +245,7 @@
 %Many on/off-rules leads to undocumentable process causing a mess increasing sosioeconomic cost.
 %Sosiaalivakuutus, toimeentulotuki ja t\"aydent\"av\"at tuet, kuten asumistuki, opintotuki tai lapsilis\"at.
 @www{Many_Stepwise_Rules_Leads_To_Mess,
- title={Yksi Kela-uudistus j\"atti tuhannet suomalaiset katveeseen seitsem\"an vuotta sitten - n\"ain seuraukset n\"akyv\"at nyt},
+ title={Yksi Kela-uudistus j\"atti tuhannet suomalaiset kat\-vee\-seen seitsem\"an vuotta sitten - n\"ain seuraukset n\"akyv\"at nyt},
  author={Heidi Kononen - Henrietta Hassinen - Grigory Vorobyev - Ida Pimenoff},
  publisher={Finnish public broadcast company (YLE)},
  url={http://yle.fi/a/74-20080328}
@@ -280,7 +298,7 @@
  title={Basic amount of social assistance},
  author={Social Insurance Institution of Finland},
  note={555.11\euro/30d = 18.5\euro/d},
-%note={\url{http://areena.yle.fi/1-50654063 18.5\euro/d}},
+%note={\url{http://areena.yle.fi/1-50654063}},
  url={http://kela.fi/social-assistance-basic-amount}
 }
 
@@ -304,6 +322,7 @@
  note = {At the end of 2022 consumer credit and microloan companies average interest rate is 35\%},
  url = {http://finanssivalvonta.fi/en/publications-and-press-releases/Press-release/2023/companies-granting-consumer-credit-to-be-supervised-by-the-financial-supervisory-authority-from-1-july-2023}
 }
+%http://yle.fi/a/74-20100979 %Takuus\"a\"ati\"o varoittaa nyt kulutusluottojen uudesta velka-ansasta -- 32000 euron lainasta maksettavaa l\"ahes 100000 euroa
 %http://kkv.fi/kuluttaja-asiat/tietoa-ja-ohjeita-yrityksille/kuluttaja-asiamiehen-linjaukset/kuluttajaluottojen-tarjoaminen
 %http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/163913/OM_2022_12_ML.pdf
 %http://finlex.fi/fi/uutiset/384
@@ -403,7 +422,7 @@
 %Legal template http://finlex.fi/en/laki/kaannokset
 @misc{LEX_2019_241,
 %@legal{LEX_2019_241en,
- title = {Laki hankintayksik\"oiden ja elinkeinonharjoittajien s\"ahk\"oisest\"a laskutuksesta},
+ title = {Laki hankintayksik\"oiden ja elin\-kei\-non\-har\-joit\-ta\-jien s\"ahk\"oisest\"a laskutuksesta},
  author = {Ministry of Finance},
  publisher = {VM},
  date = {2019-04-01},
@@ -421,7 +440,7 @@
 }
 
 @www{DepressionValidTreatment,
- title = {Depressio. K\"ayp\"a hoito -suositus},
+ title = {Dep\-res\-sio. K\"ay\-p\"a hoi\-to -suo\-si\-tus},
  author = {Suomalaisen L\"a\"ak\"ariseuran Duodecimin ja Suomen Psykiatriyhdistys ry:n asettama ty\"oryhm\"a},
  publisher = {Suomalainen L\"a\"ak\"ariseura Duodecim},
  year = {2023},
@@ -431,7 +450,7 @@
 %http://areena.yle.fi/1-64959897 Psykedeelisten l\"a\"akkeiden paluu 
 
 @www{YLE202112131842,
- title = {Joka kolmas korkeakouluopiskelija k\"arsii ma\-sen\-nus- ja ahdistusoireista -- n\"am\"a nelj\"a seikkaa kiteytt\"av\"at, mist\"a on kyse},
+ title = {Joka kolmas korkeakouluopiskelija k\"arsii ma\-sen\-nus- ja ahdistusoireista -- n\"am\"a nelj\"a seikkaa ki\-teyt\-t\"a\-v\"at, mist\"a on kyse},
  author = {Tiina Karppi},
  publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
  url = {http://yle.fi/a/3-12227305}
@@ -453,7 +472,7 @@
 }
 
 @www{OwnFault, %2024/02/09 19:08
- title={Suomalaiset johtajat luulevat olevansa muita parempia, ja sen taustalla on ajatus, ett\"a huono-osaisuus on oma vika, sanoo Sami Itani},
+ title={Suomalaiset johtajat luulevat olevansa mui-ta parempia, ja sen taustalla on ajatus, ett\"a huono-osaisuus on oma vika, sanoo Sami Itani},
  author={Annu Caselius},
  publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
  date={2024-02-09},
@@ -519,7 +538,7 @@
 %note = {\url{http://tyollisyysrahasto.fi/globalassets/etuuksien-liitteet/tyollisyysrahastomediatiedoteliite22062023.pdf}}
 
 @www{VN_202303241233,
- title = {Kohti nopeasykkeisemp\"a\"a jatkuvaa oppimista},
+ title = {Kohti nopeasykkeisemp\"a\"a jat\-ku\-vaa oppimista},
  author = {Petri Lempinen},
  url = {http://valtioneuvosto.fi/-/1410845/kohti-nopeasykkeisempaa-jatkuvaa-oppimista}
 }
@@ -533,6 +552,7 @@
 %    http://yle.fi/a/74-20042944 202308021415 by Anssi Bwalya
 }
 % Between 660.91 Eur/m = 22.03 Eur/d and 19.12% from gross income for big incomes.
+%http://yle.fi/a/74-20100345
 
 @www{VN_2023/58,
  series = {Finnish Government Publication Series},
@@ -631,7 +651,7 @@
  series={A-teema}, %url={http://yle.fi/a/3-9240568}
 %title={A2 Palkkaerot-ilta: Kuuden euron l\"aht\"opalkka sai kannatusta keskustelijoilta},
  title={A2 Palkkaerot-ilta},
- note={1h:13min:32s -> perustulo},
+ note={starting 1h:13min:32s perustulo},
 %note={Perustulo Sarasvuo ja Andersson \url{http://youtu.be/0B0ZOBOALV4}},
  url={http://areena.yle.fi/1-3081803?seek=4412} % 1h:13min:32s -> perustulo
 }
@@ -643,7 +663,7 @@
 @report{LiberaPerustili,
  series={Liberan julkaisusarja},
  author={Paul Lillrank - Marko Hamilo - Elina Lepom\"aki},
- title={Perustili -- toimeliaisuuteen, ty\"ollist\"amiseen ja s\"a\"ast\"amiseen kannustava sosiaaliturvan kokonaisuudistus},
+ title={Perustili -- toimeliaisuuteen, ty\"ollist\"amiseen ja s\"a\"as\-t\"a\-mi\-seen kannustava so\-si\-aa\-li\-tur\-van kokonaisuudistus},
  year={2013},
  publisher={Libera-s\"a\"ati\"o},
  isbn={978-952-280-030-5},
@@ -738,7 +758,7 @@
 %http://yle.fi/a/74-20079347
 
 @www{HS_202307290200_RS,
- title = {SAK:n Eloranta moittii: Hallitus heikent\"a\"a lakko-oikeutta ja ajaa sitten l\"api isot muutokset ty\"omarkkinoilla},
+ title = {SAK:n Eloranta moittii: Hallitus hei\-ken\-t\"a\"a lak\-ko\-oi\-keut\-ta ja ajaa sitten l\"api isot muu\-tok\-set ty\"o\-mark\-ki\-noil\-la},
  series = {Helsingin Sanomat},
  author = {Robert Sundman},
  publisher = {Sanoma Media Finland Oy},
@@ -763,7 +783,7 @@
  author={Teemu Liila -- Kevin van Dessel},
  year={2023},
  date={2023-05-16},
- note={Teko\"alyn ja digitalisaation potentiaali Verohallinnolle},
+ note={Teko\"alyn ja digitalisaation potentiaali ve\-ro\-hal\-lin\-nol\-le},
  url={http://youtu.be/pDlZ5Wqb1m0&t=1585}
 }
 
@@ -798,7 +818,7 @@
  series = {IS Taloussanomat},
  publisher={Sanoma Corporation},
  author = {Elina Ranta},
- title = {N\"am\"a tuet ja edut j\"a\"av\"at monilta el\"akel\"aisilt\"a k\"aytt\"am\"att\"a},
+ title = {N\"am\"a tuet ja edut j\"a\"av\"at monilta e\-l\"a\-ke\-l\"ai\-sil\-t\"a k\"ayt\-t\"a\-m\"at\-t\"a},
  abstract = {Asiantuntijat pit\"Av\"At oman aktiivisuuden vaatimusta ja digitalisaatiota osin ongelmana, sill\"a moni etuus j\"a\"a ik\"a\"antyneill\"a hakematta},
  publisher = {Sanoma Media Finland Oy},
  url = {http://is.fi/taloussanomat/art-2000009765356.html}
@@ -814,7 +834,7 @@ url={http://is.fi/taloussanomat/art-2000009773504.html}
 }
 
 @www{ChildProtectionCrisis,
- title={Asiakkaat odottavat tapaamisia kuukauden, asioihin ei ehdit\"a perehty\"a, ja ty\"ontekij\"at v\"asyv\"at -- sosiaality\"ontekij\"a: "Lastensuojelu on kriisiss\"a},
+ title={Asiakkaat odottavat tapaamisia kuukauden, asioihin ei eh-di-t\"a perehty\"a, ja ty\"ontekij\"at v\"asyv\"at -- sosiaality\"ontekij\"a: "Lastensuojelu on kriisiss\"a},
  publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
  url={http://yle.fi/a/3-12396629}
 }
@@ -906,7 +926,7 @@ url={http://finlex.fi/fi/laki/ajantasa/2013/20131226}
 
 %http://yhteistyotilat.fi/wiki08/display/SYPLJULK
 @www{SYPLJULK,
- title={Sosiaali- ja terveydenhuollon kokonaisarkkitehtuuri: tiedonhallinnan yh\-tei\-set periaatteet ja kuvaukset},
+ title={Sosiaali- ja terveydenhuollon kokonaisarkkitehtuuri: tie\-don\-hal\-lin\-nan yh\-tei\-set periaatteet ja kuvaukset},
  author={Riikka Vuokko - Mikko Huovila - Marika Pentik\"ainen - Juha Mykk\"anen - Timo Siira - Marko Jalonen},
  year={2022},
  url={http://yhteistyotilat.fi/wiki08/display/SYPLJULK}
@@ -1142,7 +1162,7 @@ Kuva 2.7 Sote-tiedonhallinnan keskeiset kyvykkyydet kansallisella tasolla
 }
 %http://palveluhallinta.suomi.fi
 @www{VM006_00_2024,
- title={Ensisijaisesti digitaalisen viranomaisviestinn\"an edist\"amisohjelma},
+ title={Ensisijaisesti digitaalisen vi\-ran\-omais\-vies\-tin\-n\"an edist\"amisohjelma},
  author = {Ministry of Finance},
  publisher = {VM},
  note={\url{https://suomi.fi/viestit} \url{https://turvaposti.fi} \url{https://omaposti.fi} \url{https://kivra.fi}},
@@ -1648,6 +1668,7 @@ url={http://basicincomeconversation.org}
 %http://wikipedia.org/wiki/List_of_hospitals_in_Finland#University_Hospitals
 %http://soteuudistus.fi/hyvinvointialuekartta
 %http://soteuudistus.fi/hyvinvointialueiden-nimet-ja-niihin-kuuluvat-kunnat
+%http://yle.fi/a/74-20101714 %"Mutta leve\"at hartiat kannattelevatkin nyt uppiniskaista byrokratiaa."
 %http://thl.fi/fi/web/lapset-nuoret-ja-perheet/sote-palvelut/sosiaalipalvelut/palvelutarpeen-arviointi
 %http://finlex.fi/fi/laki/ajantasa/2022/20220825
 %http://finlex.fi/fi/laki/ajantasa/2015/20150254
@@ -1741,9 +1762,9 @@ https://opintopolku.fi/konfo/en/sivu/erequirements https://eperusteet.opintopolk
 %video
 @misc{PerukirjaTukiehdotuksetTekoaly,
  series={SuomiAreena}, % http://suomiareena.fi/en
- title={Datari\"aj\"ahdys on t\"a\"all\"a - kest\"av\"atk\"o kotiemme tietoliikenneyhteydet?},
+ title={Datari\"aj\"ahdys on t\"a\"al\-l\"a - kest\"av\"atk\"o kotiemme tietoliikenneyhteydet?},
  author={Maria Nyk\"anen - Laura Halenius - Heikki Kaunisto - P\"aivi Peltola-Ojala - Miapetra Kumpula-Natri},
- note={Esit\"aytetty perukirja, Tukiehdotukset, Teko\"aly sotessa},
+ note={Esi-t\"ay-tet-ty perukirja, Tukiehdotukset, Teko\"aly sotessa},
  url={http://youtu.be/tBQAVaaCLeo?t=2123}
 }
 
@@ -1754,6 +1775,7 @@ https://opintopolku.fi/konfo/en/sivu/erequirements https://eperusteet.opintopolk
  author={Mikael af H\"allstr\"om},
  publisher={Digital and population data services agency (DVV)},
  year={2020},
+ note={\url{https://yle.fi/a/74-20097632}}, % Hannu M\"akel\"a, Saku Airosmaa, Jarmo Koponen, Silja Viitala 2024/07/07/07:45
  url={http://suomidigi.fi/blogit/laheisen-kuolema/esitaytetyn-perukirjan-palaset-paikoillaan}
 }
 
@@ -1938,7 +1960,7 @@ https://yle.fi/a/74-20051327 Tampere tyrm\"a\"a toimeentulotuen asumismenojen ki
  address = {New York},
  year = {2002},
  isbn = {0-387-95457-0},
- url = {https://www.stats.ox.ac.uk/pub/MASS4/}
+ url = {https://www.stats.ox.ac.uk/pub/MASS4}
 }
 
 %   http://hpcg-benchmark.org
