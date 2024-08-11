@@ -114,7 +114,6 @@ unset output
 reset
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 set output 'basecomp.eps'
-#set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily cash \"c\""
 set title "Tax function base \"b\" adabtation to daily support \"s\" to have balance at daily income \"i\""
 set y2label "Period marginal tax [1]"
 set y2range [minimum-margin:maximum+margin]
@@ -135,29 +134,6 @@ tm(a=20,b=b2,i,m=maximum,c=curc,r=1) title "marginal tax(".bt(s,b2).",i)",\
 tm(a=20,b=b1,i,m=maximum,c=curc,r=1) title "marginal tax(".bt(0,b1).",i)",\
 tf(a=20,b=b2,i,m=maximum,c=curc,r=1) title "tax function(".bt(s,b2).",i)",\
 tf(a=20,b=b1,i,m=maximum,c=curc,r=r) title "tax function(".bt(0,b1).",i)",\
-minimum
-unset output
-set output 'basecofi.eps'
-set title "Verofunktion kannan \"b\" kustannusneutraali sovittaminen sosiaalitukeen \"s\" tuella \"c\""
-set y2label "Vuorokauden jakson marginaalivero [1]"
-set y2range [minimum-margin:maximum+margin]
-set y2tics
-unset x2label
-unset x2range
-unset x2tics
-set ylabel "Vuorokauden jakson tuloverokerroin [1]"
-set yrange [minimum-margin:maximum+margin]
-set xlabel "Vuorokauden verojakson tulot (i) [EUR]"
-set xrange [0:inpday]
-set key right Right center nobox
-b1=1.9
-b2=b2cridis(s)
-bt(s,b) = sprintf("b(s=%2d)=%1.2f",s,b)
-plot [i=0:inpday] maximum,\
-tm(a=20,b=b2,i,m=maximum,c=curc,r=1) title "marginaalivero(".bt(s,b2).",i)",\
-tm(a=20,b=b1,i,m=maximum,c=curc,r=1) title "marginaalivero(".bt(0,b1).",i)",\
-tf(a=20,b=b2,i,m=maximum,c=curc,r=1) title "verofunktio(".bt(s,b2).",i)",\
-tf(a=20,b=b1,i,m=maximum,c=curc,r=r) title "verofunktio(".bt(0,b1).",i)",\
 minimum
 unset output
 reset
@@ -270,25 +246,8 @@ Ts(a,i,b=b2) title "taxed value"
 #'+' using (0):(-Is(a,0,b=b2)) title "point (0.0,-".isn.")"
 #'+' using (0):(Is(a,0,b=b2)) title "point (0.0,+".isn.")",\
 unset output
-set output 'soctaxfi.eps'
-set title 'Perusturvan muutos vuorokausittaiseksi verolliseksi tuloksi ja tasaava verokompensointi'
-set y2label "Jakson vuorokausi vero ja verotettu tuki [EUR]"
-set ylabel "Jakson vuorokausi tulo ja tuki [EUR]"
-set xlabel "Tukematon bruttotulo vuorokauden verojaksolta [EUR]"
-plot [i=0:inpday]\
-Sd(a,i,b1,b2) title "nettovaikutus vanhaan verrattuna",\
-nf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*sf(a) title "nettotuki uudessa tilanteessa",\
-'+' using (0):(Is(a,0,b=b2)) title "tulottoman nettotuki +".isn." EUR",\
-sf(a)+i title "tuetun tulon bruttoarvo",\
-'+' using (0):(-Is(a,0,b=b2)) title "nollatulon vero -".isn." EUR",\
-i title "bruttotulo",\
-sf(a) title "bruttotuki",\
- 0 title "nollataso",\
-Is(a,i,b=b2) title "nettotuki",\
-Ts(a,i,b=b2) title "vero"
-unset output
 reset
-#inkscape -D -l -o soctaxfi.svg soctaxfi.eps # All
+
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 set output 'socialsu.eps'
 set title "Daily social security support if no other income is adding tax"
@@ -329,18 +288,7 @@ plot sf2(x) title "support gross (a)",\
 Is2(a=x,0,b=b2) title "support net (a)",\
 Is2(a=x,0,b=b2)*2/3 title "under distraint (a)"
 unset output
-set output 'evensufi.eps'
-set title "Vuorokausittainen sosiaalinen tuki ilman muita tuloja veroa nostamassa"
-set y2label "Nettotuki euroja vuorokaudessa [EUR]"
-set x2label "(mallikuvaaja summaa useita sosiaalisia tukia yhdeksi verotettavaksi perustueksi)"
-set ylabel "Nimellinen bruttotuki euroja vuorokaudessa [EUR]"
-set xlabel "Elinaika \"a\" vuosia [y]"
-plot sf2(x) title "bruttotuki elinajan funktiona (a)",\
-Is2(a=x,0,b=b2) title "nettotuki elinajan funktiona (a)",\
-Is2(a=x,0,b=b2)*2/3 title "nettotuki ulosoton alla (a)"
-unset output
 reset
-#inkscape -D -l -o evensifi.svg evensufi.eps # All
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 # https://www.scb.se/en/api
 # http://scb.se/en/services/open-data-api/api-for-the-statistical-database
@@ -517,6 +465,82 @@ InvF(g,a,b,U,o)=a*(U/g-1)**b+o # Inv Function
 plot InvF(x,a,b,U,o) title "Inverse Cumulative Distribution Function InvF(g)"
 unset output
 reset
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+# Can't get black lines with svg and scaling dont work well with LibreOffice !
+# set terminal svg font "FreeSerif,16" background rgb "white" dashed 
+set terminal postscript eps font "FreeSerif,16"
+#set terminal postscript eps font "FreeSans,14"
+set output 'basecofi.eps'
+set title "Verofunktion kannan \"b\" kustannusneutraali sovittaminen sosiaalitukeen \"s\" tuella \"c\""
+set y2label "Vuorokauden jakson marginaalivero [1]"
+set y2range [minimum-margin:maximum+margin]
+set y2tics
+unset x2label
+unset x2range
+unset x2tics
+set ylabel "Vuorokauden jakson tuloverokerroin [1]"
+set yrange [minimum-margin:maximum+margin]
+set xlabel "Vuorokauden verojakson tulot (i) [EUR]"
+set xrange [0:inpday]
+set key right Right center nobox
+b1=1.9
+b2=b2cridis(s)
+bt(s,b) = sprintf("b(s=%2d)=%1.2f",s,b)
+plot [i=0:inpday] maximum,\
+tm(a=20,b=b2,i,m=maximum,c=curc,r=1) title "marginaalivero(".bt(s,b2).",i)",\
+tm(a=20,b=b1,i,m=maximum,c=curc,r=1) title "marginaalivero(".bt(0,b1).",i)",\
+tf(a=20,b=b2,i,m=maximum,c=curc,r=1) title "verofunktio(".bt(s,b2).",i)",\
+tf(a=20,b=b1,i,m=maximum,c=curc,r=r) title "verofunktio(".bt(0,b1).",i)",\
+minimum
+unset output
+reset
+#inkscape -D -l -o basecofi.svg basecofi.eps # All
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'soctaxfi.eps'
+set title 'Perusturvan muutos vuorokausittaiseksi verolliseksi tuloksi ja tasaava verokompensointi'
+set y2label "Jakson vuorokausi vero ja verotettu tuki [EUR]"
+set y2range [-sup:+150]
+set y2tics
+set ylabel "Jakson vuorokausi tulo ja tuki [EUR]"
+set yrange [-sup:+150]
+set xlabel "Tukematon bruttotulo vuorokauden verojaksolta [EUR]"
+set xrange [0:inpday]
+set key left Left top nobox
+plot [i=0:inpday]\
+Sd(a,i,b1,b2) title "nettovaikutus vanhaan verrattuna",\
+nf(a=a,b=b2,sf(a)+i,m=maximum,c=curc,r=1)*sf(a) title "nettotuki uudessa tilanteessa",\
+'+' using (0):(Is(a,0,b=b2)) title "tulottoman nettotuki +".isn." EUR",\
+sf(a)+i title "tuetun tulon bruttoarvo",\
+'+' using (0):(-Is(a,0,b=b2)) title "nollatulon vero -".isn." EUR",\
+i title "bruttotulo",\
+sf(a) title "bruttotuki",\
+ 0 title "nollataso",\
+Is(a,i,b=b2) title "nettotuki",\
+Ts(a,i,b=b2) title "vero"
+unset output
+reset
+#inkscape -D -l -o soctaxfi.svg soctaxfi.eps # All
+#234567890123456789012345678901234567890123456789012345678901234567890123456789
+set output 'evensufi.eps'
+set title "Vuorokausittainen sosiaalinen tuki ilman muita tuloja veroa nostamassa"
+set y2label "Nettotuki euroja vuorokaudessa [EUR]"
+set y2range [0:21]
+set y2tics
+set x2label "(mallikuvaaja summaa useita sosiaalisia tukia yhdeksi verotettavaksi perustueksi)"
+set ylabel "Nimellinen bruttotuki euroja vuorokaudessa [EUR]"
+set yrange [0:21]
+set xlabel "Elinaika \"a\" vuosia [y]"
+set xrange [0:120]
+set key off
+set key bottom Left right nobox
+#plot [0:120] 20
+#plot [0:25] 0, [0:120] 20
+plot sf2(x) title "bruttotuki elinajan funktiona (a)",\
+Is2(a=x,0,b=b2) title "nettotuki elinajan funktiona (a)",\
+Is2(a=x,0,b=b2)*2/3 title "nettotuki ulosoton alla (a)"
+unset output
+reset
+#inkscape -D -l -o evensifi.svg evensufi.eps # All
 quit
 #234567890123456789012345678901234567890123456789012345678901234567890123456789
 #000000001111111111222222222233333333334444444444555555555566666666667777777777

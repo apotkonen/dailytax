@@ -31,5 +31,5 @@ $(DOC).pdf :
 .PHONY : clean 
 clean :
 	$(CLEAN) && make -C $(SUBM) clean && rm $(DOC).pdf
-	rm -rf ~/.texlive*
+#	rm -rf ~/.texlive*
 
