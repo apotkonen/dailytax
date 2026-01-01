@@ -92,7 +92,8 @@
 # pk    PacKed tex bitmap font (mktexpk, ttf2pk)
 # pl    Property List (afm2pl)
 # ps    PostScript
-# pst	PostScript Trik macro file
+# pst   PostScript Trik macro file
+# sc    Spreadsheet Calculator
 # sfd   Spline Font Database (fontforge)
 # snf   Server Normal Font
 # svg   Scaled Vector Graphics
@@ -114,12 +115,17 @@
 #   -d32
 # more /etc/texmf/web2c/texmf.cnf
 # update-texmf
-# Find out what original files you have on directory
-texfiles = $(wildcard *.tex)
+# Find out what original files you have on directory and
+# create needed temporary files for typesetting program.
+scfiles  = $(wildcard *.sc)
+sctolat  = $(patsubst %.sc,%.lat,$(scfiles))
+lattotex = $(patsubst %.lat,%.tex,$(sctolat))
+texfiles = $(wildcard *.tex) $(lattotex)
 
 # Definitions:
 DOC = dailytax
 SUBM = figures
+SC2LAT = echo "set tblstyle=latex\ntbl \"\"" | sc -q
 #LATEX = latex
 #LATEX = xelatex
 LATEX = lualatex
@@ -149,19 +155,23 @@ LATEX = lualatex
 
 BIBTEX = bibtex # nbibtex, bibtexu aux->bbl
 BIBER = biber # bcf->bbl
-CLEAN =	lintex -o -k && rm -f clean all *.xml
+CLEAN =	lintex -o -k -v && rm -f clean all $(sctolat) $(lattotex) *.xml
 MAKEINDEX = makeindex
 #LATEXMK = latexmk
 
 # Clear suffixlist
 .SUFFIXES:
 # Add suffixrule supported suffix to suffixes list.
-.SUFFIXES: .pdf
+.SUFFIXES: .sc .lat .pdf
 
 # Define implicit rule for added suffix:
 #%.pdf: %.tex $(texfiles)
 #	make -C $(SUBM)
 #	$(LATEXMK) $< $@
+%.lat: %.sc
+	$(SC2LAT) $<
+%.tex: %.lat
+	cp $< $@
 
 # Targets:
 .PHONY: all

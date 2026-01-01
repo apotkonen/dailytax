@@ -18,7 +18,7 @@
 % author = {Author},
 % year = {Year},
 % url = {http://},
-% note = {Note}}
+% note = {Note: \url{http://} }}
 %
 % http://ctan.org/pkg/biblatex
 % http://wikibooks.org/wiki/LaTeX
@@ -27,6 +27,8 @@
 %
 % Test your bibtex file compatibility with: iconv -t ASCII biblatex.bib
 % If giving error go to informed character and check what to do for/with it.
+% Author field having several authors separated by several commas may cause
+% problems -- separate with hyphen - for example.
 %
 % Umlaut etc. hast to be "backslashed" to 7-bit ASCII compatible level to
 % avoid any problems when codebase possibly transferred from system to another
@@ -276,11 +278,16 @@
  url = {http://elamassa.fi/kela-palvelee}
 }
 
-%@www KelaApottiII
-%https://www.kela.fi/media-services
-%https://www.kela.fi/eepos-procurement
-%https://www.kela.fi/news/pricewaterhousecoopers-business-services-srl-pwc-selected-to-implement-the-reform-of-kela-s-benefit-administration
-%
+@www{Kelapotti,
+ title={Procurement},
+ author={Eepos, Kela's strategic development programme},
+ publisher = {The Social Insurance Institution (SII) -- Folkpensionsanstalten (Fpa) -- Kansanel\"akelaitos (Kela)},
+%info={\url{http://kela.fi/media-services}},
+%date={2025-05-21},
+ year={2025},
+ url={http://kela.fi/eepos-procurement}
+%http://kela.fi/news/pricewaterhousecoopers-business-services-srl-pwc-selected-to-implement-the-reform-of-kela-s-benefit-administration
+}
 
 %Todistustaakka jatetty heikommassa asemassa olevalle, tai todistustaakasta
 %tietamattomalle; mahdollisesti vastaamaan ymmartamattomassa tai
@@ -344,14 +351,32 @@
 %http://yle.fi/a/74-20104498 % 470/30 = 15.7 Eur/d,  323/30 = 10.8 Eur/d
 %http://yle.fi/a/74-20080076 % Mink\"a t\"ass\"a pit\"aisi naurattaa
 %http://stm.fi/sosiaaliturvauudistus
-%http://stm.fi/en/general-social-security-benefit
 %http://valtioneuvosto.fi/hanke?tunnus=STM031:00/2020
-%http://valtioneuvosto.fi/-/1271139/yleistuen-valmistelu-etenee
 %http://stm.fi/-/toimeentulotuen-kokonaisuudistuksen-valmistelu-kaynnistyy
 %http://valtioneuvosto.fi/-//1271139/toimeentulotuen-kokonaisuudistuksen-valmistelu-kaynnistyy
 %http://stm.fi/documents/1271139/198978037/Toimeentulotukilain+kokonaisuudistusta+valmisteleva+ty%C3%B6ryhm%C3%A4.pdf
 %http://valtioneuvosto.fi/documents/1271139/198978037/Toimeentulotukilain+kokonaisuudistusta+valmisteleva+ty%C3%B6ryhm%C3%A4.pdf
-%http://kela.fi/general-social-security-benefit http://stm.fi/yleistuki http://yle.fi/a/74-20160791
+%http://yle.fi/a/74-20160791
+%http://valtioneuvosto.fi/-/1271139/yleistuen-valmistelu-etenee
+%http://kela.fi/ajankohtaista/hallitus-suunnittelee-yleistukea-mita-muutos-tarkoittaa-tyottomille
+%http://stm.fi/yleistuki
+@www{GSSB,
+ title={General Social Security Benefit},
+ author={STM},
+ year = {2025},
+ organization={Ministry of Social Affairs and Health (STM)},
+ note={800Eur/30d= 26,67Eur/d \url{http://kela.fi/general-social-security-benefit} \url{https://video.valtioneuvosto.fi/fi/v/yleistuki-tiedotustilaisuus-090525}},
+ url={https://stm.fi/en/general-social-security-benefit}
+}
+
+@www{STM061_2025,
+ title={Sosiaaliturvan v\"a\"arink\"ayt\"osten ehk\"aiseminen ja Kelan tiedonvaihdon edist\"aminen},
+ author={STM},
+ year = {2025},
+ organization={Ministry of Social Affairs and Health (STM)},
+ note={\url{https://lausuntopalvelu.fi/FI/Proposal/Participation?proposalId=9fb02f6f-f225-406f-b518-2177de7b9577}},
+ url={https://stm.fi/en/project?tunnus=STM061:00/2025}
+}
 
 @www{StudentHousingAllowance,
  title={Complex system prompts students to give up housing allowance},
@@ -399,6 +424,8 @@
 %note = {\url{http://epressi.com/media/userfiles/123829/1672896446/maksuhairiotilasto-2022-suomen-asiakastieto-oy.pdf}},
  url = {http://asiakastieto.fi/web/fi/asiakastieto-media/uutiset/lakimuutos-vahensi-maksuhairioisten-henkiloiden-maaraa-mutta-asiakastieto-ennakoi-ylivelkaantumisen-jatkuvan.html}
 }
+%http://yle.fi/a/74-20174327
+%http://yle.fi/a/74-20172846
 %http://julkaisut.valtioneuvosto.fi/bitstream/handle/10024/76137/omtr_2008_7_mietinto_65s.pdf
 %http://oikeusministerio.fi/hanke?tunnus=OM035:00/2011
 %http://parliament.fi/FI/naineduskuntatoimii/kirjasto/aineistot/kotimainen_oikeus/LATI/Sivut/pikaluottolainsaadanto.aspx
@@ -435,7 +462,15 @@
  %https://europa.eu/youreurope/citizens/consumers/unfair-treatment/unfair-contract-terms/index_en.htm
  %https://commission.europa.eu/strategy-and-policy/policies/consumers/consumer-protection-policy_en
 }
-%http://finlex.fi/fi/esitykset/he/2017/20170190 Summaarinen menettely
+@report{KVV_2025_4,
+ title={Summaarisen menettelyn ep\"akohdat ja mahdollinen v\"a\"arink\"aytt\"o kuluttajien velkomus asioissa},
+ author={Ari Luukinen - Juha Jokinen - JariSuurla - Jarkko Vuorinen - Antti Sieppi - Matti Sipil\"ainen - Julia Sj\"ostr\"om - Lauri Wilenius - Netta Heiskanen},
+ issn={2814-4929},
+ publisher={Finnish Competition and Consumer Authority (KKV)},
+ note={\usr{http://yle.fi/a/74-20172718}}, %Kilpailu- ja kuluttajaviraston mukaan katteettomat perinn\"at ovat iso ongelma, joka altistaa erityisesti heikoimmassa asemassa olevat virheille ja hyv\"aksik\"ayt\"olle.
+ note={\url{http://finlex.fi/fi/esitykset/he/2017/20170190}}, % Summaarinen menettely
+ url={http://kkv.fi/uploads/sites/2/2025-04-tutkimusraportteja-summaarisen-menettelyn-epakohdat-ja-mahdollinen-vaarinkaytto-kuluttajien-velkomusasioissa.pdf}
+}
 %http://fi.wikipedia.org/wiki/Heikki_Hiilamo#N%C3%A4kemyksi%C3%A4
 %http://facebook.com/groups/velallistentuki
 %http://suomenvelalliset.fi
@@ -514,6 +549,55 @@
 %http://kuluttajariita.fi/fi/index/tietoameista/tiedotteet/2017/paperilaskustavoiperiaenintaan5euroa.html
 %http://kuluttaja-asiamies.fi/2016/08/24/paperilaskun-lisamaksu-sallittu-kilpailu-pitaa-maksut-kohtuullisina
 
+@www{YLE202510181426, % VarHa:n (VARsinais-suomen HyvinvointiAlueen) laskut
+ title = {Hyvinvointialue karhuaa asiakkailta vuosia sitten er\"a\"antyneit\"a maksuja -- talousjohtaja\: ”Kyseess\"a ei ole huijauskirje”},
+ author = {Heinimaija Hirvonen},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url={http://yle.fi/a/74-20189071}
+}
+
+@www{YLE202510211559, % VarHa (VARsinais-suomen HyvinvointiAlue) m\"oi laskut ulos !
+ title={Varsinais-Suomen hyvinvointialue perii vuosia vanhoja maksuja 26 000 asiakkaalta -- suurin yksitt\"ainen lasku 9 900 euroa},
+ author = {Yrj\"o Hjelt},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url={https://yle.fi/a/74-20189596}
+}
+
+@www{YLE202510231655, % VarHa:n (VARsinais-suomen HyvinvointiAlueen) johto
+ title={Varhan laskutussotku yllätti my\"os p\"a\"att\"aj\"at -- aluehallitus vaatii selvityst\"a karhukirjeist\"a},
+ author = {Heinimaija Hirvonen - Yrj\"o Hjelt},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url={https://yle.fi/a/74-20190034}
+}
+
+@www{YLE202510270829, % VarHa (VARsinais-suomen HyvinvointiAlue) ulosmyymat laskut Hannulle
+ title = {Turkulainen Hannu Lahti sai yli 17 000 euron karhukirjeen hyvinvointialueelta -- h\"an ei edes tied\"a, mit\"a lasku koskee},
+ author = {Yrj\"o Hjelt - Heinimaija Hirvonen},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url = {http://yle.fi/a/74-20189963}
+}
+
+@www{YLE202510271827, % Asiakkaat ovat ihmetelleet eniten sit\"a, ett\"a VarHa perii maksuja perint\"atoimisto Ropo Capitalsin kautta ilman maksumuistutusta tai ett\"a laskussa olisi kunnon erittely, mit\"a karhuttava saatava koskee.
+ title={Hyvinvointi­alueen laskutus­sotku paisuu -- nyt vanhojen laskujen perinn\"ast\"a kiinnostui kuluttaja­viranomainen},
+ author = {Yrj\"o Hjelt - Ulla Malminen - Heinimaija Hirvonen},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url = {http://yle.fi/a/74-20190648}
+}
+
+@www{YLE202510282036, % Pyynn\"ost\"a huolimatta ei ole saanut n\"aht\"av\"akseen alkuper\"aisi\"a laskuja. Eik\"a ole mahdollisuutta tarkistaa laskujen aiheellisuutta, koska laskujen saaja on kuollut.
+ title={Varha karhuaa tuhansia euroja kuolleilta -- j\"arkyttynyt omainen: ”En pysty maksamaan”},
+ author = {Heinimaija Hirvonen},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url={http://yle.fi/a/74-20190787}
+}
+
+@www{YLE2025110840, % Perint\"ayhti\"ot rikkovat lakia ja s\"a\"ant\"aj\"a -- seuraukset ovat kevyit\"a perint\"ayhti\"oille
+ title={Yle selvitti, kuinka usein perint\"ayhti\"ot rikkovat lakia ja s\"a\"ant\"aj\"a -- seuraukset ovat kevyit\"a},
+ author = {Marko Hietikko},
+ publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
+ url = {https://yle.fi/a/74-20194036}
+}
+
 % UBL, CII, TEAPPSXML 3.0, Finvoice 3.0
 @misc{EULEX_2014_55,
  title = {Directive 2014/55/EU: Electronic invoicing in public procurement},
@@ -543,6 +627,7 @@
  publisher = {National Enforcement Authority Finland},
  url = {http://ulosottolaitos.fi/en}
 }
+%http://yle.fi/a/74-20172718 %Kilpailu- ja kuluttajaviraston mukaan katteettomat perinnät ovat iso ongelma, joka altistaa erityisesti heikoimmassa asemassa olevat virheille ja hyv\"aksik\"ayt\"olle.
 %http://ulosottolaitos.fi/en/index/nationalenforcementauthorityfinland/publicationsanddocuments.html
 %http://ulosottolaitos.fi/material/sites/vvv2/tilastot/blgw88ird/Ulosotto_Suomessa2024.pdf
 %http://ulosottolaitos.fi/fi/index/ulosottolaitos/julkaisutjaasiakirjat/tilastot.html
@@ -692,7 +777,7 @@
 %http://is.fi/taloussanomat/art-2000009765209.html vuorotteluvapaan lakkautus
 }
 
-@www{STM_202306021239,
+@www{STM_202306021239, %http://yle.fi/a/74-20193708
  title={Social security reform},
  author={STM},
  year = {2023},
@@ -864,6 +949,7 @@
  url={http://kela.fi/what-is-the-work-requirement}
 }
 
+%http://yle.fi/a/74-20036544
 @report{THL_2023_1,
  series={Finish institute for healt and welfare reports},
  title={What does a decent life cost in Finland? : Calculations based on the reference budget method in 2022},
@@ -876,6 +962,9 @@
  url={http://urn.fi/URN:ISBN:978-952-408-011-8}
 }
 %note={\url{http://julkari.fi/handle/10024/146028 http://research.utu.fi/converis/portal/detail/Publication/178386771}}
+%http://helsinki.fi/fi/uutiset/hyva-yhteiskunta/tuoreet-laskelmat-kertovat-milla-rahamaaralla-kotitaloudet-voivat-tulla-toimeen
+%http://yle.fi/a/74-20194694 
+
 %http://fi.wikipedia.org/wiki/V%C3%A4himm%C3%A4ispalkka
 %http://yle.fi/a/74-20037443 http://yle.fi/a/74-20036802
 % single person living in capitol region 1547 /30= 51.57 Eur/d
@@ -1030,9 +1119,18 @@ url={http://is.fi/taloussanomat/art-2000009773504.html}
 }
 
 @www{FSFE_PublicCode,
+ title = {Public Money, Public Code},
  publisher = {Free Software Foundation Europe (FSFE)},
+ note = {\url{http://youtu.be/oI11cNqM1Xk} \url{http://download.fsfe.org/videos/pmpc/pmpc_desktop.mp4}},
  url = {http://publiccode.eu}
 }
+%http://fixmystreet.org
+% http://palautevayla.fi
+% http://elinvoimakeskus.fi/liikenneturvallisuus
+% http://elinvoimakeskus.fi/web/english/contact-information
+% http://suomenvaylat.vayla.fi
+% http://tievahti.fi
+% http://osm.org
 
 %https://valtori.fi/ict-arkea
 %https://valtori.fi/-/toimialuearkkitehtuurin-valinta-ohjaa-virastojen-ict-kehittamista
@@ -1060,7 +1158,9 @@ url={http://finlex.fi/fi/laki/ajantasa/2013/20131226}
 }
 %http://linkedin.fi/newsletters/digital-transformation-journey-7083115756242055168
 %http://tem.fi/-/hallitus-kaynnistaa-tyon-liian-saantelyn-purkamiseksi-ja-hallinnollisen-taakan-keventamiseksi
+%http://keha-keskus.fi/web/guest/tehtavat-ja-palvelut/digitalisaatio-ja-tieto/kokonaisarkkitehtuurin-hallinta
 %http://tem.fi/yksi-yhdesta-periaate
+
 
 %http://yhteistyotilat.fi/wiki08/display/SYPLJULK
 @www{SYPLJULK,
@@ -1111,16 +1211,22 @@ url={http://finlex.fi/fi/laki/ajantasa/2013/20131226}
  url = {https://julkaisut.valtioneuvosto.fi/handle/10024/164923}
 }
 
+%http://finto.fi
 %http://archimatetool.com
-%http://archimatetool.com/resources
 %http://opengroup.org/togaf
+%http://archimatetool.com/resources
 %http://pubs.opengroup.org/togaf-standard
 %http://www.opengroup.org/togaf/10thedition
 %http://pubs.opengroup.org/architecture/togaf9-doc/arch
 %http://hosiaisluoma.fi/blog/process-modelling-with-archimate
 %http://hosiaisluoma.fi/ArchiMate-ka%CC%88sikirja.pdf
 %http://hosiaisluoma.fi/ArchiMate-Cookbook.pdf
+%http://independent.academia.edu/EeroHosiaisluoma
 %http://vm.fi/tiedonhallintalautakunta
+%http://vm.fi/en/digitalisation
+%http://eur-lex.europa.eu/eli/reg/2018/1724/oj
+%http://finlex.fi/fi/lainsaadanto/saadoskokoelma/2019/906
+%http://keha-keskus.fi/web/guest/tehtavat-ja-palvelut/digitalisaatio-ja-tieto
 %http://vm.fi/tapahtumat/2023-05-16/automaattisen-ratkaisumenettelyn-vaatimukset-ja-tiedonhallintalaki
 %http://vm.fi/documents/10623/0/Oikarinen-Tiedonhallintaltk+toimenpiteet-Automaattinen+ratkaisumenettely2023.pdf
 %Laki sosiaali- ja terveydenhuollon asiakastietojen kasittelysta
@@ -1174,9 +1280,10 @@ url={http://finlex.fi/fi/laki/ajantasa/2013/20131226}
 %service flows done. First needed services are developers own services for
 %themself, and cross the border between participating party's.
 %Public money, public code -- strategy may help.
-%http://publiccode.eu
+%http://publiccode.eu http://youtu.be/oI11cNqM1Xk
 %http://vm.fi/documents/10623/174510052/Valtiovarainministeri%C3%B6n+hallinnonalan+tuottavuusohjelma.pdf %2024/09/23
 %http://valtori.fi/-/tulevaisuuden-via-palvelu-on-uudistuksen-myota-kustannustehokkaampi-asiakkaillemme %2024/10/17/14:14
+%http://cd.foundation
 %
 %From final user and service provider (above governmental customer) perspective
 %is good to check how many time information flows fluctuate between
@@ -1296,6 +1403,19 @@ http://openid.net http://orcid.org
 %http://valtori.fi/palvelustrategia
 
 %https://www.suomiareena.fi/static/62d20a137908b05bf6e0389557d01f24/Suomen_visio_-_Suomiareena.pdf
+@phdthesis{Kukkonen2025,
+ number={1045},
+ series={JYU Dissertations},
+ author={Kukkonen Reetta-Kaisa},
+ title={Sustainable ICT Systems and Responsible ICT Procurement: The Role of Enterprise Architecture and In-House Procurement},
+ year={2025},
+ date={2025/12/19},
+ issn={2489-9003},
+ isbn={978-952-86-1211-7},
+ publisher={University of Jyv\"askyl\"a},
+ note={\url{http://jyu.fi/fi/uutinen/vaitos-julkisen-sektorin-it-hankkeet-kaatuvat-usein-rakenteellisiin-ongelmiin-ratkaisuna}},
+ url={https://urn.fi/URN:ISBN:978-952-86-1211-7}
+}
 
 %http://publiccode.eu
 %http://tietokayttoon.fi
@@ -1308,7 +1428,6 @@ http://openid.net http://orcid.org
 %Business architecture of the Government enterprise architecture
 %http://dvv.fi/arkkitehtuuri http://dvv.fi/digitalisaatiota-edistavat-palvelut
 %Existing processes http://suomi.fi/citizen http://kela.fi/main-page . Target processes ? Where ???
-%http://hosiaisluoma.fi/blog/process-modelling-with-archimate % PROCESS MODELLING !!
 %http://yhteistyotilat.fi % Process models?
 %http://kuntaliitto.fi/kuntajohtaminen-ja-digitalisaatio
 %http://kuntaliitto.fi/kehittaminen-ja-digitalisaatio/digiosaaminen/kuntasektorin-kokonaisarkkitehtuuri
@@ -1316,6 +1435,7 @@ http://openid.net http://orcid.org
 %http://sanastot.suomi.fi/terminology/348ccc5e-feb0-4de2-b674-0ef82c02313e % Kelan terminologinen sanasto
 %http://sanastot.suomi.fi/terminology/05f0212c-de23-4c19-b400-42f6e9994801 % Verotussanasto
 %http://sanastot.suomi.fi/terminology/c96bca63-c8f6-4b1f-a82d-3d8fe3c83488 % Opetus- ja KoulutusSAnasto (OKSA)
+%http://keha-keskus.fi/documents/d/guest/tyollisyyspalvelujen_sanasto
 %http://sotesanastot.thl.fi % Sosiaali ja terveysalan sanasto
 %http://koodistot.suomi.fi ; http://uri.suomi.fi/codelist/ptv
 %http://tieteentermipankki.fi
@@ -1323,11 +1443,13 @@ http://openid.net http://orcid.org
 %http://sanastot.suomi.fi/en/terminology/dac7
 %http://ihmiskeskeisyys.fi http://dvv.fi/palvelumuotoilu
 %http://palveluhallinta.suomi.fi/fi/sivut/palveluvayla/esittely
+%http://fiware.org % EUID? DEF1103R.VR35344B PTIRNMJ.500121265
+%http://mydata.org % Business ID: 2971224-7
 @www{LifeEventDetailDrivenProcessQuides,
 title={Life event detail driven service path process development cross the organizations},
 author={Digital and Population Data Services Agency - The Social Insurance Institution},
 %note={\url{http://fpa.fi} \url{http://dvv.fi}},
-note={\url{http://suomi.fi/citizen} \url{http://kela.fi/main-page} \url{http://koodistopalvelu.kanta.fi} \url{http://koodistot.suomi.fi} \url{http://sanastot.suomi.fi} \url{http://aineistokatalogi.fi} \url{http://aineistoeditori.fi} \url{http://tietomallit.suomi.fi} \url{http://ihmiskeskeisyys.fi} \url{http://dvv.fi/palvelumuotoilu} \url{http://archimatetool.com} \url{http://hosiaisluoma.fi/blog/process-modelling-with-archimate} \url{http://www.qpr.com/fi/ajankohtaista/valtori-qpr-ka-toimittaja}},
+note={\url{http://suomi.fi/citizen} \url{http://kela.fi/main-page} \url{http://koodistopalvelu.kanta.fi} \url{http://koodistot.suomi.fi} \url{http://sanastot.suomi.fi} \url{http://finto.fi} \url{http://aineistokatalogi.fi} \url{http://aineistoeditori.fi} \url{http://tietomallit.suomi.fi} \url{http://ihmiskeskeisyys.fi} \url{http://dvv.fi/palvelumuotoilu} \url{http://archimatetool.com} \url{http://hosiaisluoma.fi/blog/process-modelling-with-archimate} \url{http://www.qpr.com/fi/ajankohtaista/valtori-qpr-ka-toimittaja}},
 url={http://yhteistyotilat.fi}
 }
 %http://itewiki.fi/p/digitalisaatio-julkisen-hallinnon-toiminnan-keskiossa
@@ -1350,6 +1472,14 @@ url={http://yhteistyotilat.fi}
 %http://kela.fi/social-assistance
 %http://kela.fi/social-assistance-types-of-expenses-for-which-you-can-get
 %http://kela.fi/social-assistance-how-to-apply
+%http://keha-keskus.fi/documents/d/guest/1-tyottomyysetuuden-yleiset-tyovoimapoliittiset-edellytykset
+%http://keha-keskus.fi/documents/d/guest/3-opiskelun-vaikutus-oikeuteen-saada-tyottomyysetuutta
+%http://keha-keskus.fi/documents/d/guest/8-tyottomyysturva-asian-kasittely-ja-toimivallasta-antaa-tyovoimapoliittinen-lausunto
+%http://keha-keskus.fi/documents/d/guest/9-tyovoimapoliittisen-lausunnon-muuttaminen-ja-muutoksenhaku
+%http://keha-keskus.fi/documents/d/guest/10-tyottomyysturvan-vaarinkaytokset
+%http://yle.fi/a/74-20176185 http://yle.fi/a/74-20171456 http://yle.fi/a/74-20171435
+%http://kansalaisaloite.fi/fi/aloite/3434 2903 2884 2266 2189 2071 1659 1503 1426 1160 44
+%http://hosiaisluoma.fi/blog/process-modelling-with-archimate % PROCESS MODELLING! For friction free, supportive, productive processes
 %http://wiki.dvv.fi/display/AAIJD
 %http://auroraai.astest.suomi.fi/api-doc/core-components/#/
 %http://github.com/vrk-kpa/auroraai-core-components
@@ -1871,14 +2001,9 @@ url={http://basicincomeconversation.org}
 %http://fi.wikipedia.org/wiki/Kirkollisvero
 %http://fi.wikipedia.org/wiki/Kunnallisvero_(Suomi)
 %http://fi.wikipedia.org/wiki/Marginaalivero
-%http://veronmaksajat.fi/luvut/Tilastot/Kunnat
-%http://veronmaksajat.fi/Palkka-ja-elake/verotus-2023
-%http://veronmaksajat.fi/luvut/Selvitykset/kuntaverovertailu-2022
-%http://veronmaksajat.fi/luvut/Laskelmat/Palkansaajan-veroprosentit
-%http://veronmaksajat.fi/globalassets/tilastot/kunnallisveron-osuus-palkkatulosta-2022.pdf
-%http://veronmaksajat.fi/Palkka-ja-elake/Valtion-tulovero/valtion-tuloveroasteikko-2024
-%http://veronmaksajat.fi/Palkka-ja-elake/Valtion-tulovero/valtion-tuloveroasteikko-2023
-%http://veronmaksajat.fi/Palkka-ja-elake/Valtion-tulovero/valtion-tuloveroasteikko-2022
+% http://yle.fi/a/74-20157832 https://vm.fi/hanke?tunnus=VM064:00/2024
+%http://veronmaksajat.fi/tutkimus-ja-tilastot
+%http://veronmaksajat.fi/tutkimus-ja-tilastot/tuloverot/palkansaajan-veroprosentit
 %http://urn.fi/URN:ISBN:978-951-691-141-3 Elakejarjestelman automaattiset vakautusmekanismit teoriaa ja kokemuksia jarruista ja elinaikakertoimista
 %http://urn.fi/URN:ISBN:978-952-00-3680-5 Tyoelakelaitosten vakaavaraisuussaatelyn laaja uudistaminen : Riskinkantokyvyn vahvistamista...
 %http://sosiaalipoliittinenyhdistys.fi/ajankohtaista/lisaa-riskia-elaketurvaan-mutta-kollektiivisesti-esimerkkeina-suomi-ja-kanada
@@ -1886,9 +2011,10 @@ url={http://basicincomeconversation.org}
 %http://etk.fi/blogit/automaattisessa-vakauttajassa-on-kyse-riskien-jakamisesta
 %http://keva.fi/blogi-kirjoitukset/fiksumpaa-vakautusta-reilumpaa-elaketta
 %http://tyoelake.fi/paljonko-saan-elaketta/indeksit-elakkeissa
-%http://finlex.fi/fi/laki/alkup/2023/20231193
-%http://finlex.fi/fi/laki/alkup/2022/20221122
-%http://finlex.fi/fi/laki/alkup/2021/20211131
+%http://finlex.fi/fi/lainsaadanto/2024/701
+%http://finlex.fi/fi/lainsaadanto/2023/1193
+%http://finlex.fi/fi/lainsaadanto/2022/1122
+%http://finlex.fi/fi/lainsaadanto/2021/1131
 %http://vero.fi/syventavat-vero-ohjeet/paatokset/47465/kuntien-ja-seurakuntien-tuloveroprosentit-vuonna-2022
 %http://vero.fi/syventavat-vero-ohjeet/paatokset/47465/kuntien-ja-seurakuntien-tuloveroprosentit-vuonna-2023
 %http://vero.fi/syventavat-vero-ohjeet/paatokset/47465/kuntien-ja-seurakuntien-tuloveroprosentit-vuonna-2024
@@ -1993,6 +2119,9 @@ url={http://basicincomeconversation.org}
  \url{http://openehr.org}},
  url = {http://hl7.fi/sig-toiminta/personal-health-sig}
 }
+% http://sitra.fi/en/publications/future-opportunities-and-challenges-for-data-driven-ecosystems-in-the-health-sector
+% http://sitra.fi/wp/wp-content/uploads/2021/10/sitra-datalahtoisten-ekosysteemien-tulevaisuuden-mahdollisuudet-ja-haasteet-terveysalalla.pdf
+% http://sitra.fi/wp/wp-content/uploads/2023/11/sitra-datalahtoisten-ekosysteemien-tulevaisuuden-mahdollisuudet-ja-haasteet-terveysalalla-1.pdf
 % http://terveyskirjasto.fi http://kaypahoito.fi http://duodecim.fi
 % http://mielenterveystalo.fi http://mielenterveystalo.fi/fi/tietoa-meista http://hus.fi/potilaalle/sairaalat-ja-toimipisteet/psykiatriakeskus %http://kandit.fi
 % http://medisiinariliitto.fi/tyoelama/kandintyoopas
@@ -2116,6 +2245,13 @@ series={A-studio},
  url={http://areena.yle.fi/1-66931159}
 }
 
+% https://uusijuttu.fi/toimittaja/ajGnjjwc Anu Partasen juttusarja "Sairaan kaunis maailma"
+% https://stm.fi/julkaisu?pubid=URN:ISBN:978-952-00-5829-6 %Sote-2040 polkuja tulevaisuuteen : Asiantuntijoiden esseit\"a
+% https://stm.fi/documents/1271139/231157712/STMn%20virkakunnan%20Sote2040-visio.pdf
+% https://urn.fi/URN:ISBN:978-952-383-944-1
+% https://urn.fi/URN:ISBN:978-952-383-022-6
+% https://areena.yle.fi/1-72480949
+
 %01 'Ahvenanmaa'	http://ahs.ax
 %02 'Etela-Karjala'	http://ekhva.fi/palvelut/digitaaliset-palvelumme http://omavointi.fi/ekhva http://omaolo.fi http://hyvis.fi/web/etela-karjala
 %03 'Etela-Pohjanmaa'	http://hyvaep.fi/digitaaliset-palvelut http://omavointi.fi/hyvaep http://hyvis.fi/web/etela-pohjanmaa http://hyvaep.terveytesi.fi
@@ -2152,6 +2288,7 @@ series={A-studio},
 %38	Kuusiolinna	http://fi.visibacare.com/pihlajalinna/yhteisyritykset/Kuusiolinna
 % :
 %250+	Which could benefit significantly from cooperation -- avoidance of double work, double payment for example from medical common metadata etc.
+%http://lahilaakarit.fi
 
 % European Health Data Space and amending Directive http://data.europa.eu/eli/reg/2025/327/oj
 
@@ -2175,12 +2312,16 @@ series={A-studio},
 %http://yle.fi/a/74-20038034 % Uusi hallitus
 %http://yle.fi/a/74-20138265 % Kerran kuussa on viikko, kun rahaa ei ole yht\"a\"an
 %http://areena.yle.fi/1-50386818 % N\"akym\"att\"om\"at
+%http://yle.fi/a/74-20199782 https://areena.yle.fi/1-72470134 Ty\"onhaun suuri sumutus: Julkaistaanko virallisella ty\"onhakufoorumilla Ty\"omarkkinatorilla ilmoituksia, joiden takana ei vielä ole ty\"opaikkaa?
 %http://areena.yle.fi/1-63858246 % Ikuiset ty\"onhakijat
 %http://is.fi/taloussanomat/art-2000009858932.html
+%http://yle.fi/a/74-20123934 %Ty\"okyvytt\"omyysel\"akkeelle j\"a\"aneiden m\"a\"ar\"a nousi 25-34 -vuotiaiden joukossa
+%http://www.elo.fi/fi-fi/uutiset/2025/lahes-40-nousu-alle-35-vuotiaiden-hakemiin-elakkeisiin
 %http://areena.yle.fi/1-50974126 % Toinen raide
 %http://yle.fi/a/3-7763039 http://youtu.be/Rc7lDglrySE % Hymyjen maa,Reindeerspotting,Lost Boys,...
 %http://yle.fi/a/74-20127855 % Kympin poika, joka kuoli huumeisiin
 %http://is.fi/taloussanomat/art-2000010683455.html
+%http://yle.fi/a/74-20173677 % Peukku kuormittaa terveydenhoitoa
 
 %http://areena.yle.fi/1-50654063 Kuka parjaa kelan luukulla
 @www{GetByWithSIIHatch,
@@ -2254,7 +2395,7 @@ series={A-studio},
 
 %http://publications.europa.eu/mdr
 %http://publications.europa.eu/resource/distribution/documentation/snb-model/application-profile/pdf/stddoc/EDC-Diagramme_v3.pdf
-@misc{CoursesAndRequirements,
+@misc{CoursesAndRequirements, % Data and related items.
  title = {Cource definitions, learning requirements, course content, testing material requirements, and test systems},
  author = {Several authors}, % http://ka.csc.fi http://me.csc.fi http://eduuni.fi http://digivisio2030.fi http://youtube.com/@digivisio2030
  note={ \url{http://wikipedia.org/wiki/Structured_document}
@@ -2295,9 +2436,17 @@ series={A-studio},
 	\url{http://aoe.fi}},
  url = {http://opin.fi} % HigherEd Hub Finland Oy (HEHF) Y-3411320-6 http://tietopalvelu.ytj.fi/yritys/3411320-6
 }
-%http://digital-identity-wallet.eu hygieniapassi tyoturvallisuus alkusammutus tulityo ensiapu vartija sahkotyoturvallisuus ... -kortti
+%http://hs.fi/alueet/art-2000011407505.html % Ensikertalaiskiinti\"o
+%http://hs.fi/suomi/art-2000011428605.html % Opintopaikkaloukku
+
+%http://digital-identity-wallet.eu ajokortti alkusammutus anniskelu ensiapu EU-kelakortti hygieniapassi kelakortti (passi) sahkotyoturvallisuus tulityo tyoturvallisuus vartija veronumero,... -cardgame having cost about 12 Eur/y/each card at deck.
+%http://intermin.fi/en/projects/passportproject
+
 %http://documentfoundation.org
 %http://wikipedia.org/wiki/Multicloud
+%http://stat.fi/en/statistics/vkour %Peoples move to get trained even Covid-19 show remotely education possibilities.
+%http://stat.fi/en/statistics/vaerak %Womens are more educated than Men's and are moving after education possibilities.
+%There is need for the common course metadata, possibilities to take cources cross the education institutes even remotely.
 
 %http://fortune.com/well/article/parental-stress-public-health-advisory-surgeon-general %http://hhs.gov/sites/default/files/parents-under-pressure.pdf
 %http://yle.fi/a/74-20090349 %Fewer babies than ever born in Finland
@@ -2316,6 +2465,9 @@ series={A-studio},
 %http://yle.fi/a/74-20141205 %Nuoret aikuiset ovat yliedustettuina toimeentulotuen saajissa
 %http://yle.fi/a/74-20115331 %Nuoret aikuiset tekevat eniten abortteja -- silti hyvinvointialue p\"a\"atti lopettaa heilt\"a ilmaisen ehk\"aisyn
 %http://yle.fi/a/74-20145657 %Nuoret kertovat, milt\"a tuntuu olla k\"oyh\"a
+%http://yle.fi/a/74-20172897 %Marjastuksen tulot alentavat toimeentulotuen m\"a\"a\r\"a\"a
+%http://yle.fi/a/74-20174402 %Professori kritisoi viranomaisia ty\"ott\"omien sometilien syyn\"a\"amisest\"a
+%http://yle.fi/a/74-20175307 %Kannustavaa ty\"ollisyyspolitiikka voisi soveltaa ty\"ott\"om\"an sijasta ministeriin
 %http://thl.fi/-/tyoikaisten-psyykkinen-kuormittuneisuus-ja-itsemurha-ajatukset-ovat-lisaantyneet-samaan-aikaan-laakarille-on-yha-vaikeampi-paasta
 %http://yle.fi/a/74-20103871 %K\"annyk\"at ovat yksi syy vauvakatoon, sanoo v\"aest\"otutkija Anna Rotkirch -- pit\"a\"a my\"os hedelm\"oityshoitoja osana ongelmaa
 %http://yle.fi/a/74-20117265 %Huolet omasta taloudellisesta tulevaisuudesta ja ilmastonmuutoksesta voivat est\"a\"a lasten hankkimisen, kertovat nuoret
@@ -2325,6 +2477,9 @@ series={A-studio},
 %http://areena.yle.fi/1-66930252 %Ensisynnytt\"ajien vauvabonus
 %http://yle.fi/a/74-20111224 %Baby-Friendly Hospital Initiative (BFHI)
 %http://yle.fi/a/74-20126297 %Ty\"ollistymisen ep\"avarmuus sy\"o lapsitoiveet
+%http://yle.fi/a/74-20188285 http://labore.fi/wp-content/uploads/2025/10/Esimerkkiperheet291025.pdf %Laboren laskelma: Enn\"atys­veronalennus hyv\"atuloisille, yksinhuoltajat ahtaalla
+%http://yle.fi/a/74-20161801 http://yle.fi/a/74-20172936 %Frustrated jobseekers lash out at recruiters as Finland's unemployment grows
+%http://yle.fi/a/74-20172488 http://yle.fi/a/74-20173123 %Ty\"ott\"omi\"a on viisi kertaa enemm\"an kuin avoimia t\"oit\"a
 %http://yle.fi/a/74-20117152 %Millaisia ajatuksia vauvabonus her\"att\"a\"a tuoreissa vanhemmissa?
 @report{VN_2025_22, %2025-02-25T16:23:17Z
  series = {Finnish Government Publication Series},
@@ -2342,6 +2497,21 @@ series={A-studio},
 %http://areena.yle.fi/1-63858248 %Menetetty el\"am\"a
 %http://areena.yle.fi/1-65171157 %Itsemurhan ehk\"aisy
 %http://is.fi/terveys/art-2000010742269.html %Huoli ei heraa turhaan.
+%http://punainenristi.fi/globalassets/13.-uutiset/2025/suomen-punaisen-ristin-yksinaisyysbarometri-nuorten-ja-nuorten-aikuisten-yksinaisyys-on-lisaantynyt-entisestaan/suomen-punainen-risti_yksinaisyysbarometri_2025_raportti.pdf
+%http://tietoanuorista.fi/wp-content/uploads/2025/03/nuorisobarometri-2024.pdf
+%http://sitra.fi/julkaisut/tulevaisuusbarometri-2025
+@report{NuortenTulevaisuudenusko,
+ series = {Ennakointikatsaus},
+ number = {6},
+ title = {Mit\"a jos nuoret menett\"av\"at uskonsa tulevaisuuteen? Nuorten tulevaisuususko ep\"avarmuuksien ajassa},
+ author = {Lilli Poussa - Sanna Rekola - Otto T\"ahk\"ap\"a\"\a},
+ editor = {Anna Solovjew-Wartiovaara},
+ isbn = {978-952-347-427-7},
+ issn = {2984-5564},
+ date = {2025/10/30},
+ year = {2025},
+ url = {http://sitra.fi/wp-content/uploads/2025/10/Mita-jos-nuoret-menettavat-uskonsa-tulevaisuuteen.pdf}
+}
 
 @www{WalkInTherapy,
  title = {Hallitusohjelmassakin mainittu walk in -terapia kamppailee n\"akyvyyden kanssa -- joskus k\"avij\"ait\"a ei ole ollenkaan},
