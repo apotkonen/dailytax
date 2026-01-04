@@ -9,24 +9,21 @@
 %         1         2         3         4         5         6         7
 %123456789012345678901234567890123456789012345678901234567890123456789012345678
 %-BEGIN OF INCLUDE FILE--------------------------------------------------------
-
 \chapter{Income statistics}
 %\addcontentsline{toc}{chapter}{Income statistics}
-\index{statistics}
-\label{statistics}
+\index{statistics}\label{statistics}
 In Finland some statistics are available at \url{http://stat.fi}.
 You can find income statistics from \url{http://stat.fi/tilasto/tjt}.
-There is a table "11wh" -- "Income shares (\%),
-means, medians and maximum values of decile and percentile groups, 1995-2021".
-After editing your query, you can save it and actual query result.
-It's also possible to edit and repeat query from commandline in simplistic form
-using "curl -d @query.json" or "wget --post-file=query.json" from commandline.
+There is a table "11wh" -- "Income shares (\%), means, medians and maximum
+values of decile and percentile groups, 1995-2021". After editing your query,
+you can save it and actual query result. It's also possible to edit and repeat
+query from commandline in simplistic form using "curl -d @query.json"
+or "wget --post-file=query.json" from commandline.
 
-From those available statistics we can get consumption units
-$u$ grou\-ped to fractile groups $g$,
-and when we sum up these fractiles we get number of consumption
-units\cite{ConsumptionUnitD}
-in population, which should be about the number of citizens in country.  
+From those available statistics we can get consumption units $u$ grou\-ped to
+fractile groups $g$, and when we sum up these fractiles we get number of
+consumption units\allowbreak\cite{ConsumptionUnitD} in population, which should
+be about the number of citizens in country.
 
 \begin{equation} \label{eq:fractile_units_sum}
 	\sum_{0\%}^{100\%} u =
@@ -36,12 +33,11 @@ in population, which should be about the number of citizens in country.
 	\sum_{95\%}^{100\%} u = U \approx citizens
 \end{equation}
 
-Besides the percentage limits of fractile group $g$
-these limits are also available on income $i_{u\%}$ -values from edge of each fractile,
-so we can define people group $g(i)$ size on each group edge where
-$i=i_{u\%}$ and median values also available from stats,
-and last top notch which is removed from statistics is available from gossib tabloids
-$i=i_{top}$.
+Besides the percentage limits of fractile group $g$ these limits are also
+available on income $i_{u\%}$ -values from edge of each fractile, so we can
+define people group $g(i)$ size on each group edge where $i=i_{u\%}$ and
+median values also available from stats, and last top notch which is removed
+from statistics is available from gossib tabloids $i=i_{top}$.
 
 \begin{equation} \label{eq:fractile_units_group}
 	g(i_{u0\%},i_{u\%})=
@@ -113,21 +109,26 @@ $i=i_{top}$.
 %	g(0,i_{top}) \int_{i=0}^{i_{top}} i p(i)
 %\end{equation}
 
-From statistics is possible to get some information to try find suitable
-PDF (Propability Distribution Function) $f(i)$ to be fitted into collected $g'(i)$
-points and respective CDF (Cumulative Density Function) F(i) to fit into $g(i)$ points.
-Suitable function candidates can be found based to experience or by using Python-Fitter
-and/or -Distfit-software to do Sum of Squared Errors (SSE) or Residual Sum of Squa\-res (RSS).
-Log-logistic distribution\cite{LogLogisticDistribution} (Peter R. Fisk\cite{Fisk})
-would be good starting point to look suitable distribution function.
+From statistics is possible to get some information to try find suitable PDF
+(Propability Distribution Function) $f(i)$ to be fitted into collected $g'(i)$
+points and respective CDF (Cumulative Density Function) F(i) to fit into
+$g(i)$ points. Suitable function candidates can be found based to experience
+or by using Python-Fitter and/or -Distfit-software to do Sum of Squared Errors
+(SSE) or Residual Sum of Squa\-res (RSS). Log-logistic
+distribution\allowbreak\cite{LogLogisticDistribution} (Peter R.
+Fisk\allowbreak\cite{Fisk}) would be good starting point to look suitable
+distribution function.
 
 %\begin{equation} \label{eq:Alpha} \alpha=\tilde{g'} \end{equation}
 \begin{equation} \label{eq:PDFfisk}
- PDF_{fisk}(i,\alpha,\beta)=\frac{(\beta/\alpha)(i/\alpha)^{(\beta-1)}}{(1+(i/\alpha)^\beta)^2}
+ PDF_{fisk}(i,\alpha,\beta)=
+ \frac{(\beta/\alpha)(i/\alpha)^{(\beta-1)}}{(1+(i/\alpha)^\beta)^2}
 \end{equation}
 \begin{equation} \label{eq:PDFf}
  f(i;i_0,\alpha,\beta)=
- \alpha\frac{(\beta/\alpha)((i-i_0)/\alpha)^{(\beta-1)}}{(1+((i-i_0)/\alpha)^\beta)^2}
+ \alpha\frac{
+  (\beta/\alpha)((i-i_0)/\alpha)^{(\beta-1)}
+ }{(1+((i-i_0)/\alpha)^\beta)^2}
 \end{equation}
 
 %http://wikipedia.org/wiki/Log-logistic_distribution#Characterization
@@ -150,10 +151,11 @@ would be good starting point to look suitable distribution function.
 To be able to fill database for testing with the data, what known propability
 distribution represents, we could use inverse transform sampling from interval
 $(0,1]$. Given random numbers are interpreted as propability and mapped with
-inverse cumulative distribution to data points\cite{InvTransformSampling}.
-In this case it's also possible to sample consumption units group $g \in [1,U]$
-size from one unit-person to number of citizens, and then do inverse transform
-with scaled cumulative distribution function CDF inversion $F^{-1}(g)$ .
+inverse cumulative distribution to data points\allowbreak\cite{
+ InvTransformSampling}. In this case it's also possible to sample consumption
+units group $g \in [1,U]$ size from one unit-person to number of citizens, and
+then do inverse transform with scaled cumulative distribution function CDF
+inversion $F^{-1}(g)$ .
 
 %http://wikipedia.org/wiki/Inverse_transform_sampling
 \begin{equation} \label{eq:Propability}
@@ -161,8 +163,10 @@ with scaled cumulative distribution function CDF inversion $F^{-1}(g)$ .
 \end{equation}
 
 \begin{equation} \label{eq:CDFfiskInverse}
-%CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha\left(\frac{1-P}{P}\right)^\beta
- CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=\alpha\left(\frac{1}{P}-1\right)^\beta
+%CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=
+%\alpha\left(\frac{1-P}{P}\right)^\beta
+ CDF^{-1}_{fisk}(P;\alpha,\beta)=i(P;\alpha,\beta)=
+ \alpha\left(\frac{1}{P}-1\right)^\beta
 \end{equation}
 
 %http://wikipedia.org/wiki/Inverse_transform_sampling
