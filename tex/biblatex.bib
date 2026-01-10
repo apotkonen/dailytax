@@ -8,7 +8,7 @@
 % standard suppbook suppcollection suppperiodical thesis unpublished video www
 % xdata
 %
-% abstract addendum address annote author booktitle Email chapter crossref doi
+% abstract addendum address annote author booktitle email chapter crossref doi
 % edition editor howpublished institution isbn issn journal key month note
 % number organization pages publisher school series title type url volume year
 %
@@ -17,8 +17,10 @@
 % title = {Title},
 % author = {Author},
 % year = {Year},
+% note = {Note: \url{http://}},
 % url = {http://},
-% note = {Note: \url{http://} }}
+% addendum = {No\-te\allowbreak\url{http://}}
+% }
 %
 % http://ctan.org/pkg/biblatex
 % http://wikibooks.org/wiki/LaTeX
@@ -46,8 +48,6 @@
 % turnover tied fine, what they business managers definedly notice -- and feel
 % in they yearly bonuses.
 %
-% http://aajanki.github.io/yle-dl/index-en.html
-%
 @www{YleTemplate,
 %@video{YleTemplate,
 %series={A-talk},
@@ -64,7 +64,8 @@
  year={2023},
  publisher={Finnish Public Broadcasting Company, YLE (YLEisradio)},
  note={\url{http://yle.fi/a/3456}},
- url={http://areena.yle.fi/?seek=1234}
+ url={http://areena.yle.fi/?seek=1234},
+ addendum={\url{http://aajanki.github.io/yle-dl/index-en.html}}
 }
 
 %Legal template http://finlex.fi/en/laki/kaannokset
@@ -718,6 +719,17 @@
 %http://vvary.fi % Vailla vakinaista asuntoa ry
 %http://yle.fi/a/74-20143091 % Miten asunnotoman tukien ja avun saanti onnistuu
 % ilman \"alypuhelinta tai digitaitoja? 
+
+@book{ItsekkyydenAika,
+ title={Itsekkyyden aika},
+ author={Liisa Keltikangas-J\"arvinen},
+ date={7.1.2026},
+ year={2026},
+%ean={9789510523926},
+ pages={266},
+ note={http://wsoy.fi/tekija/liisa-keltikangas-jarvinen},
+ url={http://wsoy.fi/kirjat/itsekkyyden-aika}
+}
 
 @www{DepressionValidTreatment,
  title = {Dep\-res\-sio. K\"ay\-p\"a hoi\-to -suo\-si\-tus},
@@ -1457,6 +1469,31 @@ url={http://finlex.fi/fi/laki/ajantasa/2013/20131226}
 %services from themselves and collagues need to get more respect. Currently
 %customer organizations management does not even understand what it requires
 %to serve they own laptop if/when processes are now well designed and in place.
+%They might not know or be forgotten what it requires master IT area thoroughly
+%Some hints to look:
+% http://wikipedia.org/wiki/Timeline_of_programming_languages
+% http://wikipedia.org/wiki/List_of_programming_languages
+% http://wikipedia.org/wiki/History_of_Unix
+% http://debian.pkgs.org/13/debian-main-amd64 % About 70000 SoftWare Packages !
+% http://debian.pkgs.org/sid/debian-main-amd64 % Over 70000 SoftWare Packages !
+% http://wikipedia.org/wiki/Web_framework
+% http://wikipedia.org/wiki/Solution_stack
+% Do you know which Full Stack Hero is needed when you write job role profile?
+% http://webopedia.com/reference/webstack-acronyms
+% http://wikipedia.org/wiki/High-availability_cluster
+% http://wikipedia.org/wiki/Load_balancing_(computing)
+% http://wikipedia.org/wiki/Virtual_IP_address
+% http://wikipedia.org/wiki/Anycast
+% http://wikipedia.org/wiki/Routing
+% http://wikipedia.org/wiki/Nslookup
+% http://wikipedia.org/wiki/Root_name_server
+% http://wikipedia.org/wiki/Domain_Name_System
+% http://wikipedia.org/wiki/List_of_DNS_record_types
+% http://wikipedia.org/wiki/Cloud_computing
+% http://wikipedia.org/wiki/Cloud-computing_comparison
+% http://wikipedia.org/wiki/Artificial_intelligence
+% http://wikipedia.org/wiki/List_of_artificial_intelligence_projects
+% http://huggingface.co % AI commuity models, datasets and applications
 %Customer organizations management low valuation and respect for outsourced,
 %like Valtori, low paid digital workers work, work conditions, work valuation,
 %possibilities to share, reuse, deploy and test automatically agaist other own
@@ -1468,6 +1505,9 @@ url={http://finlex.fi/fi/laki/ajantasa/2013/20131226}
 %"I do my part and It's management's problem then to get integrations working".
 %It is loop, which self-maintains; low valuation, low productivity, low payment
 %loop in goverment services, and this loop has been already continued a decade?
+%And management didn't even get process technososioeconomic optimization done
+%before ordering solution. Yep, best process do not fit in they silo
+%organization. Need to cooperate, even drive law changes.
 %
 %http://valtori.fi/-/valtori-jarjestaa-toimintansa-uudelleen-ja-kaynnistaa-yhteistoimintaneuvottelut %2024/10/24/13:59
 %http://valtori.fi/-/valtori-uudistuu-muutosohjelmalla-kilpailukykya-valtion-ict-kentalle %2020/06/16/12:24
